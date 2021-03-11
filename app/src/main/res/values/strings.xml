@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Encore</string>
+    <string name="label_high_scores">High Scores</string>
+    <string name="label_play_decathlon">Play Decathlon</string>
+    <string name="label_single_event">Single Event</string>
+    <string name="label_decathlon">Decathlon</string>
+    <string name="label_rules">Rules</string>
+    <string name="button_lets_play">Let\'s Play!</string>
+    <string-array name="event_names">
+        <item>100 Metres</item>
+        <item>Long Jump</item>
+        <item>Shot Put</item>
+        <item>High Jump</item>
+        <item>400 Metres</item>
+        <item>110 Metre Hurdles</item>
+        <item>Discus</item>
+        <item>Pole Vault</item>
+        <item>Javelin</item>
+        <item>1500 Metres</item>
+    </string-array>
+    <string-array name="player_count">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+</resources>

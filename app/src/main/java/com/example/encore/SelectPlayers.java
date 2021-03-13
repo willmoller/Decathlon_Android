@@ -15,6 +15,8 @@ public class SelectPlayers extends AppCompatActivity implements AdapterView.OnIt
 
     EditText player1Name;
     Button button_lets_play;
+    Spinner selectPlayerCount;
+    String spinnerValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +38,14 @@ public class SelectPlayers extends AppCompatActivity implements AdapterView.OnIt
             }
         });
 
-        Spinner spinner = findViewById(R.id.spinnerPlayerCount);
-        if(spinner != null){
-            spinner.setOnItemSelectedListener(this);
+        selectPlayerCount = findViewById(R.id.spinnerPlayerCount);
+        if(selectPlayerCount != null){
+            selectPlayerCount.setOnItemSelectedListener(this);
         }
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.player_count, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        if(spinner != null){
-            spinner.setAdapter(adapter);
+        if(selectPlayerCount != null){
+            selectPlayerCount.setAdapter(adapter);
         }
     }
 

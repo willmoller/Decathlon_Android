@@ -9,7 +9,17 @@
         android:roundIcon="@mipmap/decathlon_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Encore">
-        <activity android:name=".SelectPlayers"></activity>
+        <activity android:name=".Event1500Metres"></activity>
+        <activity android:name=".EventJavelin" />
+        <activity android:name=".EventPoleVault" />
+        <activity android:name=".EventDiscus" />
+        <activity android:name=".Event110MetreHurdles" />
+        <activity android:name=".Event400Metres" />
+        <activity android:name=".EventHighJump" />
+        <activity android:name=".EventShotPut" />
+        <activity android:name=".EventLongJump" />
+        <activity android:name=".Event100Metres" />
+        <activity android:name=".SelectPlayers" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

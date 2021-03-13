@@ -78,7 +78,6 @@ public class PlayGameActivity extends AppCompatActivity {
                                 res = R.drawable.die6;
                                 break;
                         }
-                        //int res = getResources().getIdentifier("die" + value, "drawable", "com.example.encore.PlayGameActivity");
 
                         if (animation == anim1){
                             imageView1.setImageResource(res);

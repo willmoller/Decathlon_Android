@@ -1,6 +1,7 @@
 package com.example.encore;
 
 import android.graphics.drawable.Drawable;
+import android.view.View;
 import android.widget.ImageView;
 
 public class Die {
@@ -9,6 +10,7 @@ public class Die {
 
     public Die(ImageView newDieFaceView){
         dieFaceView = newDieFaceView;
+        dieFaceView.setVisibility(View.INVISIBLE);
     }
 
     public int getValue(){
@@ -25,5 +27,9 @@ public class Die {
 
     public void setDieFaceView(ImageView newDieFaceView){
         dieFaceView = newDieFaceView;
+    }
+
+    public void makeVisible(){
+        dieFaceView.setVisibility(View.VISIBLE);
     }
 }

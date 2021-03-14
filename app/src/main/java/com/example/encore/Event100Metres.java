@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Event100Metres extends AppCompatActivity {
@@ -44,10 +45,16 @@ public class Event100Metres extends AppCompatActivity {
         bankedDice = 0;
         totalScore = 0;
 
+
+
         rollDie1 = new Die(findViewById(R.id.iv100MrollDie1));
+        rollDie1.makeVisible();
         rollDie2 = new Die(findViewById(R.id.iv100MrollDie2));
+        rollDie2.makeVisible();
         rollDie3 = new Die(findViewById(R.id.iv100MrollDie3));
+        rollDie3.makeVisible();
         rollDie4 = new Die(findViewById(R.id.iv100MrollDie4));
+        rollDie4.makeVisible();
         bankDie1 = new Die(findViewById(R.id.iv100MbankDie1));
         bankDie2 = new Die(findViewById(R.id.iv100MbankDie2));
         bankDie3 = new Die(findViewById(R.id.iv100MbankDie3));
@@ -70,7 +77,7 @@ public class Event100Metres extends AppCompatActivity {
 
                 rollsLeft--;
 
-                if (rollsLeft < 2 && bankedDice == 0){
+                if (rollsLeft == 1 && bankedDice == 0){
                     rollDice.setEnabled(false);
                 } else if (rollsLeft == 0 && bankedDice == 4){
                     rollDice.setEnabled(false);
@@ -147,7 +154,11 @@ public class Event100Metres extends AppCompatActivity {
                 bankRolledDice();
                 // make Roll and Keep buttons 'greyed out'
                 keepDice.setEnabled(false);
-                if (rollsLeft > 0){
+
+                if (bankedDice == 8){
+                    rollDice.setEnabled(false);
+                    keepDice.setEnabled(false);
+                } else if (rollsLeft > 0){
                     rollDice.setEnabled(true);
                 }
             }
@@ -158,23 +169,30 @@ public class Event100Metres extends AppCompatActivity {
         // move rollDie's to bankDie's
         if (bankedDice == 0){
             bankDie1.getDieFaceView().setImageDrawable(rollDie1.getDieFaceView().getDrawable());
+            bankDie1.makeVisible();
             scoreDie(rollDie1);
             bankDie2.getDieFaceView().setImageDrawable(rollDie2.getDieFaceView().getDrawable());
+            bankDie2.makeVisible();
             scoreDie(rollDie2);
             bankDie3.getDieFaceView().setImageDrawable(rollDie3.getDieFaceView().getDrawable());
+            bankDie3.makeVisible();
             scoreDie(rollDie3);
             bankDie4.getDieFaceView().setImageDrawable(rollDie4.getDieFaceView().getDrawable());
+            bankDie4.makeVisible();
             scoreDie(rollDie4);
         } else {
             bankDie5.getDieFaceView().setImageDrawable(rollDie1.getDieFaceView().getDrawable());
+            bankDie5.makeVisible();
             scoreDie(rollDie1);
             bankDie6.getDieFaceView().setImageDrawable(rollDie2.getDieFaceView().getDrawable());
+            bankDie6.makeVisible();
             scoreDie(rollDie2);
             bankDie7.getDieFaceView().setImageDrawable(rollDie3.getDieFaceView().getDrawable());
+            bankDie7.makeVisible();
             scoreDie(rollDie3);
             bankDie8.getDieFaceView().setImageDrawable(rollDie4.getDieFaceView().getDrawable());
+            bankDie8.makeVisible();
             scoreDie(rollDie4);
-            rollDice.setEnabled(false);
         }
 
         // add bankDie's to score

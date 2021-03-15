@@ -4,13 +4,17 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.util.Random;
+
 public class Die {
     private int value;
     private ImageView dieFaceView;
+    private Random r;
 
     public Die(ImageView newDieFaceView){
         dieFaceView = newDieFaceView;
         dieFaceView.setVisibility(View.INVISIBLE);
+        r = new Random();
     }
 
     public int getValue(){
@@ -31,5 +35,9 @@ public class Die {
 
     public void makeVisible(){
         dieFaceView.setVisibility(View.VISIBLE);
+    }
+
+    public void Roll(){
+        value = r.nextInt(6) + 1;
     }
 }

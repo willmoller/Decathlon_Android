@@ -6,4 +6,324 @@
     android:layout_height="match_parent"
     tools:context=".EventLongJump">
 
+    <ImageView
+        android:id="@+id/ivLongJumpLogo"
+        android:layout_width="146dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/longjump" />
+
+    <TextView
+        android:id="@+id/tvLongJumpTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="Long Jump"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="34dp"
+        android:text="Attempts Left"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/ivLongJumpLogo"
+        app:layout_constraintTop_toBottomOf="@+id/tvLongJumpTitle" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="9dp"
+        android:text="3"
+        android:textSize="60sp"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/tvLongJumpTitle" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clLongJumpRolledDice"
+        android:layout_width="wrap_content"
+        android:layout_height="95dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLongJumpLogo">
+
+        <ImageView
+            android:id="@+id/ivLongJumpRollDie1"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivLongJumpRollDie2"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/ivLongJumpRollDie1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivLongJumpRollDie3"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/ivLongJumpRollDie2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivLongJumpRollDie4"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/ivLongJumpRollDie3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivLongJumpRollDie5"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/ivLongJumpRollDie4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/buttonLongJumpRoll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="10dp"
+        android:text="Roll"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clLongJumpRolledDice" />
+
+    <Button
+        android:id="@+id/buttonLongJumpBank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginLeft="37dp"
+        android:text="Keep"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLongJumpRoll" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clLongJumpBankedDice"
+        android:layout_width="385dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="14dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLongJumpBank">
+
+        <ImageView
+            android:id="@+id/ivLongJumpBankDie1"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivLongJumpBankDie2"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/ivLongJumpBankDie1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivLongJumpBankDie3"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/ivLongJumpBankDie2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivLongJumpBankDie4"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/ivLongJumpBankDie3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivLongJumpBankDie5"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/ivLongJumpBankDie4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvLongJumpScore1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="14dp"
+        android:background="@android:color/holo_blue_light"
+        android:text="0"
+        android:textSize="60sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/tvLongJumpScore2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="117dp"
+        android:layout_marginLeft="117dp"
+        android:layout_marginTop="14dp"
+        android:background="@android:color/holo_blue_light"
+        android:text="0"
+        android:textSize="60sp"
+        app:layout_constraintStart_toEndOf="@+id/tvLongJumpScore1"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/tvLongJumpScore3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="14dp"
+        android:background="@android:color/holo_blue_light"
+        android:text="0"
+        android:textSize="60sp"
+        app:layout_constraintStart_toEndOf="@+id/tvLongJumpScore2"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="18dp"
+        android:text="Attempt #1"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLongJumpStartJump" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="51dp"
+        android:layout_marginLeft="51dp"
+        android:layout_marginTop="95dp"
+        android:text="Attempt #2"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/clLongJumpBankedDice" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:layout_marginLeft="58dp"
+        android:layout_marginTop="95dp"
+        android:text="Attempt #3"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/clLongJumpBankedDice" />
+
+    <TextView
+        android:id="@+id/tvLongJumpRunUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="11dp"
+        android:text="Run-up!"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/buttonLongJumpRoll"
+        app:layout_constraintTop_toBottomOf="@+id/clLongJumpRolledDice" />
+
+    <TextView
+        android:id="@+id/tvLongJumpRunUp2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="19dp"
+        android:text="Jump!"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/buttonLongJumpBank"
+        app:layout_constraintTop_toBottomOf="@+id/tvLongJumpRunUp" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="155dp"
+        android:layout_height="93dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="Roll dice. Reserve at least 1 after every roll. If sum of kept dice is 9 or higher, attempt fails!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clLongJumpRolledDice" />
+
+    <Button
+        android:id="@+id/buttonLongJumpStartJump"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="29dp"
+        android:text="Start Jump"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clLongJumpBankedDice" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

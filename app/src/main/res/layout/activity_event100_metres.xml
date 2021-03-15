@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/running" />
 
     <TextView
-        android:id="@+id/tv100MLabel"
+        android:id="@+id/tv100MTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
@@ -119,7 +119,7 @@
         android:text="Rolls Left:"
         android:textSize="36sp"
         app:layout_constraintStart_toEndOf="@+id/iv100MLogo"
-        app:layout_constraintTop_toBottomOf="@+id/tv100MLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/tv100MTitle" />
 
     <TextView
         android:id="@+id/tv100MRollsRemain"
@@ -131,7 +131,7 @@
         android:text="7"
         android:textSize="60sp"
         app:layout_constraintStart_toEndOf="@+id/tv100MRollsLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tv100MLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/tv100MTitle" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl100MBankedDice"

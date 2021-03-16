@@ -37,6 +37,10 @@ public class Die {
         dieFaceView.setVisibility(View.VISIBLE);
     }
 
+    public void makeInvisible(){
+        dieFaceView.setVisibility(View.INVISIBLE);
+    }
+
     public void Roll(){
         value = r.nextInt(6) + 1;
     }

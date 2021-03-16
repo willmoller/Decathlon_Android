@@ -20,7 +20,7 @@ public class Event100Metres extends AppCompatActivity {
     private ArrayList<ImageView> ivRolledDice, ivBankedDiceSet1, ivBankedDiceSet2;
     private ArrayList<String> rolledKeys, bankKeys1, bankKeys2;
     int bankedDice, totalScore;
-    Button rollDice, keepDice;
+    Button rollDice, keepDice, resetGame, leaveGame;
 
     private TextView rollsLeftText, totalScoreText;
     private int rollsLeft = 7;
@@ -36,6 +36,10 @@ public class Event100Metres extends AppCompatActivity {
 
         rollDice = (Button) findViewById(R.id.button_100M_roll);
         keepDice = (Button) findViewById(R.id.button_100M_keep);
+        resetGame = (Button) findViewById(R.id.button_100M_replay);
+        resetGame.setEnabled(false);
+        leaveGame = (Button) findViewById(R.id.button_100M_done);
+
         rollsLeftText = (TextView) findViewById(R.id.tv100MRollsRemain);
         totalScoreText = (TextView) findViewById(R.id.tv100MScore);
         bankedDice = 0;
@@ -182,6 +186,29 @@ public class Event100Metres extends AppCompatActivity {
                 }
             }
         });
+
+        resetGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bankedDiceSet1.MakeHidden();
+                bankedDiceSet2.MakeHidden();
+                rollDice.setEnabled(true);
+                totalScore = 0;
+                totalScoreText.setText(Integer.toString(totalScore));
+                rollsLeft = 7;
+                rollsLeftText.setText(Integer.toString(rollsLeft));
+                bankedDice = 0;
+                rolledDice.MakeOnes();
+                resetGame.setEnabled(false);
+            }
+        });
+
+        leaveGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void bankRolledDice(){
@@ -210,16 +237,11 @@ public class Event100Metres extends AppCompatActivity {
 
             totalScore += bankedDiceSet2.ScoreDice();
             bankedDiceSet2.MakeVisible();
+            resetGame.setEnabled(true);
         }
 
         // add bankDie's to score
         totalScoreText.setText(Integer.toString(totalScore));
-
-        // make rollDie's = 1
-        rolledDice.getDiceList().get("rollDie1").getDieFaceView().setImageResource(R.drawable.die1);
-        rolledDice.getDiceList().get("rollDie2").getDieFaceView().setImageResource(R.drawable.die1);
-        rolledDice.getDiceList().get("rollDie3").getDieFaceView().setImageResource(R.drawable.die1);
-        rolledDice.getDiceList().get("rollDie4").getDieFaceView().setImageResource(R.drawable.die1);
 
         bankedDice += 4;
     }

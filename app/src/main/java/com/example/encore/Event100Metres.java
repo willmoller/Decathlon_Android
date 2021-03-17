@@ -2,6 +2,7 @@ package com.example.encore;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -24,6 +25,7 @@ public class Event100Metres extends AppCompatActivity {
 
     private TextView rollsLeftText, totalScoreText;
     private int rollsLeft = 7;
+    private MediaPlayer mp;
 
     public static int randomDiceValue(){
         return RANDOM.nextInt(6) + 1;
@@ -89,9 +91,19 @@ public class Event100Metres extends AppCompatActivity {
 
         rolledDice.MakeVisible();
 
+        mp = MediaPlayer.create(Event100Metres.this, R.raw.dice);
+
         rollDice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    if (mp.isPlaying()) {
+                        mp.stop();
+                        mp.release();
+                        mp = MediaPlayer.create(Event100Metres.this, R.raw.dice);
+                    } mp.start();
+                } catch(Exception e) { e.printStackTrace(); }
+
                 final Animation anim1 = AnimationUtils.loadAnimation(Event100Metres.this, R.anim.shake);
                 final Animation anim2 = AnimationUtils.loadAnimation(Event100Metres.this, R.anim.shake);
                 final Animation anim3 = AnimationUtils.loadAnimation(Event100Metres.this, R.anim.shake);
@@ -207,6 +219,13 @@ public class Event100Metres extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
             }
         });
     }

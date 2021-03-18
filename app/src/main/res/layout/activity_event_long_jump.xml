@@ -21,7 +21,7 @@
         android:id="@+id/tvLongJumpTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="Long Jump"
@@ -33,25 +33,38 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="34dp"
-        android:text="Attempts Left"
+        android:layout_marginStart="45dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="31dp"
+        android:text="Attempt #"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/ivLongJumpLogo"
-        app:layout_constraintTop_toBottomOf="@+id/tvLongJumpTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvLongJumpAttemptsLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="9dp"
-        android:text="3"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="1dp"
+        android:text="1"
         android:textSize="60sp"
         app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/tvLongJumpTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <TextView
+        android:id="@+id/tvLongJumpReserveSum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="3dp"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="48dp"
+        app:layout_constraintStart_toEndOf="@+id/buttonLongJumpRoll"
+        app:layout_constraintTop_toBottomOf="@+id/tvLongJumpRunUp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clLongJumpRolledDice"
@@ -116,6 +129,7 @@
             app:layout_constraintStart_toEndOf="@+id/ivLongJumpRollDie4"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/die1" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
@@ -209,83 +223,80 @@
         android:id="@+id/tvLongJumpScore1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginLeft="37dp"
-        android:layout_marginTop="14dp"
-        android:background="@android:color/holo_blue_light"
-        android:text="0"
-        android:textSize="60sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:text="-"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clLongJumpBankedDice" />
 
     <TextView
         android:id="@+id/tvLongJumpScore2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="117dp"
-        android:layout_marginLeft="117dp"
-        android:layout_marginTop="14dp"
-        android:background="@android:color/holo_blue_light"
-        android:text="0"
-        android:textSize="60sp"
-        app:layout_constraintStart_toEndOf="@+id/tvLongJumpScore1"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:text="-"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLongJumpScore1" />
 
     <TextView
         android:id="@+id/tvLongJumpScore3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
-        android:layout_marginLeft="112dp"
-        android:layout_marginTop="14dp"
-        android:background="@android:color/holo_blue_light"
-        android:text="0"
-        android:textSize="60sp"
-        app:layout_constraintStart_toEndOf="@+id/tvLongJumpScore2"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:text="-"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLongJumpScore2" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
         android:text="Attempt #1"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLongJumpStartJump" />
+        app:layout_constraintStart_toEndOf="@+id/buttonLongJumpStartJump"
+        app:layout_constraintTop_toBottomOf="@+id/clLongJumpBankedDice" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="51dp"
-        android:layout_marginLeft="51dp"
-        android:layout_marginTop="95dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="40dp"
         android:text="Attempt #2"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/clLongJumpBankedDice" />
+        app:layout_constraintStart_toEndOf="@+id/buttonLongJumpReset"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="58dp"
-        android:layout_marginLeft="58dp"
-        android:layout_marginTop="95dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="40dp"
         android:text="Attempt #3"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/clLongJumpBankedDice" />
+        app:layout_constraintStart_toEndOf="@+id/buttonLongJumpDone"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/tvLongJumpRunUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginLeft="19dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
         android:layout_marginTop="11dp"
         android:text="Run-up!"
         android:textSize="24sp"
@@ -293,25 +304,13 @@
         app:layout_constraintTop_toBottomOf="@+id/clLongJumpRolledDice" />
 
     <TextView
-        android:id="@+id/tvLongJumpRunUp2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="19dp"
-        android:text="Jump!"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/buttonLongJumpBank"
-        app:layout_constraintTop_toBottomOf="@+id/tvLongJumpRunUp" />
-
-    <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/tvLongJumpRunUpRules"
         android:layout_width="155dp"
         android:layout_height="93dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="Roll dice. Reserve at least 1 after every roll. If sum of kept dice is 9 or higher, attempt fails!"
+        android:text="Roll dice. Reserve at least 1 after every roll. If sum of reserved dice is 9 or higher, attempt fails!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clLongJumpRolledDice" />
 
@@ -319,11 +318,56 @@
         android:id="@+id/buttonLongJumpStartJump"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         android:text="Start Jump"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clLongJumpBankedDice" />
+
+    <Button
+        android:id="@+id/buttonLongJumpReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="2dp"
+        android:text="Reset"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLongJumpNextAttempt" />
+
+    <Button
+        android:id="@+id/buttonLongJumpDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="2dp"
+        android:text="Done"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLongJumpReset" />
+
+    <Button
+        android:id="@+id/buttonLongJumpNextAttempt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="2dp"
+        android:text="Next Attempt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLongJumpStartJump" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="66dp"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="1dp"
+        android:text="(3 Attempts)"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/ivLongJumpLogo"
+        app:layout_constraintTop_toBottomOf="@+id/tvLongJumpTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

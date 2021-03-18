@@ -15,13 +15,12 @@ import java.util.Random;
 
 public class Event100Metres extends AppCompatActivity {
 
-    public static final Random RANDOM = new Random();
-    private Die bankDie1, bankDie2, bankDie3, bankDie4, bankDie5, bankDie6, bankDie7, bankDie8;
+    private static final Random RANDOM = new Random();
     private Dice rolledDice, bankedDiceSet1, bankedDiceSet2;
     private ArrayList<ImageView> ivRolledDice, ivBankedDiceSet1, ivBankedDiceSet2;
     private ArrayList<String> rolledKeys, bankKeys1, bankKeys2;
-    int bankedDice, totalScore;
-    Button rollDice, keepDice, resetGame, leaveGame;
+    private int bankedDice, totalScore;
+    private Button rollDice, keepDice, resetGame, leaveGame;
 
     private TextView rollsLeftText, totalScoreText;
     private int rollsLeft = 7;
@@ -187,7 +186,7 @@ public class Event100Metres extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bankRolledDice();
-                // make Roll and Keep buttons 'greyed out'
+                // make Keep button unclickable
                 keepDice.setEnabled(false);
 
                 if (bankedDice == 8){

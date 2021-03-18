@@ -1,5 +1,6 @@
 package com.example.encore;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,6 +16,8 @@ public class Die {
         dieFaceView = newDieFaceView;
         dieFaceView.setVisibility(View.INVISIBLE);
         r = new Random();
+        dieFaceView.setBackgroundColor(Color.TRANSPARENT);
+        dieFaceView.setClickable(false);
     }
 
     public int getValue(){
@@ -43,5 +46,13 @@ public class Die {
 
     public void Roll(){
         value = r.nextInt(6) + 1;
+    }
+
+    public void MakeClickable(){
+        dieFaceView.setClickable(true);
+    }
+
+    public void MakeUnclickable(){
+        dieFaceView.setClickable(false);
     }
 }

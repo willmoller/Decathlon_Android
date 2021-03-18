@@ -1,5 +1,6 @@
 package com.example.encore;
 
+import android.view.View;
 import android.widget.ImageView;
 
 import java.lang.reflect.Array;
@@ -24,11 +25,19 @@ public class Dice {
         return DiceList;
     }
 
+    public ArrayList<String> getDiceKeys(){
+        return DiceKeys;
+    }
+
     public void RollDice(){
         for (Map.Entry<String, Die> die :
                 DiceList.entrySet()) {
             die.getValue().Roll();
         }
+    }
+
+    public void RemoveDie(String key){
+        DiceList.remove(key);
     }
 
     public void MakeHidden(){
@@ -77,6 +86,17 @@ public class Dice {
             }
         }
         return totalScore;
+    }
+    
+    public void animateDice(){
+
+    }
+
+    public void MakeClickable(){
+        for (Map.Entry<String, Die> die :
+                DiceList.entrySet()) {
+            die.getValue().MakeClickable();
+        }
     }
 
 }

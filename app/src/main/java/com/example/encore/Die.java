@@ -3,6 +3,7 @@ package com.example.encore;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 
 import java.util.Random;
@@ -11,6 +12,7 @@ public class Die {
     private int value;
     private ImageView dieFaceView;
     private Random r;
+    private Animation animation;
 
     public Die(ImageView newDieFaceView){
         dieFaceView = newDieFaceView;
@@ -54,5 +56,13 @@ public class Die {
 
     public void MakeUnclickable(){
         dieFaceView.setClickable(false);
+    }
+
+    public Animation getAnimation() {
+        return animation;
+    }
+
+    public void setAnimation(Animation animation) {
+        this.animation = animation;
     }
 }

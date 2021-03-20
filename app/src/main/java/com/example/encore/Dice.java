@@ -1,5 +1,6 @@
 package com.example.encore;
 
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -55,9 +56,14 @@ public class Dice {
     }
 
     public void MakeOnes(){
-        for (int i = 0; i < DiceKeys.size(); i++) {
-            DiceList.get(DiceKeys.get(i)).getDieFaceView().setImageResource(R.drawable.die1);
+        for (String key :
+                DiceKeys) {
+            DiceList.get(key).getDieFaceView().setImageResource(R.drawable.die1);
         }
+//        for (int i = 0; i < DiceKeys.size(); i++) {
+//            DiceList.get(DiceKeys.get(i)).getDieFaceView().setImageResource(R.drawable.die1);
+//            DiceList.get(DiceKeys.get(i)).setValue(0);
+//        }
     }
 
     public int ScoreDice(){
@@ -99,4 +105,68 @@ public class Dice {
         }
     }
 
+    public void MakeClickable(ArrayList<String> keys){
+        for (String key :
+                keys) {
+            DiceList.get(key).MakeClickable();
+        }
+    }
+
+    public void MakeUnclickable(){
+        for (Map.Entry<String, Die> die :
+                DiceList.entrySet()) {
+            die.getValue().MakeUnclickable();
+        }
+    }
+
+    public void MakeUnclickable(ArrayList<String> keys){
+        for (String key :
+                keys) {
+            DiceList.get(key).MakeUnclickable();
+        }
+    }
+
+    public void HideUnusedDice(int unusedDice){
+        switch (unusedDice){
+            case 1:
+                for (int i = 1; i < 5; i++){
+                    DiceList.get(DiceKeys.get(i)).makeInvisible();
+                }
+                break;
+            case 2:
+                for (int i = 2; i < 5; i++){
+                    DiceList.get(DiceKeys.get(i)).makeInvisible();
+                }
+                break;
+            case 3:
+                for (int i = 3; i < 5; i++){
+                    DiceList.get(DiceKeys.get(i)).makeInvisible();
+                }
+                break;
+            case 4:
+                for (int i = 4; i < 5; i++){
+                    DiceList.get(DiceKeys.get(i)).makeInvisible();
+                }
+                break;
+            case 5:
+                for (int i = 5; i < 5; i++){
+                    DiceList.get(DiceKeys.get(i)).makeInvisible();
+                }
+                break;
+        }
+    }
+
+    public void ChangeBackgroundColor(int color) {
+        for (Map.Entry<String, Die> die :
+                DiceList.entrySet()) {
+            die.getValue().getDieFaceView().setBackgroundColor(color);
+        }
+    }
+
+    public void SetDiceViewPadding(int padding){
+        for (Map.Entry<String, Die> die :
+                DiceList.entrySet()) {
+            die.getValue().getDieFaceView().setPadding(padding, padding, padding, padding);
+        }
+    }
 }

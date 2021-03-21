@@ -6,4 +6,199 @@
     android:layout_height="match_parent"
     tools:context=".Event110MetreHurdles">
 
+    <ImageView
+        android:id="@+id/iv110MHurdlesLogo"
+        android:layout_width="146dp"
+        android:layout_height="158dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/hurdles" />
+
+    <TextView
+        android:id="@+id/tv110MHurdlesTitle"
+        android:layout_width="225dp"
+        android:layout_height="114dp"
+        android:layout_marginTop="38dp"
+        android:text="110 Metre Hurdles"
+        android:textSize="48sp"
+        app:layout_constraintStart_toEndOf="@+id/iv110MHurdlesLogo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="376dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv110MHurdlesRules">
+
+        <ImageView
+            android:id="@+id/iv110MHurdlesRollDie1"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv110MHurdlesRollDie2"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/iv110MHurdlesRollDie1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv110MHurdlesRollDie3"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/iv110MHurdlesRollDie2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv110MHurdlesRollDie4"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/iv110MHurdlesRollDie3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv110MHurdlesRollDie5"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/iv110MHurdlesRollDie4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv110MHurdlesRollsLeftLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="23dp"
+        android:text="Rolls Left:"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <TextView
+        android:id="@+id/tv110MHurdlesRollsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:text="6"
+        android:textSize="60sp"
+        app:layout_constraintStart_toEndOf="@+id/tv110MHurdlesRollsLeftLabel"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <Button
+        android:id="@+id/button_110MHurdles_Roll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="21dp"
+        android:text="Roll"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv110MHurdlesRollsLeftLabel" />
+
+    <Button
+        android:id="@+id/button_110MHurdles_Keep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="12dp"
+        android:text="Keep"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/button_110MHurdles_Roll"
+        app:layout_constraintTop_toBottomOf="@+id/tv110MHurdlesRollsLeft" />
+
+    <Button
+        android:id="@+id/button_110MHurdles_Done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Done"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_110MHurdles_Reset" />
+
+    <Button
+        android:id="@+id/button_110MHurdles_Reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="38dp"
+        android:text="Replay"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_110MHurdles_Roll" />
+
+    <TextView
+        android:id="@+id/tv110MHurdlesScoreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="67dp"
+        android:text="Score:"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/button_110MHurdles_Reset"
+        app:layout_constraintTop_toBottomOf="@+id/button_110MHurdles_Keep" />
+
+    <TextView
+        android:id="@+id/tv110MHurdlesScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginLeft="41dp"
+        android:layout_marginTop="51dp"
+        android:text="0"
+        android:textSize="48sp"
+        app:layout_constraintStart_toEndOf="@+id/tv110MHurdlesScoreLabel"
+        app:layout_constraintTop_toBottomOf="@+id/button_110MHurdles_Keep" />
+
+    <TextView
+        android:id="@+id/tv110MHurdlesRules"
+        android:layout_width="371dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="14dp"
+        android:text="Roll all 5 dice, up to 6 times until you are satisfied with the result. Your score is the sum of all 5 dice."
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv110MHurdlesLogo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

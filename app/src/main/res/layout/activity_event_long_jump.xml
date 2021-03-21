@@ -24,7 +24,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="Long Jump"
+        android:text="@string/long_jump_title"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +36,7 @@
         android:layout_marginStart="45dp"
         android:layout_marginLeft="45dp"
         android:layout_marginTop="31dp"
-        android:text="Attempt #"
+        android:text="@string/attempt_label"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/ivLongJumpLogo"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
@@ -139,7 +139,7 @@
         android:layout_marginStart="37dp"
         android:layout_marginLeft="37dp"
         android:layout_marginTop="10dp"
-        android:text="Roll"
+        android:text="@string/button_roll_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clLongJumpRolledDice" />
 
@@ -149,7 +149,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
         android:layout_marginLeft="37dp"
-        android:text="Keep"
+        android:text="@string/button_keep_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLongJumpRoll" />
 
@@ -250,7 +250,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="56dp"
         android:layout_marginRight="56dp"
-        android:text="-"
+        android:text="@string/score_text_empty"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLongJumpScore2" />
@@ -298,7 +298,7 @@
         android:layout_marginStart="17dp"
         android:layout_marginLeft="17dp"
         android:layout_marginTop="11dp"
-        android:text="Run-up!"
+        android:text="@string/long_jump_run_up_text"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/buttonLongJumpRoll"
         app:layout_constraintTop_toBottomOf="@+id/clLongJumpRolledDice" />
@@ -310,7 +310,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="Roll dice. Reserve at least 1 after every roll. If sum of reserved dice is 9 or higher, attempt fails!"
+        android:text="@string/long_jump_rules_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clLongJumpRolledDice" />
 
@@ -321,7 +321,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="Start Jump"
+        android:text="@string/long_jump_start_jump_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clLongJumpBankedDice" />
 
@@ -332,7 +332,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="2dp"
-        android:text="Reset"
+        android:text="@string/button_reset_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLongJumpNextAttempt" />
 
@@ -343,7 +343,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="2dp"
-        android:text="Done"
+        android:text="@string/button_done_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLongJumpReset" />
 
@@ -354,7 +354,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="2dp"
-        android:text="Next Attempt"
+        android:text="@string/button_long_jump_next_attempt_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLongJumpStartJump" />
 

@@ -6,6 +6,19 @@
     <string name="label_decathlon">Decathlon</string>
     <string name="label_rules">Rules</string>
     <string name="button_lets_play">Let\'s Play!</string>
+    <string name="long_jump_title">Long Jump</string>
+    <string name="attempt_label">Attempt #</string>
+    <string name="button_roll_text">Roll</string>
+    <string name="button_keep_text">Keep</string>
+    <string name="long_jump_run_up_text">Run-up!</string>
+    <string name="long_jump_jump_text">Jump!</string>
+    <string name="long_jump_rules_text">Roll dice. Reserve at least 1 after every roll. If sum of reserved dice is 9 or higher, attempt fails!</string>
+    <string name="long_jump_start_jump_text">Start Jump</string>
+    <string name="long_jump_score_jump_text">Score!</string>
+    <string name="button_reset_text">Reset</string>
+    <string name="button_done_text">Done</string>
+    <string name="button_long_jump_next_attempt_text">Next Attempt</string>
+    <string name="score_text_empty">-</string>
     <string-array name="event_names">
         <item>100 Metres</item>
         <item>Long Jump</item>

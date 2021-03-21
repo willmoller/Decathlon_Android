@@ -24,13 +24,14 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
     private Dice rolledDice, reservedDice;
     private ArrayList<ImageView> ivRolledDice, ivBankedDiceSet;
     private ArrayList<String> rolledKeys, bankKeys, bankedKeys;
-    private int reserveScore, totalScore;
+    private int reserveScore, totalScore, diceClicked;
     private Button rollDice, keepDice, startJump, nextAttempt, resetGame, leaveGame;
     private ImageView rollDie1, rollDie2, rollDie3, rollDie4, rollDie5, reserveDie1, reserveDie2, reserveDie3, reserveDie4, reserveDie5;
 
     private TextView attemptText, reserveScoreText, runUp, runUpRules, jumpRules, score1, score2, score3;
     private int attempt = 1;
     private MediaPlayer mp;
+    private boolean isJumpAttempt = false;
 
     public static int randomDiceValue(){
         return RANDOM.nextInt(6) + 1;
@@ -113,6 +114,7 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
 
         totalScore = 0;
         reserveScore = 0;
+        diceClicked = 0;
         reserveScoreText = (TextView) findViewById(R.id.tvLongJumpReserveSum);
 
         rolledDice.MakeVisible();
@@ -120,6 +122,7 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
         rollDice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                diceClicked = 0;
                 final Animation anim1 = AnimationUtils.loadAnimation(EventLongJump.this, R.anim.shake);
                 final Animation anim2 = AnimationUtils.loadAnimation(EventLongJump.this, R.anim.shake);
                 final Animation anim3 = AnimationUtils.loadAnimation(EventLongJump.this, R.anim.shake);
@@ -131,11 +134,18 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
                 rollDice.setEnabled(false);
                 startJump.setEnabled(false);
 
+                if (isJumpAttempt){
 
-                if (reserveScore >= 9){
-                    rollDice.setEnabled(false);
-                    // what should happen if the attempt fails?
+
+
+
+                } else {
+                    if (reserveScore >= 9){
+                        rollDice.setEnabled(false);
+                        // what should happen if the attempt fails?
+                    }
                 }
+
 
                 final Animation.AnimationListener animationListener = new Animation.AnimationListener() {
                     @Override
@@ -220,29 +230,36 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
                 }
 
                 keepDice.setEnabled(false);
+
                 rolledDice.MakeUnclickable();
 
-                if (reserveScore > 8){
-                    startJump.setEnabled(false);
-                    nextAttempt.setEnabled(true);
-                    rollDice.setEnabled(false);
-                    switch (attempt){
-                        case 1:
-                            score1.setText(Integer.toString(0));
-                            score1.setTextColor(Color.RED);
-                            break;
-                        case 2:
-                            score2.setText(Integer.toString(0));
-                            score2.setTextColor(Color.RED);
-                            break;
-                        case 3:
-                            score3.setText(Integer.toString(0));
-                            score3.setTextColor(Color.RED);
-                            break;
+                if(!isJumpAttempt){
+                    if (reserveScore > 8){
+                        startJump.setEnabled(false);
+                        nextAttempt.setEnabled(true);
+                        rollDice.setEnabled(false);
+                        switch (attempt){
+                            case 1:
+                                score1.setText(Integer.toString(0));
+                                score1.setTextColor(Color.RED);
+                                break;
+                            case 2:
+                                score2.setText(Integer.toString(0));
+                                score2.setTextColor(Color.RED);
+                                break;
+                            case 3:
+                                score3.setText(Integer.toString(0));
+                                score3.setTextColor(Color.RED);
+                                break;
+                        }
+                    } else {
+                        startJump.setEnabled(true);
+                        rollDice.setEnabled(true);
                     }
+                } else if (isJumpAttempt && rolledKeys.size() > 0){
+                    rollDice.setEnabled(true);
                 } else {
                     startJump.setEnabled(true);
-                    rollDice.setEnabled(true);
                 }
             }
         });
@@ -250,52 +267,98 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
         startJump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                diceClicked = 0;
                 startJump.setEnabled(false);
-                reserveScore = 0;
-                reserveScoreText.setText(Integer.toString(reserveScore));
-
-                for (String key :
-                        bankedKeys) {
-                    rolledDice.getDiceList().get(key).setValue(reservedDice.getDiceList().get(key).getValue());
-                    rolledDice.getDiceList().get(key).getDieFaceView().setImageDrawable(reservedDice.getDiceList().get(key).getDieFaceView().getDrawable());
-                    rolledDice.getDiceList().get(key).MakeClickable();
-                    rolledDice.getDiceList().get(key).makeVisible();
-                }
-
-                for (String key :
-                        rolledKeys) {
-                    rolledDice.getDiceList().get(key).makeInvisible();
-                    rolledDice.getDiceList().get(key).MakeUnclickable();
-                }
-//                for (int i = 0; i < bankedKeys.size(); i++) {
-//                    rolledDice.getDiceList().get(rolledDice.getDiceKeys().get(i)).setValue(reservedDice.getDiceList().get(reservedDice.getDiceKeys().get(i)).getValue());
-//                    rolledDice.getDiceList().get(rolledDice.getDiceKeys().get(i)).getDieFaceView().setImageDrawable(reservedDice.getDiceList().get(reservedDice.getDiceKeys().get(i)).getDieFaceView().getDrawable());
-//                    rolledDice.getDiceList().get(rolledDice.getDiceKeys().get(i)).MakeClickable();
-//                }
                 rolledDice.ChangeBackgroundColor(Color.WHITE);
                 rolledDice.SetDiceViewPadding(0);
 
-                //rolledDice.HideUnusedDice(bankedKeys.size());
+                if (isJumpAttempt){
+                    isJumpAttempt = false;
+                    if (attempt == 3){
+                        resetGame.setEnabled(true);
+                    }
+                    runUp.setText(R.string.long_jump_jump_text);
+                    startJump.setText(R.string.long_jump_start_jump_text);
 
-                reservedDice.MakeHidden();
+                    for (String key :
+                            bankKeys) {
+                        rolledKeys.add(key);
+                    }
+                    
+                    switch (attempt){
+                        case 1:
+                            score1.setText(Integer.toString(reserveScore));
+                            score1.setTextColor(Color.GREEN);
+                            break;
+                        case 2:
+                            score2.setText(Integer.toString(reserveScore));
+                            score2.setTextColor(Color.GREEN);
+                            break;
+                        case 3:
+                            score3.setText(Integer.toString(reserveScore));
+                            score3.setTextColor(Color.GREEN);
+                            break;
+                    }
+                    if (attempt < 3){
+                        nextAttempt.setEnabled(true);
+                    } else {
+                        finishEvent();
+                    }
+                } else {
+                    reserveScore = 0;
+                    reserveScoreText.setText(Integer.toString(reserveScore));
+                    isJumpAttempt = true;
+                    runUp.setText(R.string.long_jump_jump_text);
+                    startJump.setText(R.string.long_jump_score_jump_text);
+                    reservedDice.MakeHidden();
+
+                    for (String key :
+                            bankedKeys) {
+                        rolledDice.getDiceList().get(key).setValue(reservedDice.getDiceList().get(key).getValue());
+                        rolledDice.getDiceList().get(key).getDieFaceView().setImageDrawable(reservedDice.getDiceList().get(key).getDieFaceView().getDrawable());
+                        rolledDice.getDiceList().get(key).makeVisible();
+                    }
+
+                    for (String key :
+                            rolledKeys) {
+                        rolledDice.getDiceList().get(key).makeInvisible();
+                        rolledDice.getDiceList().get(key).MakeUnclickable();
+                    }
+
+                    rolledKeys.removeAll(rolledKeys);
+
+                    for (String key :
+                            bankedKeys) {
+                        rolledKeys.add(key);
+                    }
+                    bankedKeys.removeAll(bankedKeys);
+                }
+
+                //runUp.setText();
+            }
+
+            private void finishEvent() {
+
             }
         });
 
         nextAttempt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                diceClicked = 0;
                 attempt++;
                 attemptText.setText(Integer.toString(attempt));
 
                 reserveScore = 0;
                 reserveScoreText.setText(Integer.toString(reserveScore));
 
+                rolledKeys.removeAll(rolledKeys);
                 for (String key :
-                        bankedKeys) {
+                        bankKeys) {
                     rolledKeys.add(key);
                 }
 
-                Collections.sort(rolledKeys);
+                //Collections.sort(rolledKeys);
                 bankedKeys.removeAll(bankedKeys);
 
                 rolledDice.MakeVisible();
@@ -313,7 +376,37 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
         resetGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                resetGame.setEnabled(false);
+                diceClicked = 0;
+                attempt = 1;
+                attemptText.setText(Integer.toString(attempt));
 
+                reserveScore = 0;
+                reserveScoreText.setText(Integer.toString(reserveScore));
+
+                rolledKeys.removeAll(rolledKeys);
+                for (String key :
+                        bankKeys) {
+                    rolledKeys.add(key);
+                }
+
+                bankedKeys.removeAll(bankedKeys);
+
+                rolledDice.MakeVisible();
+                rolledDice.ChangeBackgroundColor(Color.WHITE);
+                rolledDice.SetDiceViewPadding(0);
+                rolledDice.MakeOnes();
+                reservedDice.MakeHidden();
+
+                rollDice.setEnabled(true);
+                nextAttempt.setEnabled(false);
+                reserveScoreText.setTextColor(Color.BLACK);
+                score1.setText(R.string.score_text_empty);
+                score2.setText(R.string.score_text_empty);
+                score3.setText(R.string.score_text_empty);
+                score1.setTextColor(Color.BLACK);
+                score2.setTextColor(Color.BLACK);
+                score3.setTextColor(Color.BLACK);
             }
         });
 
@@ -365,12 +458,14 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.ivLongJumpRollDie1:
                 if (rolledDieIsClicked(v)){
+                    diceClicked--;
                     reservedDice.getDiceList().get("rollDie1").makeInvisible();
                     bankedKeys.remove("rollDie1");
                     rolledKeys.add("rollDie1");
                     reserveScore -= reservedDice.getDiceList().get("rollDie1").getValue();
                     keepDice.setEnabled(false);
                 } else {
+                    diceClicked++;
                     reservedDice.getDiceList().get("rollDie1").setValue(rolledDice.getDiceList().get("rollDie1").getValue());
                     reservedDice.getDiceList().get("rollDie1").getDieFaceView().setImageDrawable(rolledDice.getDiceList().get("rollDie1").getDieFaceView().getDrawable());
                     reservedDice.getDiceList().get("rollDie1").makeVisible();
@@ -379,90 +474,106 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
                     reserveScore += reservedDice.getDiceList().get("rollDie1").getValue();
                     keepDice.setEnabled(true);
                 }
-//                if (reserveScore > 8){
-//                    reserveScoreText.setTextColor(Color.RED);
-//                }
-                //reserveScoreText.setText(Integer.toString(reserveScore));
+                if (diceClicked > 0){
+                    keepDice.setEnabled(true);
+                } else {
+                    keepDice.setEnabled(false);
+                }
                 break;
             case R.id.ivLongJumpRollDie2:
                 if (rolledDieIsClicked(v)){
+                    diceClicked--;
                     reservedDice.getDiceList().get("rollDie2").makeInvisible();
                     bankedKeys.remove("rollDie2");
                     rolledKeys.add("rollDie2");
                     reserveScore -= reservedDice.getDiceList().get("rollDie2").getValue();
-                    keepDice.setEnabled(false);
                 } else {
+                    diceClicked++;
                     reservedDice.getDiceList().get("rollDie2").setValue(rolledDice.getDiceList().get("rollDie2").getValue());
                     reservedDice.getDiceList().get("rollDie2").getDieFaceView().setImageDrawable(rolledDice.getDiceList().get("rollDie2").getDieFaceView().getDrawable());
                     reservedDice.getDiceList().get("rollDie2").makeVisible();
                     bankedKeys.add("rollDie2");
                     rolledKeys.remove("rollDie2");
                     reserveScore += reservedDice.getDiceList().get("rollDie2").getValue();
-                    keepDice.setEnabled(true);
                 }
-                //reserveScoreText.setText(Integer.toString(reserveScore));
+                if (diceClicked > 0){
+                    keepDice.setEnabled(true);
+                } else {
+                    keepDice.setEnabled(false);
+                }
                 break;
             case R.id.ivLongJumpRollDie3:
                 if (rolledDieIsClicked(v)){
+                    diceClicked--;
                     reservedDice.getDiceList().get("rollDie3").makeInvisible();
                     bankedKeys.remove("rollDie3");
                     rolledKeys.add("rollDie3");
                     reserveScore -= reservedDice.getDiceList().get("rollDie3").getValue();
-                    keepDice.setEnabled(false);
                 } else {
+                    diceClicked++;
                     reservedDice.getDiceList().get("rollDie3").setValue(rolledDice.getDiceList().get("rollDie3").getValue());
                     reservedDice.getDiceList().get("rollDie3").getDieFaceView().setImageDrawable(rolledDice.getDiceList().get("rollDie3").getDieFaceView().getDrawable());
                     reservedDice.getDiceList().get("rollDie3").makeVisible();
                     bankedKeys.add("rollDie3");
                     rolledKeys.remove("rollDie3");
                     reserveScore += reservedDice.getDiceList().get("rollDie3").getValue();
-                    keepDice.setEnabled(true);
                 }
-                //reserveScoreText.setText(Integer.toString(reserveScore));
+                if (diceClicked > 0){
+                    keepDice.setEnabled(true);
+                } else {
+                    keepDice.setEnabled(false);
+                }
                 break;
             case R.id.ivLongJumpRollDie4:
                 if (rolledDieIsClicked(v)){
+                    diceClicked--;
                     reservedDice.getDiceList().get("rollDie4").makeInvisible();
                     bankedKeys.remove("rollDie4");
                     rolledKeys.add("rollDie4");
                     reserveScore -= reservedDice.getDiceList().get("rollDie4").getValue();
-                    keepDice.setEnabled(false);
                 } else {
+                    diceClicked++;
                     reservedDice.getDiceList().get("rollDie4").setValue(rolledDice.getDiceList().get("rollDie4").getValue());
                     reservedDice.getDiceList().get("rollDie4").getDieFaceView().setImageDrawable(rolledDice.getDiceList().get("rollDie4").getDieFaceView().getDrawable());
                     reservedDice.getDiceList().get("rollDie4").makeVisible();
                     bankedKeys.add("rollDie4");
                     rolledKeys.remove("rollDie4");
                     reserveScore += reservedDice.getDiceList().get("rollDie4").getValue();
-                    keepDice.setEnabled(true);
                 }
-                //reserveScoreText.setText(Integer.toString(reserveScore));
+                if (diceClicked > 0){
+                    keepDice.setEnabled(true);
+                } else {
+                    keepDice.setEnabled(false);
+                }
                 break;
             case R.id.ivLongJumpRollDie5:
                 if (rolledDieIsClicked(v)){
+                    diceClicked--;
                     reservedDice.getDiceList().get("rollDie5").makeInvisible();
                     bankedKeys.remove("rollDie5");
                     rolledKeys.add("rollDie5");
                     reserveScore -= reservedDice.getDiceList().get("rollDie5").getValue();
-                    keepDice.setEnabled(false);
                 } else {
+                    diceClicked++;
                     reservedDice.getDiceList().get("rollDie5").setValue(rolledDice.getDiceList().get("rollDie5").getValue());
                     reservedDice.getDiceList().get("rollDie5").getDieFaceView().setImageDrawable(rolledDice.getDiceList().get("rollDie5").getDieFaceView().getDrawable());
                     reservedDice.getDiceList().get("rollDie5").makeVisible();
                     bankedKeys.add("rollDie5");
                     rolledKeys.remove("rollDie5");
                     reserveScore += reservedDice.getDiceList().get("rollDie5").getValue();
-                    keepDice.setEnabled(true);
                 }
-                //reserveScoreText.setText(Integer.toString(reserveScore));
+                if (diceClicked > 0){
+                    keepDice.setEnabled(true);
+                } else {
+                    keepDice.setEnabled(false);
+                }
                 break;
         }
-        if (reserveScore > 8){
+        if (!isJumpAttempt && reserveScore > 8){
             reserveScoreText.setTextColor(Color.RED);
         } else {
             reserveScoreText.setTextColor(Color.BLACK);
         }
         reserveScoreText.setText(Integer.toString(reserveScore));
-
     }
 }

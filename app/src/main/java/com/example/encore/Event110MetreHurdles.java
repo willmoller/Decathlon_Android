@@ -2,6 +2,7 @@ package com.example.encore;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -162,6 +163,7 @@ public class Event110MetreHurdles extends AppCompatActivity {
                     totalScore += rolledDice.getDiceList().get(key).getValue();
                 }
                 totalScoreText.setText(Integer.toString(totalScore));
+                totalScoreText.setTextColor(Color.GREEN);
                 rollDice.setEnabled(false);
                 keepDice.setEnabled(false);
                 resetGame.setEnabled(true);

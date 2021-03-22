@@ -6,4 +6,231 @@
     android:layout_height="match_parent"
     tools:context=".Event1500Metres">
 
+    <ImageView
+        android:id="@+id/iv1500MLogo"
+        android:layout_width="148dp"
+        android:layout_height="156dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="21dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/running" />
+
+    <TextView
+        android:id="@+id/tv1500MTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:text="1500 Metres"
+        android:textSize="40sp"
+        app:layout_constraintStart_toEndOf="@+id/iv1500MLogo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv1500MRules"
+        android:layout_width="379dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="6dp"
+        android:text="Throw 1 die until you are satisfied with the result. Proceed in the same manner with all 8 dice. You have a maximum of 13 throws among all dice. 6's count negative."
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv1500MRollsLeft" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl1500MDice"
+        android:layout_width="380dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="29dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv1500MRules">
+
+        <ImageView
+            android:id="@+id/iv1500MDie1"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv1500MDie5"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv1500MDie1"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv1500MDie6"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/iv1500MDie5"
+            app:layout_constraintTop_toBottomOf="@+id/iv1500MDie2"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv1500MDie7"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/iv1500MDie6"
+            app:layout_constraintTop_toBottomOf="@+id/iv1500MDie3"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv1500MDie8"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/iv1500MDie7"
+            app:layout_constraintTop_toBottomOf="@+id/iv1500MDie4"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv1500MDie4"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/iv1500MDie3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv1500MDie3"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/iv1500MDie2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv1500MDie2"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/iv1500MDie1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv1500MRollsLeftLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:text="Rolls Left:"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/iv1500MLogo"
+        app:layout_constraintTop_toBottomOf="@+id/tv1500MTitle" />
+
+    <TextView
+        android:id="@+id/tv1500MRollsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="14dp"
+        android:text="13"
+        android:textSize="60sp"
+        app:layout_constraintStart_toEndOf="@+id/tv1500MRollsLeftLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tv1500MTitle" />
+
+    <Button
+        android:id="@+id/button_1500M_Roll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="49dp"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="17dp"
+        android:text="Roll"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl1500MDice" />
+
+    <Button
+        android:id="@+id/button_1500M_Score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="17dp"
+        android:text="Keep"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/button_1500M_Roll"
+        app:layout_constraintTop_toBottomOf="@+id/cl1500MDice" />
+
+    <TextView
+        android:id="@+id/tv1500MScoreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="37dp"
+        android:text="Score:"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/button_1500M_Replay"
+        app:layout_constraintTop_toBottomOf="@+id/button_1500M_Score" />
+
+    <TextView
+        android:id="@+id/tv1500MScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="-"
+        android:textSize="60sp"
+        app:layout_constraintStart_toEndOf="@+id/tv1500MScoreLabel"
+        app:layout_constraintTop_toBottomOf="@+id/button_1500M_Score" />
+
+    <Button
+        android:id="@+id/button_1500M_Done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:text="Done"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_1500M_Replay" />
+
+    <Button
+        android:id="@+id/button_1500M_Replay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="9dp"
+        android:text="Replay"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_1500M_Roll" />
 </androidx.constraintlayout.widget.ConstraintLayout>

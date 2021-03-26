@@ -6,4 +6,344 @@
     android:layout_height="match_parent"
     tools:context=".EventHighJump">
 
+    <TextView
+        android:id="@+id/tvHighJumpGoal14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="10dp"
+        android:text="14"
+        android:textSize="36sp"
+        android:onClick="onClick"
+        app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal12"
+        app:layout_constraintTop_toBottomOf="@+id/tvHighJumpActionPrompt" />
+
+    <TextView
+        android:id="@+id/tvHighJumpGoal22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="7dp"
+        android:text="22"
+        android:textSize="36sp"
+        android:onClick="onClick"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHighJumpGoal10" />
+
+    <TextView
+        android:id="@+id/tvHighJumpGoal24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="57dp"
+        android:layout_marginLeft="57dp"
+        android:layout_marginTop="7dp"
+        android:text="24"
+        android:textSize="36sp"
+        android:onClick="onClick"
+        app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal22"
+        app:layout_constraintTop_toBottomOf="@+id/tvHighJumpGoal12" />
+
+    <TextView
+        android:id="@+id/tvHighJumpGoal28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="7dp"
+        android:text="28"
+        android:textSize="36sp"
+        android:onClick="onClick"
+        app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal26"
+        app:layout_constraintTop_toBottomOf="@+id/tvHighJumpGoal18" />
+
+    <TextView
+        android:id="@+id/tvHighJumpGoal20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="56dp"
+        android:text="20"
+        android:textSize="36sp"
+        android:onClick="onClick"
+        app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal18"
+        app:layout_constraintTop_toBottomOf="@+id/tvHighJumpRules" />
+
+    <TextView
+        android:id="@+id/tvHighJumpGoal30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="7dp"
+        android:text="30"
+        android:textSize="36sp"
+        android:onClick="onClick"
+        app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal28"
+        app:layout_constraintTop_toBottomOf="@+id/tvHighJumpGoal20" />
+
+    <TextView
+        android:id="@+id/tvHighJumpGoal18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="56dp"
+        android:text="18"
+        android:textSize="36sp"
+        android:onClick="onClick"
+        app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal16"
+        app:layout_constraintTop_toBottomOf="@+id/tvHighJumpRules" />
+
+    <TextView
+        android:id="@+id/tvHighJumpActionPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginLeft="128dp"
+        android:layout_marginTop="12dp"
+        android:text="Pick a Height"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHighJumpRules" />
+
+    <TextView
+        android:id="@+id/tvHighJumpGoal16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="10dp"
+        android:text="16"
+        android:textSize="36sp"
+        android:onClick="onClick"
+        app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal14"
+        app:layout_constraintTop_toBottomOf="@+id/tvHighJumpActionPrompt" />
+
+    <TextView
+        android:id="@+id/tvHighJumpGoal10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="56dp"
+        android:text="10"
+        android:textSize="36sp"
+        android:onClick="onClick"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHighJumpRules" />
+
+    <TextView
+        android:id="@+id/tvHighJumpGoal26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="9dp"
+        android:text="26"
+        android:textSize="36sp"
+        android:onClick="onClick"
+        app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal24"
+        app:layout_constraintTop_toBottomOf="@+id/tvHighJumpGoal16" />
+
+    <TextView
+        android:id="@+id/tvHighJumpGoal12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="12dp"
+        android:text="12"
+        android:textSize="36sp"
+        android:onClick="onClick"
+        app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal10"
+        app:layout_constraintTop_toBottomOf="@+id/tvHighJumpActionPrompt" />
+
+    <ImageView
+        android:id="@+id/ivHighJumpLogo"
+        android:layout_width="148dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/highjump" />
+
+    <TextView
+        android:id="@+id/tvHighJumpTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:text="High Jump"
+        android:textSize="48sp"
+        app:layout_constraintStart_toEndOf="@+id/ivHighJumpLogo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="377dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHighJumpGoal24">
+
+        <ImageView
+            android:id="@+id/ivHighJumpRollDie1"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivHighJumpRollDie5"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/ivHighJumpRollDie4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivHighJumpRollDie4"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/ivHighJumpRollDie3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivHighJumpRollDie3"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/ivHighJumpRollDie2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivHighJumpRollDie2"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/ivHighJumpRollDie1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/button_HighJump_Roll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="15dp"
+        android:text="Roll"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/tvHighJumpRollsLeft"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
+    <Button
+        android:id="@+id/button_HighJump_Done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="11dp"
+        android:text="Done"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_HighJump_Replay" />
+
+    <Button
+        android:id="@+id/button_HighJump_Replay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="23dp"
+        android:text="Replay"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHighJumpRollsLeftLabel" />
+
+    <TextView
+        android:id="@+id/tvHighJumpScoreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="35dp"
+        android:text="Score:"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/button_HighJump_Replay"
+        app:layout_constraintTop_toBottomOf="@+id/button_HighJump_Roll" />
+
+    <TextView
+        android:id="@+id/tvHighJumpRollsLeftLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="15dp"
+        android:text="Rolls Left:"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
+    <TextView
+        android:id="@+id/tvHighJumpScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="26dp"
+        android:text="-"
+        android:textSize="48dp"
+        app:layout_constraintStart_toEndOf="@+id/tvHighJumpScoreLabel"
+        app:layout_constraintTop_toBottomOf="@+id/button_HighJump_Roll" />
+
+    <TextView
+        android:id="@+id/tvHighJumpRollsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="8dp"
+        android:text="3"
+        android:textSize="48dp"
+        app:layout_constraintStart_toEndOf="@+id/tvHighJumpRollsLeftLabel"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
+    <TextView
+        android:id="@+id/tvHighJumpRules"
+        android:layout_width="379dp"
+        android:layout_height="111dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:text="Start at a height of 10. Height increases by 2 each turn, but you may skip a height. You have 3 attempts for each height. Roll all 5 dice, sum must equal or exceed current height. Score is the maximum height you achieved."
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivHighJumpLogo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

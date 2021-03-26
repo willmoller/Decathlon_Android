@@ -2,6 +2,8 @@ package com.example.encore;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Random;
 
 public class EventHighJump extends AppCompatActivity {
@@ -19,8 +24,10 @@ public class EventHighJump extends AppCompatActivity {
     private static final Random RANDOM = new Random();
     private Dice rolledDice;
     private ArrayList<ImageView> ivRolledDice;
-    private ArrayList<String> rolledKeys;
-    private int totalScore, rollsLeft;
+    private ArrayList<TextView> jumpGoalViews;
+    private HashMap<String, TextView> jumpGoals;
+    private ArrayList<String> rolledKeys, jumpGoalKeys;
+    private int totalScore, rollsLeft, jumpGoal, colorID;
     private Button rollDice, resetGame, leaveGame;
     private Die currentDie;
 
@@ -46,6 +53,7 @@ public class EventHighJump extends AppCompatActivity {
 
         totalScore = 0;
         rollsLeft = 3;
+        jumpGoal = 0;
 
         ivRolledDice = new ArrayList<ImageView>();
         rolledKeys = new ArrayList<String>();
@@ -63,6 +71,7 @@ public class EventHighJump extends AppCompatActivity {
         ivRolledDice.add(findViewById(R.id.ivHighJumpRollDie5));
 
         rolledDice = new Dice(ivRolledDice, rolledKeys);
+        rolledDice.MakeVisible();
 
         try10 = (TextView) findViewById(R.id.tvHighJumpGoal10);
         try12 = (TextView) findViewById(R.id.tvHighJumpGoal12);
@@ -75,6 +84,39 @@ public class EventHighJump extends AppCompatActivity {
         try26 = (TextView) findViewById(R.id.tvHighJumpGoal26);
         try28 = (TextView) findViewById(R.id.tvHighJumpGoal28);
         try30 = (TextView) findViewById(R.id.tvHighJumpGoal30);
+
+        jumpGoalKeys = new ArrayList<String>();
+        jumpGoalViews = new ArrayList<TextView>();
+
+        jumpGoalKeys.add("try10");
+        jumpGoalKeys.add("try12");
+        jumpGoalKeys.add("try14");
+        jumpGoalKeys.add("try16");
+        jumpGoalKeys.add("try18");
+        jumpGoalKeys.add("try20");
+        jumpGoalKeys.add("try22");
+        jumpGoalKeys.add("try24");
+        jumpGoalKeys.add("try26");
+        jumpGoalKeys.add("try28");
+        jumpGoalKeys.add("try30");
+
+        jumpGoalViews.add(try10);
+        jumpGoalViews.add(try12);
+        jumpGoalViews.add(try14);
+        jumpGoalViews.add(try16);
+        jumpGoalViews.add(try18);
+        jumpGoalViews.add(try20);
+        jumpGoalViews.add(try22);
+        jumpGoalViews.add(try24);
+        jumpGoalViews.add(try26);
+        jumpGoalViews.add(try28);
+        jumpGoalViews.add(try30);
+
+        jumpGoals = new HashMap<String, TextView>();
+
+        for (int i = 0; i < jumpGoalKeys.size(); i++) {
+            jumpGoals.put(jumpGoalKeys.get(i), jumpGoalViews.get(i));
+        }
 
         //try10.setOnClickListener(this);
 
@@ -136,6 +178,8 @@ public class EventHighJump extends AppCompatActivity {
                             rolledDice.getDiceList().get("rollDie5").getDieFaceView().setImageResource(res);
                             rolledDice.getDiceList().get("rollDie5").setValue(value);
                         }
+
+                        CheckSuccessfulJump();
                     }
 
                     @Override
@@ -178,6 +222,17 @@ public class EventHighJump extends AppCompatActivity {
         });
     }
 
+    private void CheckSuccessfulJump() {
+
+        rollsLeft--;
+        if (rollsLeft == 0){
+            rollDice.setEnabled(false);
+        }
+
+
+
+    }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -198,7 +253,56 @@ public class EventHighJump extends AppCompatActivity {
         );
     }
 
-    public void onClick(View v){
+    public void setJumpGoal(View v){
+        switch (v.getId()){
+            case R.id.tvHighJumpGoal10:
+                jumpGoal = 10;
+                break;
+            case R.id.tvHighJumpGoal12:
+                jumpGoal = 12;
+                break;
+            case R.id.tvHighJumpGoal14:
+                jumpGoal = 14;
+                break;
+            case R.id.tvHighJumpGoal16:
+                jumpGoal = 16;
+                break;
+            case R.id.tvHighJumpGoal18:
+                jumpGoal = 18;
+                break;
+            case R.id.tvHighJumpGoal20:
+                jumpGoal = 20;
+                break;
+            case R.id.tvHighJumpGoal22:
+                jumpGoal = 22;
+                break;
+            case R.id.tvHighJumpGoal24:
+                jumpGoal = 24;
+                break;
+            case R.id.tvHighJumpGoal26:
+                jumpGoal = 26;
+                break;
+            case R.id.tvHighJumpGoal28:
+                jumpGoal = 28;
+                break;
+            case R.id.tvHighJumpGoal30:
+                jumpGoal = 30;
+                break;
+        }
 
+        if (v.getBackground() instanceof ColorDrawable) {
+            ColorDrawable jumpColor = (ColorDrawable) v.getBackground();
+            colorID = jumpColor.getColor();
+        }
+
+
+
+        if (colorID == Color.YELLOW) {
+            v.setBackgroundColor(Color.WHITE);
+            colorID = Color.WHITE;
+        } else {
+            v.setBackgroundColor(Color.YELLOW);
+            colorID = Color.YELLOW;
+        }
     }
 }

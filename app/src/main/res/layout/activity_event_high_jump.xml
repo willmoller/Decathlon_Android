@@ -15,7 +15,7 @@
         android:layout_marginTop="10dp"
         android:text="14"
         android:textSize="36sp"
-        android:onClick="onClick"
+        android:onClick="setJumpGoal"
         app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal12"
         app:layout_constraintTop_toBottomOf="@+id/tvHighJumpActionPrompt" />
 
@@ -28,7 +28,7 @@
         android:layout_marginTop="7dp"
         android:text="22"
         android:textSize="36sp"
-        android:onClick="onClick"
+        android:onClick="setJumpGoal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHighJumpGoal10" />
 
@@ -41,7 +41,7 @@
         android:layout_marginTop="7dp"
         android:text="24"
         android:textSize="36sp"
-        android:onClick="onClick"
+        android:onClick="setJumpGoal"
         app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal22"
         app:layout_constraintTop_toBottomOf="@+id/tvHighJumpGoal12" />
 
@@ -54,7 +54,7 @@
         android:layout_marginTop="7dp"
         android:text="28"
         android:textSize="36sp"
-        android:onClick="onClick"
+        android:onClick="setJumpGoal"
         app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal26"
         app:layout_constraintTop_toBottomOf="@+id/tvHighJumpGoal18" />
 
@@ -67,7 +67,7 @@
         android:layout_marginTop="56dp"
         android:text="20"
         android:textSize="36sp"
-        android:onClick="onClick"
+        android:onClick="setJumpGoal"
         app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal18"
         app:layout_constraintTop_toBottomOf="@+id/tvHighJumpRules" />
 
@@ -80,7 +80,7 @@
         android:layout_marginTop="7dp"
         android:text="30"
         android:textSize="36sp"
-        android:onClick="onClick"
+        android:onClick="setJumpGoal"
         app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal28"
         app:layout_constraintTop_toBottomOf="@+id/tvHighJumpGoal20" />
 
@@ -93,7 +93,7 @@
         android:layout_marginTop="56dp"
         android:text="18"
         android:textSize="36sp"
-        android:onClick="onClick"
+        android:onClick="setJumpGoal"
         app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal16"
         app:layout_constraintTop_toBottomOf="@+id/tvHighJumpRules" />
 
@@ -118,7 +118,7 @@
         android:layout_marginTop="10dp"
         android:text="16"
         android:textSize="36sp"
-        android:onClick="onClick"
+        android:onClick="setJumpGoal"
         app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal14"
         app:layout_constraintTop_toBottomOf="@+id/tvHighJumpActionPrompt" />
 
@@ -131,7 +131,7 @@
         android:layout_marginTop="56dp"
         android:text="10"
         android:textSize="36sp"
-        android:onClick="onClick"
+        android:onClick="setJumpGoal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHighJumpRules" />
 
@@ -144,7 +144,7 @@
         android:layout_marginTop="9dp"
         android:text="26"
         android:textSize="36sp"
-        android:onClick="onClick"
+        android:onClick="setJumpGoal"
         app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal24"
         app:layout_constraintTop_toBottomOf="@+id/tvHighJumpGoal16" />
 
@@ -157,7 +157,7 @@
         android:layout_marginTop="12dp"
         android:text="12"
         android:textSize="36sp"
-        android:onClick="onClick"
+        android:onClick="setJumpGoal"
         app:layout_constraintStart_toEndOf="@+id/tvHighJumpGoal10"
         app:layout_constraintTop_toBottomOf="@+id/tvHighJumpActionPrompt" />
 

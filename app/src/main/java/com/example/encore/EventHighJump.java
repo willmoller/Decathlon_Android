@@ -27,9 +27,10 @@ public class EventHighJump extends AppCompatActivity {
     private ArrayList<TextView> jumpGoalViews;
     private HashMap<String, TextView> jumpGoals;
     private ArrayList<String> rolledKeys, jumpGoalKeys;
-    private int totalScore, rollsLeft, jumpGoal, colorID;
+    private int totalScore, rollsLeft, jumpGoal, colorID, diceSum;
     private Button rollDice, resetGame, leaveGame;
     private Die currentDie;
+    private String jumpGoalKey;
 
     private TextView rollsLeftText, scoreText, try10, try12, try14, try16, try18, try20, try22, try24, try26, try28, try30;
     private MediaPlayer mp;
@@ -44,6 +45,7 @@ public class EventHighJump extends AppCompatActivity {
         setContentView(R.layout.activity_event_high_jump);
 
         rollDice = (Button) findViewById(R.id.button_HighJump_Roll);
+        rollDice.setEnabled(false);
         resetGame = (Button) findViewById(R.id.button_HighJump_Replay);
         resetGame.setEnabled(false);
         leaveGame = (Button) findViewById(R.id.button_HighJump_Done);
@@ -54,6 +56,7 @@ public class EventHighJump extends AppCompatActivity {
         totalScore = 0;
         rollsLeft = 3;
         jumpGoal = 0;
+        jumpGoalKey = "";
 
         ivRolledDice = new ArrayList<ImageView>();
         rolledKeys = new ArrayList<String>();
@@ -130,7 +133,7 @@ public class EventHighJump extends AppCompatActivity {
                 final Animation anim4 = AnimationUtils.loadAnimation(EventHighJump.this, R.anim.shake);
                 final Animation anim5 = AnimationUtils.loadAnimation(EventHighJump.this, R.anim.shake);
 
-
+                diceSum = 0;
 
                 final Animation.AnimationListener animationListener = new Animation.AnimationListener() {
                     @Override
@@ -165,21 +168,27 @@ public class EventHighJump extends AppCompatActivity {
                         if (animation == anim1){
                             rolledDice.getDiceList().get("rollDie1").getDieFaceView().setImageResource(res);
                             rolledDice.getDiceList().get("rollDie1").setValue(value);
+                            diceSum++;
                         }else if (animation == anim2){
                             rolledDice.getDiceList().get("rollDie2").getDieFaceView().setImageResource(res);
                             rolledDice.getDiceList().get("rollDie2").setValue(value);
+                            diceSum++;
                         }else if (animation == anim3){
                             rolledDice.getDiceList().get("rollDie3").getDieFaceView().setImageResource(res);
                             rolledDice.getDiceList().get("rollDie3").setValue(value);
+                            diceSum++;
                         } else if (animation == anim4){
                             rolledDice.getDiceList().get("rollDie4").getDieFaceView().setImageResource(res);
                             rolledDice.getDiceList().get("rollDie4").setValue(value);
+                            diceSum++;
                         } else if (animation == anim5){
                             rolledDice.getDiceList().get("rollDie5").getDieFaceView().setImageResource(res);
                             rolledDice.getDiceList().get("rollDie5").setValue(value);
+                            diceSum++;
                         }
-
-                        CheckSuccessfulJump();
+                        if (diceSum == 5){
+                            CheckSuccessfulJump();
+                        }
                     }
 
                     @Override
@@ -200,6 +209,7 @@ public class EventHighJump extends AppCompatActivity {
                 rolledDice.getDiceList().get("rollDie4").setAnimation(anim4);
                 rolledDice.getDiceList().get("rollDie5").setAnimation(anim5);
 
+                diceSum = 0;
                 for (String key :
                         rolledKeys) {
                     rolledDice.getDiceList().get(key).getDieFaceView().startAnimation(rolledDice.getDiceList().get(key).getAnimation());
@@ -210,7 +220,18 @@ public class EventHighJump extends AppCompatActivity {
         resetGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                resetGame.setEnabled(false);
+                rollDice.setEnabled(false);
+                rolledDice.MakeOnes();
+                for (String key :
+                        jumpGoalKeys) {
+                    jumpGoals.get(key).setBackgroundColor(Color.WHITE);
+                }
+                jumpGoalKey = "";
+                totalScore = 0;
+                scoreText.setText("-");
+                rollsLeft = 3;
+                rollsLeftText.setText(Integer.toString(rollsLeft));
             }
         });
 
@@ -225,10 +246,31 @@ public class EventHighJump extends AppCompatActivity {
     private void CheckSuccessfulJump() {
 
         rollsLeft--;
-        if (rollsLeft == 0){
-            rollDice.setEnabled(false);
-        }
+        rollsLeftText.setText(Integer.toString(rollsLeft));
 
+        diceSum = rolledDice.ScoreDiceNormal();
+
+        if (diceSum >= jumpGoal){
+            totalScore = jumpGoal;
+            scoreText.setText(Integer.toString(totalScore));
+            rollDice.setEnabled(false);
+            jumpGoals.get(jumpGoalKey).setBackgroundColor(Color.GREEN);
+            jumpGoals.get(jumpGoalKey).setClickable(false);
+            for (int i = 0; i < jumpGoalKeys.indexOf(jumpGoalKey); i++){
+                jumpGoals.get(jumpGoalKeys.get(i)).setClickable(false);
+                jumpGoals.get(jumpGoalKeys.get(i)).setBackgroundColor(Color.GRAY);
+            }
+            jumpGoalKey = "";
+            rollsLeft = 3;
+            rollsLeftText.setText(Integer.toString(rollsLeft));
+        } else if (rollsLeft == 0){
+            rollDice.setEnabled(false);
+            resetGame.setEnabled(true);
+            jumpGoals.get(jumpGoalKey).setBackgroundColor(Color.RED);
+            scoreText.setText(Integer.toString(totalScore));
+        } else {
+
+        }
 
 
     }
@@ -254,55 +296,60 @@ public class EventHighJump extends AppCompatActivity {
     }
 
     public void setJumpGoal(View v){
+
+        if (!jumpGoalKey.isEmpty()){
+            jumpGoals.get(jumpGoalKey).setBackgroundColor(Color.WHITE);
+        }
+
         switch (v.getId()){
             case R.id.tvHighJumpGoal10:
                 jumpGoal = 10;
+                jumpGoalKey = jumpGoalKeys.get(0);
                 break;
             case R.id.tvHighJumpGoal12:
                 jumpGoal = 12;
+                jumpGoalKey = jumpGoalKeys.get(1);
                 break;
             case R.id.tvHighJumpGoal14:
                 jumpGoal = 14;
+                jumpGoalKey = jumpGoalKeys.get(2);
                 break;
             case R.id.tvHighJumpGoal16:
                 jumpGoal = 16;
+                jumpGoalKey = jumpGoalKeys.get(3);
                 break;
             case R.id.tvHighJumpGoal18:
                 jumpGoal = 18;
+                jumpGoalKey = jumpGoalKeys.get(4);
                 break;
             case R.id.tvHighJumpGoal20:
                 jumpGoal = 20;
+                jumpGoalKey = jumpGoalKeys.get(5);
                 break;
             case R.id.tvHighJumpGoal22:
                 jumpGoal = 22;
+                jumpGoalKey = jumpGoalKeys.get(6);
                 break;
             case R.id.tvHighJumpGoal24:
                 jumpGoal = 24;
+                jumpGoalKey = jumpGoalKeys.get(7);
                 break;
             case R.id.tvHighJumpGoal26:
                 jumpGoal = 26;
+                jumpGoalKey = jumpGoalKeys.get(8);
                 break;
             case R.id.tvHighJumpGoal28:
                 jumpGoal = 28;
+                jumpGoalKey = jumpGoalKeys.get(9);
                 break;
             case R.id.tvHighJumpGoal30:
                 jumpGoal = 30;
+                jumpGoalKey = jumpGoalKeys.get(10);
                 break;
         }
 
-        if (v.getBackground() instanceof ColorDrawable) {
-            ColorDrawable jumpColor = (ColorDrawable) v.getBackground();
-            colorID = jumpColor.getColor();
-        }
-
-
-
-        if (colorID == Color.YELLOW) {
-            v.setBackgroundColor(Color.WHITE);
-            colorID = Color.WHITE;
-        } else {
-            v.setBackgroundColor(Color.YELLOW);
-            colorID = Color.YELLOW;
-        }
+        v.setBackgroundColor(Color.YELLOW);
+        colorID = Color.YELLOW;
+        rollDice.setEnabled(true);
     }
 }

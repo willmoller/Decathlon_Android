@@ -176,7 +176,7 @@ public class EventShotPut extends AppCompatActivity {
                 rollDice.setEnabled(false);
                 scoreDice.setEnabled(false);
 
-                totalScore = rolledDice.ScoreDice();
+                totalScore = rolledDice.ScoreDiceNormal();
                 switch (attempt){
                     case 1:
                         score1Text.setText(Integer.toString(totalScore));

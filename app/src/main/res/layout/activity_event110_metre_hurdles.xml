@@ -22,7 +22,7 @@
         android:layout_width="225dp"
         android:layout_height="114dp"
         android:layout_marginTop="38dp"
-        android:text="110 Metre Hurdles"
+        android:text="@string/_110_metre_hurdles_title"
         android:textSize="48sp"
         app:layout_constraintStart_toEndOf="@+id/iv110MHurdlesLogo"
         app:layout_constraintTop_toTopOf="parent" />
@@ -98,10 +98,10 @@
         android:id="@+id/tv110MHurdlesRollsLeftLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="23dp"
-        android:text="Rolls Left:"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/rolls_left_label"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
@@ -110,9 +110,9 @@
         android:id="@+id/tv110MHurdlesRollsLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginLeft="22dp"
-        android:text="6"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:text="@string/rolls_left_text_110MHurdles"
         android:textSize="60sp"
         app:layout_constraintStart_toEndOf="@+id/tv110MHurdlesRollsLeftLabel"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
@@ -121,10 +121,10 @@
         android:id="@+id/button_110MHurdles_Roll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="21dp"
-        android:text="Roll"
+        android:text="@string/roll_button_text"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv110MHurdlesRollsLeftLabel" />
@@ -133,12 +133,12 @@
         android:id="@+id/button_110MHurdles_Keep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginLeft="39dp"
         android:layout_marginTop="12dp"
-        android:text="Keep"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:text="@string/keep_button_text"
         android:textSize="36sp"
-        app:layout_constraintStart_toEndOf="@+id/button_110MHurdles_Roll"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv110MHurdlesRollsLeft" />
 
     <Button
@@ -147,11 +147,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="12dp"
-        android:text="Done"
+        android:layout_marginBottom="38dp"
+        android:text="@string/button_done_text"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_110MHurdles_Reset" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_110MHurdles_Reset"
@@ -160,7 +160,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="38dp"
-        android:text="Replay"
+        android:text="@string/replay_button_text"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_110MHurdles_Roll" />
@@ -172,7 +172,7 @@
         android:layout_marginStart="44dp"
         android:layout_marginLeft="44dp"
         android:layout_marginTop="67dp"
-        android:text="Score:"
+        android:text="@string/score_label"
         android:textSize="36sp"
         app:layout_constraintStart_toEndOf="@+id/button_110MHurdles_Reset"
         app:layout_constraintTop_toBottomOf="@+id/button_110MHurdles_Keep" />
@@ -184,7 +184,7 @@
         android:layout_marginStart="41dp"
         android:layout_marginLeft="41dp"
         android:layout_marginTop="51dp"
-        android:text="0"
+        android:text="@string/score_text_empty"
         android:textSize="48sp"
         app:layout_constraintStart_toEndOf="@+id/tv110MHurdlesScoreLabel"
         app:layout_constraintTop_toBottomOf="@+id/button_110MHurdles_Keep" />
@@ -196,7 +196,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="14dp"
-        android:text="Roll all 5 dice, up to 6 times until you are satisfied with the result. Your score is the sum of all 5 dice."
+        android:text="@string/rules_110MHurdles"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv110MHurdlesLogo" />

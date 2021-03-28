@@ -6,4 +6,234 @@
     android:layout_height="match_parent"
     tools:context=".Event400Metres">
 
+    <ImageView
+        android:id="@+id/iv400MLogo"
+        android:layout_width="148dp"
+        android:layout_height="156dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/running" />
+
+    <TextView
+        android:id="@+id/tv400MTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="39dp"
+        android:text="400 Metres"
+        android:textSize="40sp"
+        app:layout_constraintStart_toEndOf="@+id/iv400MLogo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv400MRollsLeftLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="23dp"
+        android:text="@string/rolls_left_label"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/iv400MLogo"
+        app:layout_constraintTop_toBottomOf="@+id/tv400MTitle" />
+
+    <TextView
+        android:id="@+id/tv400MRollsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="14dp"
+        android:text="9"
+        android:textSize="48sp"
+        app:layout_constraintStart_toEndOf="@+id/tv400MRollsLeftLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tv400MTitle" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv400MRules">
+
+        <ImageView
+            android:id="@+id/iv400MRollDie1"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv400MRollDie8"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/iv400MRollDie6"
+            app:layout_constraintTop_toBottomOf="@+id/iv400MRollDie7"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv400MRollDie6"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/iv400MRollDie4"
+            app:layout_constraintTop_toBottomOf="@+id/iv400MRollDie5"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv400MRollDie4"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/iv400MRollDie2"
+            app:layout_constraintTop_toBottomOf="@+id/iv400MRollDie3"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv400MRollDie2"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv400MRollDie1"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv400MRollDie7"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/iv400MRollDie5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv400MRollDie5"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/iv400MRollDie3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/iv400MRollDie3"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/iv400MRollDie1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv400MRules"
+        android:layout_width="352dp"
+        android:layout_height="146dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="1dp"
+        android:text="There are 8 dice. Throw 2 at a time until you are satisfied with the result. Proceed the same with the other pairs of dice. You have a max of 9 throws among all sets. Score the sum of all dice, 6's are negative."
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv400MLogo" />
+
+    <Button
+        android:id="@+id/button_roll_400M"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/button_roll_text"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+
+    <Button
+        android:id="@+id/button_keep_400M"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
+        android:text="@string/button_keep_text"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+
+    <Button
+        android:id="@+id/button_done_400M"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="11dp"
+        android:text="@string/button_done_text"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_replay_400M"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="15dp"
+        android:text="@string/replay_button_text"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_done_400M"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv400MScoreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginBottom="53dp"
+        android:text="@string/score_label"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv400MScore" />
+
+    <TextView
+        android:id="@+id/tv400MScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:layout_marginBottom="45dp"
+        android:text="@string/score_text_empty"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

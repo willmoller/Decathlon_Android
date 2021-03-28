@@ -24,7 +24,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="30dp"
-        android:text="1500 Metres"
+        android:text="@string/_1500M_title"
         android:textSize="40sp"
         app:layout_constraintStart_toEndOf="@+id/iv1500MLogo"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +36,7 @@
         android:layout_marginStart="18dp"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="6dp"
-        android:text="Throw 1 die until you are satisfied with the result. Proceed in the same manner with all 8 dice. You have a maximum of 13 throws among all dice. 6's count negative."
+        android:text="@string/rules_1500M"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv1500MRollsLeft" />
@@ -145,7 +145,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
-        android:text="Rolls Left:"
+        android:text="@string/rolls_left_label"
         android:textSize="36sp"
         app:layout_constraintStart_toEndOf="@+id/iv1500MLogo"
         app:layout_constraintTop_toBottomOf="@+id/tv1500MTitle" />
@@ -157,7 +157,7 @@
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
         android:layout_marginTop="14dp"
-        android:text="13"
+        android:text="@string/rolls_left_text_1500M"
         android:textSize="60sp"
         app:layout_constraintStart_toEndOf="@+id/tv1500MRollsLeftLabel"
         app:layout_constraintTop_toBottomOf="@+id/tv1500MTitle" />
@@ -169,8 +169,10 @@
         android:layout_marginStart="49dp"
         android:layout_marginLeft="49dp"
         android:layout_marginTop="17dp"
-        android:text="Roll"
+        android:text="@string/button_roll_text"
+        android:textColor="@color/black"
         android:textSize="30sp"
+        app:backgroundTint="@android:color/holo_orange_light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cl1500MDice" />
 
@@ -181,8 +183,10 @@
         android:layout_marginStart="76dp"
         android:layout_marginLeft="76dp"
         android:layout_marginTop="17dp"
-        android:text="Keep"
+        android:text="@string/button_keep_text"
+        android:textColor="@color/black"
         android:textSize="30sp"
+        app:backgroundTint="@android:color/holo_orange_light"
         app:layout_constraintStart_toEndOf="@+id/button_1500M_Roll"
         app:layout_constraintTop_toBottomOf="@+id/cl1500MDice" />
 
@@ -193,8 +197,9 @@
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="37dp"
-        android:text="Score:"
+        android:text="@string/score_label"
         android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/button_1500M_Replay"
         app:layout_constraintTop_toBottomOf="@+id/button_1500M_Score" />
 
@@ -205,7 +210,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:text="-"
+        android:text="@string/score_text_empty"
         android:textSize="60sp"
         app:layout_constraintStart_toEndOf="@+id/tv1500MScoreLabel"
         app:layout_constraintTop_toBottomOf="@+id/button_1500M_Score" />
@@ -217,8 +222,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
-        android:text="Done"
+        android:text="@string/button_done_text"
+        android:textColor="@color/black"
         android:textSize="24sp"
+        app:backgroundTint="@android:color/holo_orange_light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_1500M_Replay" />
 
@@ -229,8 +236,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="9dp"
-        android:text="Replay"
+        android:text="@string/replay_button_text"
+        android:textColor="@color/black"
         android:textSize="24sp"
+        app:backgroundTint="@android:color/holo_orange_light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_1500M_Roll" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,24 @@
     <string name="button_done_text">Done</string>
     <string name="button_long_jump_next_attempt_text">Next Attempt</string>
     <string name="score_text_empty">-</string>
+    <string name="rolls_left_label_100M">Rolls Left:</string>
+    <string name="_100_metres_title">100 Metres</string>
+    <string name="saved_dice_label">Saved Dice</string>
+    <string name="roll_button_text">Roll</string>
+    <string name="keep_button_text">Keep</string>
+    <string name="replay_button_text">Replay</string>
+    <string name="done_button_text">Done</string>
+    <string name="rules_text_100M">Throw 4 dice until you are satisfied with the result. Then throw 4 more in the same manner. You have a max of 7 throws between both sets. Score is the sum of the 2 sets, but 6\'s count negative.</string>
+    <string name="score_text_100M">0</string>
+    <string name="score_label">Score:</string>
+    <string name="rolls_left_text">7</string>
+    <string name="_110_metre_hurdles_title">110 Metre Hurdles</string>
+    <string name="rolls_left_text_110MHurdles">6</string>
+    <string name="rules_110MHurdles">Roll all 5 dice up to 6 times until you are satisfied with the result. Your score is the sum of all 5 dice.</string>
+    <string name="rolls_left_label">Rolls Left:</string>
+    <string name="_1500M_title">1500 Metres</string>
+    <string name="rolls_left_text_1500M">13</string>
+    <string name="rules_1500M">Throw 1 die until you are satisfied with the result. Proceed in the same manner with all 8 dice. You have a maximum of 13 throws among all dice. 6\'s count negative.</string>
     <string-array name="event_names">
         <item>100 Metres</item>
         <item>Long Jump</item>

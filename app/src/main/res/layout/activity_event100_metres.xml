@@ -21,10 +21,10 @@
         android:id="@+id/tv100MTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="100 Metres"
+        android:text="@string/_100_metres_title"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,11 +33,10 @@
         android:id="@+id/cl100MRolledDice"
         android:layout_width="wrap_content"
         android:layout_height="110dp"
-        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv100MLogo">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <ImageView
             android:id="@+id/iv100MrollDie1"
@@ -88,26 +87,26 @@
         android:id="@+id/button_100M_roll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginLeft="45dp"
-        android:layout_marginTop="24dp"
-        android:text="Roll"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="104dp"
+        android:text="@string/roll_button_text"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cl100MRolledDice" />
+        app:layout_constraintTop_toTopOf="@+id/cl100MRolledDice" />
 
     <Button
         android:id="@+id/button_100M_keep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginRight="45dp"
-        android:text="Keep"
-        android:textSize="36sp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
         android:enabled="false"
+        android:text="@string/keep_button_text"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cl100MRolledDice" />
+        app:layout_constraintTop_toTopOf="@+id/cl100MRolledDice" />
 
     <TextView
         android:id="@+id/tv100MRollsLabel"
@@ -116,7 +115,7 @@
         android:layout_marginStart="26dp"
         android:layout_marginLeft="26dp"
         android:layout_marginTop="22dp"
-        android:text="Rolls Left:"
+        android:text="@string/rolls_left_label_100M"
         android:textSize="36sp"
         app:layout_constraintStart_toEndOf="@+id/iv100MLogo"
         app:layout_constraintTop_toBottomOf="@+id/tv100MTitle" />
@@ -128,7 +127,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
-        android:text="7"
+        android:text="@string/rolls_left_text"
         android:textSize="60sp"
         app:layout_constraintStart_toEndOf="@+id/tv100MRollsLabel"
         app:layout_constraintTop_toBottomOf="@+id/tv100MTitle" />
@@ -139,7 +138,7 @@
         android:layout_height="110dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:background="@android:color/black"
@@ -242,10 +241,10 @@
         android:id="@+id/tv100MScoreLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
-        android:layout_marginBottom="52dp"
-        android:text="Score:"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginBottom="44dp"
+        android:text="@string/score_label"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tv100MScore" />
@@ -254,10 +253,10 @@
         android:id="@+id/tv100MScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="27dp"
-        android:layout_marginRight="27dp"
-        android:layout_marginBottom="48dp"
-        android:text="0"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:layout_marginBottom="44dp"
+        android:text="@string/score_text_100M"
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -266,10 +265,9 @@
         android:id="@+id/tv100MBankLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="28dp"
-        android:text="Saved Dice"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:text="@string/saved_dice_label"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_100M_roll" />
@@ -280,8 +278,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="17dp"
-        android:text="Replay"
+        android:layout_marginTop="6dp"
+        android:text="@string/replay_button_text"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cl100MBankedDice" />
@@ -293,9 +291,20 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="3dp"
-        android:text="Done"
+        android:text="@string/done_button_text"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_100M_replay" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="349dp"
+        android:layout_height="109dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/rules_text_100M"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv100MRollsRemain" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

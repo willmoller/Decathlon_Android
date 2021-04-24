@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -91,15 +92,15 @@ public class Event100Metres extends AppCompatActivity {
 
         rolledDice.MakeVisible();
 
-        mp = MediaPlayer.create(Event100Metres.this, R.raw.dice);
+        mp = new MediaPlayer();
+        mp = MediaPlayer.create(this, R.raw.dice);
 
         rollDice.setOnClickListener(v -> {
             try {
-                if (mp.isPlaying()) {
                     mp.stop();
                     mp.release();
                     mp = MediaPlayer.create(Event100Metres.this, R.raw.dice);
-                } mp.start();
+                    mp.start();
             } catch(Exception e) { e.printStackTrace(); }
 
             final Animation anim1 = AnimationUtils.loadAnimation(Event100Metres.this, R.anim.shake);
@@ -273,8 +274,8 @@ public class Event100Metres extends AppCompatActivity {
     private void hideSystemUI() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
-                //View.SYSTEM_UI_FLAG_IMMERSIVE
-                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                View.SYSTEM_UI_FLAG_IMMERSIVE
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN

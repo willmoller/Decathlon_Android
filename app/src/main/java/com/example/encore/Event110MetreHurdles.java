@@ -66,92 +66,96 @@ public class Event110MetreHurdles extends AppCompatActivity {
         rolledDice = new Dice(ivRolledDice, rolledKeys);
         rolledDice.MakeVisible();
 
+        mp = new MediaPlayer();
 
+        rollDice.setOnClickListener(v -> {
+            try {
+                mp.stop();
+                mp.release();
+                mp = MediaPlayer.create(this, R.raw.dice);
+                mp.start();
+            } catch(Exception e) { e.printStackTrace(); }
 
-        rollDice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Animation anim1 = AnimationUtils.loadAnimation(Event110MetreHurdles.this, R.anim.shake);
-                final Animation anim2 = AnimationUtils.loadAnimation(Event110MetreHurdles.this, R.anim.shake);
-                final Animation anim3 = AnimationUtils.loadAnimation(Event110MetreHurdles.this, R.anim.shake);
-                final Animation anim4 = AnimationUtils.loadAnimation(Event110MetreHurdles.this, R.anim.shake);
-                final Animation anim5 = AnimationUtils.loadAnimation(Event110MetreHurdles.this, R.anim.shake);
+            final Animation anim1 = AnimationUtils.loadAnimation(Event110MetreHurdles.this, R.anim.shake);
+            final Animation anim2 = AnimationUtils.loadAnimation(Event110MetreHurdles.this, R.anim.shake);
+            final Animation anim3 = AnimationUtils.loadAnimation(Event110MetreHurdles.this, R.anim.shake);
+            final Animation anim4 = AnimationUtils.loadAnimation(Event110MetreHurdles.this, R.anim.shake);
+            final Animation anim5 = AnimationUtils.loadAnimation(Event110MetreHurdles.this, R.anim.shake);
 
-                keepDice.setEnabled(true);
+            keepDice.setEnabled(true);
 
-                rollsLeft--;
+            rollsLeft--;
 
-                if (rollsLeft == 0){
-                    rollDice.setEnabled(false);
+            if (rollsLeft == 0){
+                rollDice.setEnabled(false);
+            }
+
+            final Animation.AnimationListener animationListener = new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
                 }
 
-                final Animation.AnimationListener animationListener = new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    int value = randomDiceValue();
+                    int res = 0;
+                    switch (value) {
+                        case 1:
+                            res = R.drawable.die1;
+                            break;
+                        case 2:
+                            res = R.drawable.die2;
+                            break;
+                        case 3:
+                            res = R.drawable.die3;
+                            break;
+                        case 4:
+                            res = R.drawable.die4;
+                            break;
+                        case 5:
+                            res = R.drawable.die5;
+                            break;
+                        case 6:
+                            res = R.drawable.die6;
+                            break;
                     }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        int value = randomDiceValue();
-                        int res = 0;
-                        switch (value) {
-                            case 1:
-                                res = R.drawable.die1;
-                                break;
-                            case 2:
-                                res = R.drawable.die2;
-                                break;
-                            case 3:
-                                res = R.drawable.die3;
-                                break;
-                            case 4:
-                                res = R.drawable.die4;
-                                break;
-                            case 5:
-                                res = R.drawable.die5;
-                                break;
-                            case 6:
-                                res = R.drawable.die6;
-                                break;
-                        }
-                        if (animation == anim1){
-                            rolledDice.getDiceList().get("rollDie1").getDieFaceView().setImageResource(res);
-                            rolledDice.getDiceList().get("rollDie1").setValue(value);
-                        }else if (animation == anim2){
-                            rolledDice.getDiceList().get("rollDie2").getDieFaceView().setImageResource(res);
-                            rolledDice.getDiceList().get("rollDie2").setValue(value);
-                        }else if (animation == anim3){
-                            rolledDice.getDiceList().get("rollDie3").getDieFaceView().setImageResource(res);
-                            rolledDice.getDiceList().get("rollDie3").setValue(value);
-                        } else if (animation == anim4){
-                            rolledDice.getDiceList().get("rollDie4").getDieFaceView().setImageResource(res);
-                            rolledDice.getDiceList().get("rollDie4").setValue(value);
-                        } else if (animation == anim5){
-                            rolledDice.getDiceList().get("rollDie5").getDieFaceView().setImageResource(res);
-                            rolledDice.getDiceList().get("rollDie5").setValue(value);
-                        }
+                    if (animation == anim1){
+                        rolledDice.getDiceList().get("rollDie1").getDieFaceView().setImageResource(res);
+                        rolledDice.getDiceList().get("rollDie1").setValue(value);
+                    }else if (animation == anim2){
+                        rolledDice.getDiceList().get("rollDie2").getDieFaceView().setImageResource(res);
+                        rolledDice.getDiceList().get("rollDie2").setValue(value);
+                    }else if (animation == anim3){
+                        rolledDice.getDiceList().get("rollDie3").getDieFaceView().setImageResource(res);
+                        rolledDice.getDiceList().get("rollDie3").setValue(value);
+                    } else if (animation == anim4){
+                        rolledDice.getDiceList().get("rollDie4").getDieFaceView().setImageResource(res);
+                        rolledDice.getDiceList().get("rollDie4").setValue(value);
+                    } else if (animation == anim5){
+                        rolledDice.getDiceList().get("rollDie5").getDieFaceView().setImageResource(res);
+                        rolledDice.getDiceList().get("rollDie5").setValue(value);
                     }
+                }
 
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
+                @Override
+                public void onAnimationRepeat(Animation animation) {
 
-                    }
-                };
-                anim1.setAnimationListener(animationListener);
-                anim2.setAnimationListener(animationListener);
-                anim3.setAnimationListener(animationListener);
-                anim4.setAnimationListener(animationListener);
-                anim5.setAnimationListener(animationListener);
+                }
+            };
+            anim1.setAnimationListener(animationListener);
+            anim2.setAnimationListener(animationListener);
+            anim3.setAnimationListener(animationListener);
+            anim4.setAnimationListener(animationListener);
+            anim5.setAnimationListener(animationListener);
 
-                rolledDice.getDiceList().get("rollDie1").getDieFaceView().startAnimation(anim1);
-                rolledDice.getDiceList().get("rollDie2").getDieFaceView().startAnimation(anim2);
-                rolledDice.getDiceList().get("rollDie3").getDieFaceView().startAnimation(anim3);
-                rolledDice.getDiceList().get("rollDie4").getDieFaceView().startAnimation(anim4);
-                rolledDice.getDiceList().get("rollDie5").getDieFaceView().startAnimation(anim5);
+            rolledDice.getDiceList().get("rollDie1").getDieFaceView().startAnimation(anim1);
+            rolledDice.getDiceList().get("rollDie2").getDieFaceView().startAnimation(anim2);
+            rolledDice.getDiceList().get("rollDie3").getDieFaceView().startAnimation(anim3);
+            rolledDice.getDiceList().get("rollDie4").getDieFaceView().startAnimation(anim4);
+            rolledDice.getDiceList().get("rollDie5").getDieFaceView().startAnimation(anim5);
 
-                rollsLeftText.setText(Integer.toString(rollsLeft));
-            }
+            rollsLeftText.setText(Integer.toString(rollsLeft));
         });
 
         keepDice.setOnClickListener(new View.OnClickListener() {

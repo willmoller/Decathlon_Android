@@ -76,83 +76,89 @@ public class Event400Metres extends AppCompatActivity {
         rolledDice.getDiceList().get("rollDie1").makeVisible();
         rolledDice.getDiceList().get("rollDie2").makeVisible();
 
-        rollDie.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Animation anim1 = AnimationUtils.loadAnimation(Event400Metres.this, R.anim.shake);
-                final Animation anim2 = AnimationUtils.loadAnimation(Event400Metres.this, R.anim.shake);
-                rollsLeft--;
-                rollsLeftText.setText(Integer.toString(rollsLeft));
-                keepDie.setEnabled(true);
+        mp = new MediaPlayer();
 
-                final Animation.AnimationListener animationListener = new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
+        rollDie.setOnClickListener(v -> {
+            try {
+                mp.stop();
+                mp.release();
+                mp = MediaPlayer.create(this, R.raw.dice);
+                mp.start();
+            } catch(Exception e) { e.printStackTrace(); }
 
+            final Animation anim1 = AnimationUtils.loadAnimation(Event400Metres.this, R.anim.shake);
+            final Animation anim2 = AnimationUtils.loadAnimation(Event400Metres.this, R.anim.shake);
+            rollsLeft--;
+            rollsLeftText.setText(Integer.toString(rollsLeft));
+            keepDie.setEnabled(true);
+
+            final Animation.AnimationListener animationListener = new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    int value = randomDiceValue();
+                    int res = 0;
+                    switch (value) {
+                        case 1:
+                            res = R.drawable.die1;
+                            break;
+                        case 2:
+                            res = R.drawable.die2;
+                            break;
+                        case 3:
+                            res = R.drawable.die3;
+                            break;
+                        case 4:
+                            res = R.drawable.die4;
+                            break;
+                        case 5:
+                            res = R.drawable.die5;
+                            break;
+                        case 6:
+                            res = R.drawable.die6;
+                            break;
                     }
 
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        int value = randomDiceValue();
-                        int res = 0;
-                        switch (value) {
-                            case 1:
-                                res = R.drawable.die1;
-                                break;
-                            case 2:
-                                res = R.drawable.die2;
-                                break;
-                            case 3:
-                                res = R.drawable.die3;
-                                break;
-                            case 4:
-                                res = R.drawable.die4;
-                                break;
-                            case 5:
-                                res = R.drawable.die5;
-                                break;
-                            case 6:
-                                res = R.drawable.die6;
-                                break;
-                        }
-
-                        if (animation == anim1) {
-                            rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getDieFaceView().setImageResource(res);
-                            rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).setValue(value);
-                        } else {
-                            rolledDice.getDiceList().get(rolledKeys.get(dieCount)).getDieFaceView().setImageResource(res);
-                            rolledDice.getDiceList().get(rolledKeys.get(dieCount)).setValue(value);
-                        }
-
-
-
-                        if (rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getValue() == 6){
-                            rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getDieFaceView().setBackgroundColor(Color.BLACK);
-                        } else {
-                            rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getDieFaceView().setBackgroundColor(Color.GREEN);
-                        }
-                        if (rolledDice.getDiceList().get(rolledKeys.get(dieCount)).getValue() == 6){
-                            rolledDice.getDiceList().get(rolledKeys.get(dieCount)).getDieFaceView().setBackgroundColor(Color.BLACK);
-                        } else {
-                            rolledDice.getDiceList().get(rolledKeys.get(dieCount)).getDieFaceView().setBackgroundColor(Color.GREEN);
-                        }
-
-                        if (rollsLeft == ((7 - dieCount) / 2) || (dieCount == 8 && rollsLeft == 0)){
-                            rollDie.setEnabled(false);
-                        }
+                    if (animation == anim1) {
+                        rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getDieFaceView().setImageResource(res);
+                        rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).setValue(value);
+                    } else {
+                        rolledDice.getDiceList().get(rolledKeys.get(dieCount)).getDieFaceView().setImageResource(res);
+                        rolledDice.getDiceList().get(rolledKeys.get(dieCount)).setValue(value);
                     }
 
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
 
+
+                    if (rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getValue() == 6){
+                        rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getDieFaceView().setBackgroundColor(Color.BLACK);
+                    } else {
+                        rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getDieFaceView().setBackgroundColor(Color.GREEN);
                     }
-                };
-                anim1.setAnimationListener(animationListener);
-                anim2.setAnimationListener(animationListener);
+                    if (rolledDice.getDiceList().get(rolledKeys.get(dieCount)).getValue() == 6){
+                        rolledDice.getDiceList().get(rolledKeys.get(dieCount)).getDieFaceView().setBackgroundColor(Color.BLACK);
+                    } else {
+                        rolledDice.getDiceList().get(rolledKeys.get(dieCount)).getDieFaceView().setBackgroundColor(Color.GREEN);
+                    }
 
-                rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getDieFaceView().startAnimation(anim1);
-                rolledDice.getDiceList().get(rolledKeys.get(dieCount)).getDieFaceView().startAnimation(anim2);
-            }
+                    if (rollsLeft == ((7 - dieCount) / 2) || (dieCount == 8 && rollsLeft == 0)){
+                        rollDie.setEnabled(false);
+                    }
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            };
+            anim1.setAnimationListener(animationListener);
+            anim2.setAnimationListener(animationListener);
+
+            rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getDieFaceView().startAnimation(anim1);
+            rolledDice.getDiceList().get(rolledKeys.get(dieCount)).getDieFaceView().startAnimation(anim2);
         });
 
         keepDie.setOnClickListener(new View.OnClickListener() {

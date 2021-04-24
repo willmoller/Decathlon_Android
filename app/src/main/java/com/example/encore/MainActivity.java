@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -17,11 +20,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Spinner singleEventSpinner;
     String spinnerValue;
     Intent intent;
+    private String sharedPrefFile = "com.example.encore.sharedPrefs";
+    private String name = "";
+    private String NAME_KEY = "name";
+    private EditText tvName;
+    SharedPreferences mPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        tvName = findViewById(R.id.tvName);
+
+        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+        // shared preferences to get the user's name on each play, no need to re-type after first time.
+        name = mPreferences.getString(NAME_KEY, "");
+        tvName.setText(String.format("%s", name));
 
         singleEventSpinner = findViewById(R.id.spinnerSingleEvent);
 
@@ -85,12 +100,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         intent = new Intent(MainActivity.this, EventShotPut.class);
                         startActivity(intent);
                         break;
-
-
                 }
             }
         });
 
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        SharedPreferences.Editor prefEditor = mPreferences.edit();
+        prefEditor.putString(NAME_KEY, name);
+        prefEditor.apply();
     }
 
     @Override

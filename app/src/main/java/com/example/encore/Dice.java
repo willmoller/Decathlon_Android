@@ -121,6 +121,33 @@ public class Dice {
         }
         return totalScore;
     }
+
+    public int ScoreDiceNormalSubset(int numDice){
+        int totalScore = 0;
+        for (int i = 0; i < numDice; i++){
+            switch (DiceList.get(DiceKeys.get(i)).getValue()){
+                case 1:
+                    totalScore += 1;
+                    break;
+                case 2:
+                    totalScore += 2;
+                    break;
+                case 3:
+                    totalScore += 3;
+                    break;
+                case 4:
+                    totalScore += 4;
+                    break;
+                case 5:
+                    totalScore += 5;
+                    break;
+                case 6:
+                    totalScore += 6;
+                    break;
+            }
+        }
+        return totalScore;
+    }
     
     public void animateDice(){
 

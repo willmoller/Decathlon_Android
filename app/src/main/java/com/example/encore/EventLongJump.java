@@ -223,51 +223,48 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        keepDice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        keepDice.setOnClickListener(v -> {
 
-                for (String key :
-                        bankedKeys) {
-                    rolledDice.getDiceList().get(key).getDieFaceView().setClickable(false);
-                    rolledDice.getDiceList().get(key).makeInvisible();
-                }
+            for (String key :
+                    bankedKeys) {
+                rolledDice.getDiceList().get(key).getDieFaceView().setClickable(false);
+                rolledDice.getDiceList().get(key).makeInvisible();
+            }
 
-                keepDice.setEnabled(false);
+            keepDice.setEnabled(false);
 
-                rolledDice.MakeUnclickable();
+            rolledDice.MakeUnclickable();
 
-                if(!isJumpAttempt){
-                    if (reserveScore > 8){
-                        startJump.setEnabled(false);
-                        nextAttempt.setEnabled(true);
-                        rollDice.setEnabled(false);
-                        switch (attempt){
-                            case 1:
-                                score1.setText(Integer.toString(0));
-                                score1.setTextColor(Color.RED);
-                                break;
-                            case 2:
-                                score2.setText(Integer.toString(0));
-                                score2.setTextColor(Color.RED);
-                                break;
-                            case 3:
-                                score3.setText(Integer.toString(0));
-                                score3.setTextColor(Color.RED);
-                                break;
-                        }
-                    } else if (diceClicked == 5){
-                        rollDice.setEnabled(false);
-                        startJump.setEnabled(true);
-                    } else {
-                        startJump.setEnabled(true);
-                        rollDice.setEnabled(true);
+            if(!isJumpAttempt){
+                if (reserveScore > 8){
+                    startJump.setEnabled(false);
+                    nextAttempt.setEnabled(true);
+                    rollDice.setEnabled(false);
+                    switch (attempt){
+                        case 1:
+                            score1.setText(Integer.toString(0));
+                            score1.setTextColor(Color.RED);
+                            break;
+                        case 2:
+                            score2.setText(Integer.toString(0));
+                            score2.setTextColor(Color.RED);
+                            break;
+                        case 3:
+                            score3.setText(Integer.toString(0));
+                            score3.setTextColor(Color.RED);
+                            break;
                     }
-                } else if (isJumpAttempt && rolledKeys.size() > 0){
-                    rollDice.setEnabled(true);
+                } else if (diceClicked == 5){
+                    rollDice.setEnabled(false);
+                    startJump.setEnabled(true);
                 } else {
                     startJump.setEnabled(true);
+                    rollDice.setEnabled(true);
                 }
+            } else if (isJumpAttempt && rolledKeys.size() > 0){
+                rollDice.setEnabled(true);
+            } else {
+                startJump.setEnabled(true);
             }
         });
 

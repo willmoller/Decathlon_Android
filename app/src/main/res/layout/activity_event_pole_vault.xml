@@ -6,4 +6,518 @@
     android:layout_height="match_parent"
     tools:context=".EventPoleVault">
 
+    <ImageView
+        android:id="@+id/tvPoleVaultLogo"
+        android:layout_width="149dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/polevault" />
+
+    <TextView
+        android:id="@+id/tvPoleVaultTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="52dp"
+        android:text="Pole Vault"
+        android:textSize="48sp"
+        app:layout_constraintStart_toEndOf="@+id/tvPoleVaultLogo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvPoleVaultAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="134dp"
+        android:layout_marginLeft="134dp"
+        android:text="Pick a Height"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultRules" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clPoleVaultDice"
+        android:layout_width="381dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clPoleVaultHeights">
+
+        <ImageView
+            android:id="@+id/ivPoleVaultRollDie1"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="9dp"
+            android:onClick="onClick"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivPoleVaultRollDie8"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="9dp"
+            android:onClick="onClick"
+            app:layout_constraintStart_toEndOf="@+id/ivPoleVaultRollDie7"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivPoleVaultRollDie7"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="9dp"
+            android:onClick="onClick"
+            app:layout_constraintStart_toEndOf="@+id/ivPoleVaultRollDie6"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivPoleVaultRollDie6"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="9dp"
+            android:onClick="onClick"
+            app:layout_constraintStart_toEndOf="@+id/ivPoleVaultRollDie5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivPoleVaultRollDie5"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="9dp"
+            android:onClick="onClick"
+            app:layout_constraintStart_toEndOf="@+id/ivPoleVaultRollDie4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivPoleVaultRollDie4"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="9dp"
+            android:onClick="onClick"
+            app:layout_constraintStart_toEndOf="@+id/ivPoleVaultRollDie3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivPoleVaultRollDie3"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="9dp"
+            android:onClick="onClick"
+            app:layout_constraintStart_toEndOf="@+id/ivPoleVaultRollDie2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+
+        <ImageView
+            android:id="@+id/ivPoleVaultRollDie2"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="9dp"
+            android:onClick="onClick"
+            app:layout_constraintStart_toEndOf="@+id/ivPoleVaultRollDie1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/die1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/buttonPoleVaultRoll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginRight="31dp"
+        android:text="roll"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clPoleVaultDice" />
+
+    <TextView
+        android:id="@+id/tvPoleVaultRollsLeftLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="19dp"
+        android:text="Rolls Left:"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clPoleVaultDice" />
+
+    <TextView
+        android:id="@+id/tvPoleVaultRollsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="11dp"
+        android:text="3"
+        android:textSize="48sp"
+        app:layout_constraintStart_toEndOf="@+id/tvPoleVaultRollsLeftLabel"
+        app:layout_constraintTop_toBottomOf="@+id/clPoleVaultDice" />
+
+    <Button
+        android:id="@+id/buttonPoleVaultDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="9dp"
+        android:text="Done"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPoleVaultReset" />
+
+    <Button
+        android:id="@+id/buttonPoleVaultReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Reset"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultRollsLeftLabel" />
+
+    <TextView
+        android:id="@+id/tvPoleVaultRules"
+        android:layout_width="373dp"
+        android:layout_height="105dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:text="Start at a height of 10. Height increases by 2 each turn, but you may skip a height. You have 3 attempts for each height. Roll 2-8 dice, sum must equal or exceed current height WITHOUT any 1's. Score is the maximum height you achieved."
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultLogo" />
+
+    <TextView
+        android:id="@+id/tvPoleVaultScoreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="38dp"
+        android:text="Score:"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/buttonPoleVaultReset"
+        app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultRollsLeft" />
+
+    <TextView
+        android:id="@+id/tvPoleVaultScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="30dp"
+        android:text="-"
+        android:textSize="48sp"
+        app:layout_constraintStart_toEndOf="@+id/tvPoleVaultScoreLabel"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPoleVaultRoll" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clPoleVaultHeights"
+        android:layout_width="376dp"
+        android:layout_height="164dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultAction">
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="1dp"
+            android:onClick="setJumpGoal"
+            android:text="26"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal24"
+            app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultGoal12" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="8dp"
+            android:onClick="setJumpGoal"
+            android:text="10"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="8dp"
+            android:onClick="setJumpGoal"
+            android:text="12"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal10"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:onClick="setJumpGoal"
+            android:text="14"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal12"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="8dp"
+            android:onClick="setJumpGoal"
+            android:text="16"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal14"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="8dp"
+            android:onClick="setJumpGoal"
+            android:text="18"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal16"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:onClick="setJumpGoal"
+            android:text="20"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal18"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="8dp"
+            android:onClick="setJumpGoal"
+            android:text="22"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal20"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="1dp"
+            android:onClick="setJumpGoal"
+            android:text="36"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal34"
+            app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultGoal22" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="1dp"
+            android:onClick="setJumpGoal"
+            android:text="34"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal32"
+            app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultGoal20" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="1dp"
+            android:onClick="setJumpGoal"
+            android:text="48"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal46"
+            app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultGoal34" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal46"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="1dp"
+            android:onClick="setJumpGoal"
+            android:text="46"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal44"
+            app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultGoal32" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="1dp"
+            android:onClick="setJumpGoal"
+            android:text="32"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal30"
+            app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultGoal18" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="1dp"
+            android:onClick="setJumpGoal"
+            android:text="30"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal28"
+            app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultGoal16" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="1dp"
+            android:onClick="setJumpGoal"
+            android:text="44"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal42"
+            app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultGoal30" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal42"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="1dp"
+            android:onClick="setJumpGoal"
+            android:text="42"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal40"
+            app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultGoal28" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="1dp"
+            android:onClick="setJumpGoal"
+            android:text="28"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal26"
+            app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultGoal14" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="1dp"
+            android:onClick="setJumpGoal"
+            android:text="40"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPoleVaultGoal38"
+            app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultGoal26" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal38"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="1dp"
+            android:onClick="setJumpGoal"
+            android:text="38"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultGoal24" />
+
+        <TextView
+            android:id="@+id/tvPoleVaultGoal24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="1dp"
+            android:onClick="setJumpGoal"
+            android:text="24"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPoleVaultGoal10" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

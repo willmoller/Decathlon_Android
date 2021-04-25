@@ -378,11 +378,11 @@
         android:id="@+id/tvJavelinRules"
         android:layout_width="209dp"
         android:layout_height="106dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="Roll Dice. Reserve at least 1 after every roll. You may only reserve ODD dice. You can score at any time. If no ODD dice available, attempt fails."
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/tvJavelinReserveSum"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
 </androidx.constraintlayout.widget.ConstraintLayout>

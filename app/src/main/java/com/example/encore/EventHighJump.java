@@ -29,7 +29,6 @@ public class EventHighJump extends AppCompatActivity {
     private ArrayList<String> rolledKeys, jumpGoalKeys;
     private int totalScore, rollsLeft, jumpGoal, colorID, diceSum;
     private Button rollDice, resetGame, leaveGame;
-    private Die currentDie;
     private String jumpGoalKey;
 
     private TextView rollsLeftText, scoreText, try10, try12, try14, try16, try18, try20, try22, try24, try26, try28, try30;
@@ -221,30 +220,22 @@ public class EventHighJump extends AppCompatActivity {
             }
         });
 
-        resetGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resetGame.setEnabled(false);
-                rollDice.setEnabled(false);
-                rolledDice.MakeOnes();
-                for (String key :
-                        jumpGoalKeys) {
-                    jumpGoals.get(key).setBackgroundColor(Color.WHITE);
-                }
-                jumpGoalKey = "";
-                totalScore = 0;
-                scoreText.setText("-");
-                rollsLeft = 3;
-                rollsLeftText.setText(Integer.toString(rollsLeft));
+        resetGame.setOnClickListener(v -> {
+            resetGame.setEnabled(false);
+            rollDice.setEnabled(false);
+            rolledDice.MakeOnes();
+            for (String key :
+                    jumpGoalKeys) {
+                jumpGoals.get(key).setBackgroundColor(Color.WHITE);
             }
+            jumpGoalKey = "";
+            totalScore = 0;
+            scoreText.setText("-");
+            rollsLeft = 3;
+            rollsLeftText.setText(Integer.toString(rollsLeft));
         });
 
-        leaveGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        leaveGame.setOnClickListener(v -> finish());
     }
 
     private void CheckSuccessfulJump() {

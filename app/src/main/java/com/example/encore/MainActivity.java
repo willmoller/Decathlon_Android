@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    DatabaseHelper myDb;
     Button singleEventButton;
     Spinner singleEventSpinner;
     String spinnerValue;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        myDb = new DatabaseHelper(this);
         tvName = findViewById(R.id.tvName);
 
         mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);

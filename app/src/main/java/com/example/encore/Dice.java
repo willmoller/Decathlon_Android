@@ -122,6 +122,18 @@ public class Dice {
         return totalScore;
     }
 
+    public boolean CheckIfOneRolled(int numDice){
+        boolean rolledOne = false;
+        for (int i = 0; i < numDice; i++){
+            switch (DiceList.get(DiceKeys.get(i)).getValue()){
+                case 1:
+                    rolledOne = true;
+                    break;
+            }
+        }
+        return rolledOne;
+    }
+
     public int ScoreDiceNormalSubset(int numDice){
         int totalScore = 0;
         for (int i = 0; i < numDice; i++){

@@ -26,8 +26,8 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
     private ArrayList<ImageView> ivRolledDice;
     private ArrayList<TextView> jumpGoalViews;
     private HashMap<String, TextView> jumpGoals;
-    private ArrayList<String> rolledKeys, jumpGoalKeys;
-    private int totalScore, rollsLeft, jumpGoal, colorID, diceSum, diceCount, fullGameScore;
+    private ArrayList<String> rolledKeys, bankKeys, jumpGoalKeys;
+    private int totalScore, rollsLeft, jumpGoal, colorID, diceSum, diceCount, numDice, fullGameScore;
     private Button rollDice, resetGame, leaveGame;
     private String jumpGoalKey, action;
     private ImageView rollDie1, rollDie2, rollDie3, rollDie4, rollDie5, rollDie6, rollDie7, rollDie8;
@@ -78,11 +78,13 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
         jumpGoal = 0;
         jumpGoalKey = "";
         diceCount = 0;
+        numDice = 0;
         rolledOne = false;
         action = "Pick a Height";
 
         ivRolledDice = new ArrayList<ImageView>();
         rolledKeys = new ArrayList<String>();
+        bankKeys = new ArrayList<String>();
 
         rolledKeys.add("rollDie1");
         rolledKeys.add("rollDie2");
@@ -203,6 +205,13 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
                 mp.start();
             } catch(Exception e) { e.printStackTrace(); }
 
+            for (String key :
+                    rolledKeys) {
+                if (!bankKeys.contains(key)) {
+                    rolledDice.getDiceList().get(key).makeInvisible();
+                }
+            }
+
             final Animation anim1 = AnimationUtils.loadAnimation(EventPoleVault.this, R.anim.shake);
             final Animation anim2 = AnimationUtils.loadAnimation(EventPoleVault.this, R.anim.shake);
             final Animation anim3 = AnimationUtils.loadAnimation(EventPoleVault.this, R.anim.shake);
@@ -212,10 +221,10 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
             final Animation anim7 = AnimationUtils.loadAnimation(EventPoleVault.this, R.anim.shake);
             final Animation anim8 = AnimationUtils.loadAnimation(EventPoleVault.this, R.anim.shake);
 
-            diceSum = 0;
+            numDice = 0;
             if (diceCount < 8){
                 for(int i = diceCount; i < 8; i++){
-                    rolledDice.getDiceList().get(rolledDice.getDiceKeys().get(i)).makeInvisible();
+                    rolledDice.getDiceList().get(rolledKeys.get(i)).makeInvisible();
                 }
             }
 
@@ -235,7 +244,6 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
                     switch (value) {
                         case 1:
                             res = R.drawable.die1;
-                            rolledOne = true;
                             break;
                         case 2:
                             res = R.drawable.die2;
@@ -256,61 +264,56 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
                     if (animation == anim1){
                         rolledDice.getDiceList().get("rollDie1").getDieFaceView().setImageResource(res);
                         rolledDice.getDiceList().get("rollDie1").setValue(value);
-                        diceSum++;
                         if (value == 1){
                             rolledDice.getDiceList().get("rollDie1").getDieFaceView().setBackgroundColor(Color.BLACK);
                         }
                     }else if (animation == anim2){
                         rolledDice.getDiceList().get("rollDie2").getDieFaceView().setImageResource(res);
                         rolledDice.getDiceList().get("rollDie2").setValue(value);
-                        diceSum++;
                         if (value == 1){
                             rolledDice.getDiceList().get("rollDie2").getDieFaceView().setBackgroundColor(Color.BLACK);
                         }
                     }else if (animation == anim3){
                         rolledDice.getDiceList().get("rollDie3").getDieFaceView().setImageResource(res);
                         rolledDice.getDiceList().get("rollDie3").setValue(value);
-                        diceSum++;
                         if (value == 1){
                             rolledDice.getDiceList().get("rollDie3").getDieFaceView().setBackgroundColor(Color.BLACK);
                         }
                     } else if (animation == anim4){
                         rolledDice.getDiceList().get("rollDie4").getDieFaceView().setImageResource(res);
                         rolledDice.getDiceList().get("rollDie4").setValue(value);
-                        diceSum++;
                         if (value == 1){
                             rolledDice.getDiceList().get("rollDie4").getDieFaceView().setBackgroundColor(Color.BLACK);
                         }
                     } else if (animation == anim5){
                         rolledDice.getDiceList().get("rollDie5").getDieFaceView().setImageResource(res);
                         rolledDice.getDiceList().get("rollDie5").setValue(value);
-                        diceSum++;
                         if (value == 1){
                             rolledDice.getDiceList().get("rollDie5").getDieFaceView().setBackgroundColor(Color.BLACK);
                         }
                     } else if (animation == anim6){
                         rolledDice.getDiceList().get("rollDie6").getDieFaceView().setImageResource(res);
                         rolledDice.getDiceList().get("rollDie6").setValue(value);
-                        diceSum++;
                         if (value == 1){
                             rolledDice.getDiceList().get("rollDie6").getDieFaceView().setBackgroundColor(Color.BLACK);
                         }
                     } else if (animation == anim7){
                         rolledDice.getDiceList().get("rollDie7").getDieFaceView().setImageResource(res);
                         rolledDice.getDiceList().get("rollDie7").setValue(value);
-                        diceSum++;
                         if (value == 1){
                             rolledDice.getDiceList().get("rollDie7").getDieFaceView().setBackgroundColor(Color.BLACK);
                         }
                     } else if (animation == anim8){
                         rolledDice.getDiceList().get("rollDie8").getDieFaceView().setImageResource(res);
                         rolledDice.getDiceList().get("rollDie8").setValue(value);
-                        diceSum++;
                         if (value == 1){
                             rolledDice.getDiceList().get("rollDie8").getDieFaceView().setBackgroundColor(Color.BLACK);
                         }
                     }
-                    if (diceSum == diceCount){
+
+                    numDice++;
+
+                    if (numDice == 8){
                         rolledDice.MakeUnclickable();
                         CheckSuccessfulJump();
                     }
@@ -339,7 +342,6 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
             rolledDice.getDiceList().get("rollDie7").setAnimation(anim7);
             rolledDice.getDiceList().get("rollDie8").setAnimation(anim8);
 
-            diceSum = 0;
             for (String key :
                     rolledKeys) {
                 rolledDice.getDiceList().get(key).getDieFaceView().startAnimation(rolledDice.getDiceList().get(key).getAnimation());
@@ -358,8 +360,14 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
                 rollDice.setEnabled(false);
                 rolledDice.MakeOnes();
                 for (String key :
+                        rolledKeys) {
+                    rolledDice.getDiceList().get(key).getDieFaceView().setBackgroundColor(Color.WHITE);
+                    rolledDice.getDiceList().get(key).makeVisible();
+                }
+                for (String key :
                         jumpGoalKeys) {
                     jumpGoals.get(key).setBackgroundColor(Color.WHITE);
+                    jumpGoals.get(key).setEnabled(true);
                 }
                 jumpGoalKey = "";
                 totalScore = 0;
@@ -375,7 +383,7 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
     private void CheckSuccessfulJump() {
         rollsLeft--;
         rollsLeftText.setText(Integer.toString(rollsLeft));
-
+        rolledOne = rolledDice.CheckIfOneRolled(diceCount);
         diceSum = rolledDice.ScoreDiceNormalSubset(diceCount);
 
         if (diceSum >= jumpGoal && !rolledOne){
@@ -383,13 +391,10 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
             scoreText.setText(Integer.toString(totalScore));
             rollDice.setEnabled(false);
             jumpGoals.get(jumpGoalKey).setBackgroundColor(Color.GREEN);
-            jumpGoals.get(jumpGoalKey).setClickable(false);
             for (int i = 0; i < jumpGoalKeys.indexOf(jumpGoalKey); i++){
-                jumpGoals.get(jumpGoalKeys.get(i)).setClickable(false);
                 jumpGoals.get(jumpGoalKeys.get(i)).setBackgroundColor(Color.GRAY);
             }
-            for (int i = jumpGoalKeys.indexOf(jumpGoalKey + 1); i < jumpGoalKeys.size(); i++){
-                jumpGoals.get(jumpGoalKeys.get(i)).setClickable(true);
+            for (int i = jumpGoalKeys.indexOf(jumpGoalKey) + 1; i < jumpGoalKeys.size(); i++){
                 jumpGoalViews.get(i).setEnabled(true);
             }
             jumpGoalKey = "";
@@ -405,13 +410,19 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
             jumpGoals.get(jumpGoalKey).setBackgroundColor(Color.RED);
             scoreText.setText(Integer.toString(totalScore));
         }
-        diceSum = 0;
     }
 
     public void setJumpGoal(View v){
 
         if (!jumpGoalKey.isEmpty()){
             jumpGoals.get(jumpGoalKey).setBackgroundColor(Color.WHITE);
+        }
+
+        rolledDice.MakeOnes();
+        rolledDice.MakeVisible();
+        for (String key :
+                rolledKeys) {
+            rolledDice.getDiceList().get(key).getDieFaceView().setBackgroundColor(Color.WHITE);
         }
 
         switch (v.getId()){
@@ -510,6 +521,7 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v){
+        bankKeys.removeAll(bankKeys);
         switch (v.getId()){
             case R.id.ivPoleVaultRollDie1:
                 // can't be selected, must roll at least 2 dice
@@ -549,6 +561,7 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
         for (int i = 0; i < 8; i++) {
             if (i < diceCount){
                 rolledDice.getDiceList().get(rolledKeys.get(i)).getDieFaceView().setBackgroundColor(Color.GREEN);
+                bankKeys.add(rolledKeys.get(i));
             } else {
                 rolledDice.getDiceList().get(rolledKeys.get(i)).getDieFaceView().setBackgroundColor(Color.WHITE);
             }

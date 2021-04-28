@@ -394,7 +394,6 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
                 rolledKeys.add(key);
             }
 
-            //Collections.sort(rolledKeys);
             bankedKeys.removeAll(bankedKeys);
 
             rolledDice.MakeVisible();

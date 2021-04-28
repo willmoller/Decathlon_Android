@@ -1,10 +1,13 @@
 package com.example.encore;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -22,11 +25,11 @@ public class EventDiscus extends AppCompatActivity implements View.OnClickListen
     private Dice rolledDice, reservedDice;
     private ArrayList<ImageView> ivRolledDice, ivBankedDiceSet;
     private ArrayList<String> rolledKeys, bankKeys, bankedKeys;
-    private int reserveScore, totalScore, diceAvailable, diceClicked;
+    private int reserveScore, totalScore, diceAvailable, diceClicked, fullGameScore, intScore1, intScore2, intScore3;
     private Button rollDice, keepDice, scoreDice, nextAttempt, resetGame, leaveGame;
     private ImageView rollDie1, rollDie2, rollDie3, rollDie4, rollDie5, reserveDie1, reserveDie2, reserveDie3, reserveDie4, reserveDie5;
-    private boolean evensAvailable;
-    private TextView attemptText, reserveScoreText, discusRules, score1, score2, score3;
+    private boolean evensAvailable, isFullGame;
+    private TextView attemptText, reserveScoreText, discusRules, score1, score2, score3, fullGameScoreLabel, fullGameScoreText;
     private int attempt = 1;
     private MediaPlayer mp;
 
@@ -34,6 +37,7 @@ public class EventDiscus extends AppCompatActivity implements View.OnClickListen
         return RANDOM.nextInt(6) + 1;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,6 +123,21 @@ public class EventDiscus extends AppCompatActivity implements View.OnClickListen
 
         mp = new MediaPlayer();
 
+        Intent intent = getIntent();
+        isFullGame = intent.getBooleanExtra("isFullGame", false);
+        fullGameScoreLabel = (TextView) findViewById(R.id.tvDiscusTotalScoreLabel);
+        fullGameScoreText = (TextView) findViewById(R.id.tvDiscusTotalScore);
+
+        if (!isFullGame){
+            fullGameScoreLabel.setVisibility(View.INVISIBLE);
+            fullGameScoreText.setVisibility(View.INVISIBLE);
+            resetGame.setText("Replay");
+        } else {
+            fullGameScore = intent.getIntExtra("fullGameScore", 0);
+            fullGameScoreText.setText(Integer.toString(fullGameScore));
+            resetGame.setText("Next");
+        }
+
         rollDice.setOnClickListener(v -> {
             try {
                 mp.stop();
@@ -127,7 +146,6 @@ public class EventDiscus extends AppCompatActivity implements View.OnClickListen
                 mp.start();
             } catch(Exception e) { e.printStackTrace(); }
 
-            //diceAvailable = 0;
             final Animation anim1 = AnimationUtils.loadAnimation(EventDiscus.this, R.anim.shake);
             final Animation anim2 = AnimationUtils.loadAnimation(EventDiscus.this, R.anim.shake);
             final Animation anim3 = AnimationUtils.loadAnimation(EventDiscus.this, R.anim.shake);
@@ -215,6 +233,10 @@ public class EventDiscus extends AppCompatActivity implements View.OnClickListen
                                 score3.setTextColor(Color.RED);
                                 nextAttempt.setEnabled(false);
                                 resetGame.setEnabled(true);
+                                int maxValue = Integer.max(intScore1, intScore2);
+                                maxValue = Integer.max(maxValue, intScore3);
+                                fullGameScore += maxValue;
+                                fullGameScoreText.setText(Integer.toString(fullGameScore));
                                 break;
                         }
                     }
@@ -269,20 +291,27 @@ public class EventDiscus extends AppCompatActivity implements View.OnClickListen
                 case 1:
                     score1.setText(Integer.toString(reserveScore));
                     score1.setTextColor(Color.GREEN);
+                    intScore1 = reserveScore;
                     break;
                 case 2:
                     score2.setText(Integer.toString(reserveScore));
                     score2.setTextColor(Color.GREEN);
+                    intScore2 = reserveScore;
                     break;
                 case 3:
                     score3.setText(Integer.toString(reserveScore));
                     score3.setTextColor(Color.GREEN);
+                    intScore3 = reserveScore;
                     break;
             }
             if (attempt < 3){
                 nextAttempt.setEnabled(true);
             } else {
                 resetGame.setEnabled(true);
+                int maxValue = Integer.max(intScore1, intScore2);
+                maxValue = Integer.max(maxValue, intScore3);
+                fullGameScore += maxValue;
+                fullGameScoreText.setText(Integer.toString(fullGameScore));
             }
         });
 
@@ -316,37 +345,45 @@ public class EventDiscus extends AppCompatActivity implements View.OnClickListen
         });
 
         resetGame.setOnClickListener(v -> {
-            resetGame.setEnabled(false);
-            diceAvailable = 5;
-            attempt = 1;
-            attemptText.setText(Integer.toString(attempt));
+            if (isFullGame){
+                Intent newIntent = new Intent(EventDiscus.this, EventPoleVault.class);
+                newIntent.putExtra("isFullGame", isFullGame);
+                newIntent.putExtra("fullGameScore", fullGameScore);
+                startActivity(newIntent);
+                finish();
+            } else {
+                resetGame.setEnabled(false);
+                diceAvailable = 5;
+                attempt = 1;
+                attemptText.setText(Integer.toString(attempt));
 
-            reserveScore = 0;
-            reserveScoreText.setText(Integer.toString(reserveScore));
+                reserveScore = 0;
+                reserveScoreText.setText(Integer.toString(reserveScore));
 
-            rolledKeys.removeAll(rolledKeys);
-            for (String key :
-                    bankKeys) {
-                rolledKeys.add(key);
+                rolledKeys.removeAll(rolledKeys);
+                for (String key :
+                        bankKeys) {
+                    rolledKeys.add(key);
+                }
+
+                bankedKeys.removeAll(bankedKeys);
+
+                rolledDice.MakeVisible();
+                rolledDice.ChangeBackgroundColor(Color.WHITE);
+                rolledDice.SetDiceViewPadding(0);
+                rolledDice.MakeOnes();
+                reservedDice.MakeHidden();
+
+                rollDice.setEnabled(true);
+                nextAttempt.setEnabled(false);
+                reserveScoreText.setTextColor(Color.BLACK);
+                score1.setText(R.string.score_text_empty);
+                score2.setText(R.string.score_text_empty);
+                score3.setText(R.string.score_text_empty);
+                score1.setTextColor(Color.BLACK);
+                score2.setTextColor(Color.BLACK);
+                score3.setTextColor(Color.BLACK);
             }
-
-            bankedKeys.removeAll(bankedKeys);
-
-            rolledDice.MakeVisible();
-            rolledDice.ChangeBackgroundColor(Color.WHITE);
-            rolledDice.SetDiceViewPadding(0);
-            rolledDice.MakeOnes();
-            reservedDice.MakeHidden();
-
-            rollDice.setEnabled(true);
-            nextAttempt.setEnabled(false);
-            reserveScoreText.setTextColor(Color.BLACK);
-            score1.setText(R.string.score_text_empty);
-            score2.setText(R.string.score_text_empty);
-            score3.setText(R.string.score_text_empty);
-            score1.setTextColor(Color.BLACK);
-            score2.setTextColor(Color.BLACK);
-            score3.setTextColor(Color.BLACK);
         });
 
         leaveGame.setOnClickListener(v -> finish());

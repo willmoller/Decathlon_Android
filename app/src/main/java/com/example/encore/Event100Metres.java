@@ -2,9 +2,9 @@ package com.example.encore;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -19,12 +19,13 @@ public class Event100Metres extends AppCompatActivity {
 
     private static final Random RANDOM = new Random();
     private Dice rolledDice, bankedDiceSet1, bankedDiceSet2;
-    private int bankedDice, totalScore;
+    private int bankedDice, totalScore, fullGameScore;
+    private boolean isFullGame;
     private Button rollDice;
     private Button keepDice;
     private Button resetGame;
 
-    private TextView rollsLeftText, totalScoreText;
+    private TextView rollsLeftText, totalScoreText, fullGameScoreLabel, fullGameScoreText;
     private int rollsLeft = 7;
     private MediaPlayer mp;
 
@@ -94,6 +95,19 @@ public class Event100Metres extends AppCompatActivity {
 
         mp = new MediaPlayer();
         mp = MediaPlayer.create(this, R.raw.dice);
+
+        Intent intent = getIntent();
+        isFullGame = intent.getBooleanExtra("isFullGame", false);
+        fullGameScoreLabel = (TextView) findViewById(R.id.tv100MTotalScoreLabel);
+        fullGameScoreText = (TextView) findViewById(R.id.tv100MTotalScore);
+
+        if (!isFullGame){
+            fullGameScoreLabel.setVisibility(View.INVISIBLE);
+            fullGameScoreText.setVisibility(View.INVISIBLE);
+            resetGame.setText("Replay");
+        } else {
+            resetGame.setText("Next");
+        }
 
         rollDice.setOnClickListener(v -> {
             try {
@@ -185,7 +199,6 @@ public class Event100Metres extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bankRolledDice();
-                // make Keep button unclickable
                 keepDice.setEnabled(false);
 
                 if (bankedDice == 8){
@@ -200,16 +213,24 @@ public class Event100Metres extends AppCompatActivity {
         resetGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bankedDiceSet1.MakeHidden();
-                bankedDiceSet2.MakeHidden();
-                rollDice.setEnabled(true);
-                totalScore = 0;
-                totalScoreText.setText(Integer.toString(totalScore));
-                rollsLeft = 7;
-                rollsLeftText.setText(Integer.toString(rollsLeft));
-                bankedDice = 0;
-                rolledDice.MakeOnes();
-                resetGame.setEnabled(false);
+                if (isFullGame){
+                    Intent intent = new Intent(Event100Metres.this, EventLongJump.class);
+                    intent.putExtra("isFullGame", isFullGame);
+                    intent.putExtra("fullGameScore", fullGameScore);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    bankedDiceSet1.MakeHidden();
+                    bankedDiceSet2.MakeHidden();
+                    rollDice.setEnabled(true);
+                    totalScore = 0;
+                    totalScoreText.setText(Integer.toString(totalScore));
+                    rollsLeft = 7;
+                    rollsLeftText.setText(Integer.toString(rollsLeft));
+                    bankedDice = 0;
+                    rolledDice.MakeOnes();
+                    resetGame.setEnabled(false);
+                }
             }
         });
 
@@ -255,6 +276,10 @@ public class Event100Metres extends AppCompatActivity {
             totalScore += bankedDiceSet2.ScoreDice();
             bankedDiceSet2.MakeVisible();
             resetGame.setEnabled(true);
+            if (isFullGame){
+                fullGameScore += totalScore;
+                fullGameScoreText.setText(Integer.toString(fullGameScore));
+            }
         }
 
         // add bankDie's to score

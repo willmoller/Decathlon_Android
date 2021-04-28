@@ -2,6 +2,7 @@ package com.example.encore;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
@@ -27,11 +28,12 @@ public class EventHighJump extends AppCompatActivity {
     private ArrayList<TextView> jumpGoalViews;
     private HashMap<String, TextView> jumpGoals;
     private ArrayList<String> rolledKeys, jumpGoalKeys;
-    private int totalScore, rollsLeft, jumpGoal, colorID, diceSum;
+    private int totalScore, rollsLeft, jumpGoal, colorID, diceSum, fullGameScore;
     private Button rollDice, resetGame, leaveGame;
     private String jumpGoalKey;
-
-    private TextView rollsLeftText, scoreText, try10, try12, try14, try16, try18, try20, try22, try24, try26, try28, try30;
+    private boolean isFullGame;
+    private TextView rollsLeftText, scoreText, fullGameScoreLabel, fullGameScoreText,
+        try10, try12, try14, try16, try18, try20, try22, try24, try26, try28, try30;
     private MediaPlayer mp;
 
     public static int randomDiceValue(){
@@ -121,6 +123,21 @@ public class EventHighJump extends AppCompatActivity {
         }
 
         mp = new MediaPlayer();
+
+        Intent intent = getIntent();
+        isFullGame = intent.getBooleanExtra("isFullGame", false);
+        fullGameScoreLabel = (TextView) findViewById(R.id.tvHighJumpTotalScoreLabel);
+        fullGameScoreText = (TextView) findViewById(R.id.tvHighJumpTotalScore);
+
+        if (!isFullGame){
+            fullGameScoreLabel.setVisibility(View.INVISIBLE);
+            fullGameScoreText.setVisibility(View.INVISIBLE);
+            resetGame.setText("Replay");
+        } else {
+            fullGameScore = intent.getIntExtra("fullGameScore", 0);
+            fullGameScoreText.setText(Integer.toString(fullGameScore));
+            resetGame.setText("Next");
+        }
 
         rollDice.setOnClickListener(v -> {
 
@@ -221,18 +238,26 @@ public class EventHighJump extends AppCompatActivity {
         });
 
         resetGame.setOnClickListener(v -> {
-            resetGame.setEnabled(false);
-            rollDice.setEnabled(false);
-            rolledDice.MakeOnes();
-            for (String key :
-                    jumpGoalKeys) {
-                jumpGoals.get(key).setBackgroundColor(Color.WHITE);
+            if (isFullGame){
+                Intent newIntent = new Intent(EventHighJump.this, Event400Metres.class);
+                newIntent.putExtra("isFullGame", isFullGame);
+                newIntent.putExtra("fullGameScore", fullGameScore);
+                startActivity(newIntent);
+                finish();
+            } else {
+                resetGame.setEnabled(false);
+                rollDice.setEnabled(false);
+                rolledDice.MakeOnes();
+                for (String key :
+                        jumpGoalKeys) {
+                    jumpGoals.get(key).setBackgroundColor(Color.WHITE);
+                }
+                jumpGoalKey = "";
+                totalScore = 0;
+                scoreText.setText("-");
+                rollsLeft = 3;
+                rollsLeftText.setText(Integer.toString(rollsLeft));
             }
-            jumpGoalKey = "";
-            totalScore = 0;
-            scoreText.setText("-");
-            rollsLeft = 3;
-            rollsLeftText.setText(Integer.toString(rollsLeft));
         });
 
         leaveGame.setOnClickListener(v -> finish());
@@ -261,6 +286,8 @@ public class EventHighJump extends AppCompatActivity {
         } else if (rollsLeft == 0){
             rollDice.setEnabled(false);
             resetGame.setEnabled(true);
+            fullGameScore += totalScore;
+            fullGameScoreText.setText(Integer.toString(fullGameScore));
             jumpGoals.get(jumpGoalKey).setBackgroundColor(Color.RED);
             scoreText.setText(Integer.toString(totalScore));
         } else {

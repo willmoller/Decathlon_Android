@@ -1,10 +1,13 @@
 package com.example.encore;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -22,11 +25,12 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
     private Dice rolledDice, reservedDice;
     private ArrayList<ImageView> ivRolledDice, ivBankedDiceSet;
     private ArrayList<String> rolledKeys, bankKeys, bankedKeys;
-    private int reserveScore, totalScore, diceClicked;
+    private int reserveScore, totalScore, diceClicked, fullGameScore, intScore1, intScore2, intScore3;
     private Button rollDice, keepDice, startJump, nextAttempt, resetGame, leaveGame;
     private ImageView rollDie1, rollDie2, rollDie3, rollDie4, rollDie5, reserveDie1, reserveDie2, reserveDie3, reserveDie4, reserveDie5;
 
-    private TextView attemptText, reserveScoreText, runUp, runUpRules, jumpRules, score1, score2, score3;
+    private TextView attemptText, reserveScoreText, runUp, runUpRules, jumpRules, score1, score2, score3, fullGameScoreLabel, fullGameScoreText;
+    private boolean isFullGame;
     private int attempt = 1;
     private MediaPlayer mp;
     private boolean isJumpAttempt = false;
@@ -119,6 +123,21 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
 
         mp = new MediaPlayer();
 
+        Intent intent = getIntent();
+        isFullGame = intent.getBooleanExtra("isFullGame", false);
+        fullGameScoreLabel = (TextView) findViewById(R.id.tvLongJumpTotalScoreLabel);
+        fullGameScoreText = (TextView) findViewById(R.id.tvLongJumpTotalScore);
+
+        if (!isFullGame){
+            fullGameScoreLabel.setVisibility(View.INVISIBLE);
+            fullGameScoreText.setVisibility(View.INVISIBLE);
+            resetGame.setText("Replay");
+        } else {
+            fullGameScore = intent.getIntExtra("fullGameScore", 0);
+            fullGameScoreText.setText(Integer.toString(fullGameScore));
+            resetGame.setText("Next");
+        }
+
         rollDice.setOnClickListener(v -> {
             try {
                 mp.stop();
@@ -127,7 +146,6 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
                 mp.start();
             } catch(Exception e) { e.printStackTrace(); }
 
-            diceClicked = 0;
             final Animation anim1 = AnimationUtils.loadAnimation(EventLongJump.this, R.anim.shake);
             final Animation anim2 = AnimationUtils.loadAnimation(EventLongJump.this, R.anim.shake);
             final Animation anim3 = AnimationUtils.loadAnimation(EventLongJump.this, R.anim.shake);
@@ -252,6 +270,8 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
                         case 3:
                             score3.setText(Integer.toString(0));
                             score3.setTextColor(Color.RED);
+                            nextAttempt.setEnabled(false);
+                            resetGame.setEnabled(true);
                             break;
                     }
                 } else if (diceClicked == 5){
@@ -269,6 +289,7 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
         });
 
         startJump.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
                 diceClicked = 0;
@@ -280,6 +301,10 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
                     isJumpAttempt = false;
                     if (attempt == 3){
                         resetGame.setEnabled(true);
+                        int maxValue = Integer.max(intScore1, intScore2);
+                        maxValue = Integer.max(maxValue, intScore3);
+                        fullGameScore += maxValue;
+                        fullGameScoreText.setText(Integer.toString(fullGameScore));
                     }
                     runUp.setText(R.string.long_jump_jump_text);
                     startJump.setText(R.string.long_jump_start_jump_text);
@@ -293,14 +318,17 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
                         case 1:
                             score1.setText(Integer.toString(reserveScore));
                             score1.setTextColor(Color.GREEN);
+                            intScore1 = reserveScore;
                             break;
                         case 2:
                             score2.setText(Integer.toString(reserveScore));
                             score2.setTextColor(Color.GREEN);
+                            intScore2 = reserveScore;
                             break;
                         case 3:
                             score3.setText(Integer.toString(reserveScore));
                             score3.setTextColor(Color.GREEN);
+                            intScore3 = reserveScore;
                             break;
                     }
                     if (attempt < 3){
@@ -309,6 +337,7 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
                         finishEvent();
                     }
                 } else {
+                    rollDice.setEnabled(true);
                     reserveScore = 0;
                     reserveScoreText.setText(Integer.toString(reserveScore));
                     isJumpAttempt = true;
@@ -377,9 +406,14 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        resetGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        resetGame.setOnClickListener(v -> {
+            if (isFullGame){
+                Intent newIntent = new Intent(EventLongJump.this, EventShotPut.class);
+                newIntent.putExtra("isFullGame", isFullGame);
+                newIntent.putExtra("fullGameScore", fullGameScore);
+                startActivity(newIntent);
+                finish();
+            } else {
                 resetGame.setEnabled(false);
                 diceClicked = 0;
                 attempt = 1;

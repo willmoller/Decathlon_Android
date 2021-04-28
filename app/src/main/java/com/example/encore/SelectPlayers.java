@@ -10,12 +10,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class SelectPlayers extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    EditText player1Name;
+    EditText playerName;
     Button button_lets_play;
-    Spinner selectPlayerCount;
+    Spinner selectPlayer;
     String spinnerValue;
 
     @Override
@@ -23,30 +24,37 @@ public class SelectPlayers extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_players);
 
-        player1Name = (EditText) findViewById(R.id.textPerson1Name);
+        playerName = (EditText) findViewById(R.id.textPerson1Name);
         button_lets_play = (Button) findViewById(R.id.buttonBegin);
 
         button_lets_play.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String str = player1Name.getText().toString();
+                String str = playerName.getText().toString();
 
                 Intent intent = new Intent(getApplicationContext(), PlayGameActivity.class);
-                intent.putExtra("player1Name", str);
+                intent.putExtra("playerName", str);
 
                 startActivity(intent);
             }
         });
 
-        selectPlayerCount = findViewById(R.id.spinnerPlayerCount);
-        if(selectPlayerCount != null){
-            selectPlayerCount.setOnItemSelectedListener(this);
-        }
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.player_count, android.R.layout.simple_spinner_item);
+        selectPlayer = findViewById(R.id.spinnerPlayers);
+
+        ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(this, R.array.player_count, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        if(selectPlayerCount != null){
-            selectPlayerCount.setAdapter(adapter);
-        }
+        selectPlayer.setAdapter(adapter);
+        selectPlayer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @Override
@@ -64,5 +72,16 @@ public class SelectPlayers extends AppCompatActivity implements AdapterView.OnIt
         startActivity(intent);
     }
 
+    private AdapterView.OnItemSelectedListener OnCatSpinnerCL = new AdapterView.OnItemSelectedListener() {
+        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+            ((TextView) parent.getChildAt(0)).setTextSize(24);
+
+        }
+
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
 
 }

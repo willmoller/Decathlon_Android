@@ -1,10 +1,13 @@
 package com.example.encore;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -22,11 +25,12 @@ public class EventJavelin extends AppCompatActivity implements View.OnClickListe
     private Dice rolledDice, reservedDice;
     private ArrayList<ImageView> ivRolledDice, ivBankedDiceSet;
     private ArrayList<String> rolledKeys, bankKeys, bankedKeys;
-    private int reserveScore, totalScore, diceAvailable, diceClicked;
+    private int reserveScore, totalScore, diceAvailable, diceClicked, fullGameScore, intScore1, intScore2, intScore3;
     private Button rollDice, keepDice, scoreDice, nextAttempt, resetGame, leaveGame;
-    private ImageView rollDie1, rollDie2, rollDie3, rollDie4, rollDie5, rollDie6, reserveDie1, reserveDie2, reserveDie3, reserveDie4, reserveDie5, reserveDie6;
-    private boolean oddsAvailable;
-    private TextView attemptText, reserveScoreText, discusRules, score1, score2, score3;
+    private ImageView rollDie1, rollDie2, rollDie3, rollDie4, rollDie5, rollDie6, reserveDie1,
+            reserveDie2, reserveDie3, reserveDie4, reserveDie5, reserveDie6;
+    private boolean oddsAvailable, isFullGame;
+    private TextView attemptText, reserveScoreText, discusRules, score1, score2, score3, fullGameScoreLabel, fullGameScoreText;
     private int attempt = 1;
     private MediaPlayer mp;
 
@@ -34,6 +38,7 @@ public class EventJavelin extends AppCompatActivity implements View.OnClickListe
         return RANDOM.nextInt(6) + 1;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,6 +131,21 @@ public class EventJavelin extends AppCompatActivity implements View.OnClickListe
 
         mp = new MediaPlayer();
 
+        Intent intent = getIntent();
+        isFullGame = intent.getBooleanExtra("isFullGame", false);
+        fullGameScoreLabel = (TextView) findViewById(R.id.tvJavelinTotalScoreLabel);
+        fullGameScoreText = (TextView) findViewById(R.id.tvJavelinTotalScore);
+
+        if (!isFullGame){
+            fullGameScoreLabel.setVisibility(View.INVISIBLE);
+            fullGameScoreText.setVisibility(View.INVISIBLE);
+            resetGame.setText("Replay");
+        } else {
+            fullGameScore = intent.getIntExtra("fullGameScore", 0);
+            fullGameScoreText.setText(Integer.toString(fullGameScore));
+            resetGame.setText("Next");
+        }
+
         rollDice.setOnClickListener(v -> {
             try {
                 mp.stop();
@@ -134,7 +154,6 @@ public class EventJavelin extends AppCompatActivity implements View.OnClickListe
                 mp.start();
             } catch(Exception e) { e.printStackTrace(); }
 
-            //diceAvailable = 0;
             final Animation anim1 = AnimationUtils.loadAnimation(EventJavelin.this, R.anim.shake);
             final Animation anim2 = AnimationUtils.loadAnimation(EventJavelin.this, R.anim.shake);
             final Animation anim3 = AnimationUtils.loadAnimation(EventJavelin.this, R.anim.shake);
@@ -216,16 +235,23 @@ public class EventJavelin extends AppCompatActivity implements View.OnClickListe
                             case 1:
                                 score1.setText(Integer.toString(0));
                                 score1.setTextColor(Color.RED);
+                                intScore1 = 0;
                                 break;
                             case 2:
                                 score2.setText(Integer.toString(0));
                                 score2.setTextColor(Color.RED);
+                                intScore2 = 0;
                                 break;
                             case 3:
                                 score3.setText(Integer.toString(0));
                                 score3.setTextColor(Color.RED);
+                                intScore3 = 0;
                                 nextAttempt.setEnabled(false);
                                 resetGame.setEnabled(true);
+                                int maxValue = Integer.max(intScore1, intScore2);
+                                maxValue = Integer.max(maxValue, intScore3);
+                                fullGameScore += maxValue;
+                                fullGameScoreText.setText(Integer.toString(fullGameScore));
                                 break;
                         }
                     }
@@ -282,20 +308,27 @@ public class EventJavelin extends AppCompatActivity implements View.OnClickListe
                 case 1:
                     score1.setText(Integer.toString(reserveScore));
                     score1.setTextColor(Color.GREEN);
+                    intScore1 = reserveScore;
                     break;
                 case 2:
                     score2.setText(Integer.toString(reserveScore));
                     score2.setTextColor(Color.GREEN);
+                    intScore2 = reserveScore;
                     break;
                 case 3:
                     score3.setText(Integer.toString(reserveScore));
                     score3.setTextColor(Color.GREEN);
+                    intScore3 = reserveScore;
                     break;
             }
             if (attempt < 3){
                 nextAttempt.setEnabled(true);
             } else {
                 resetGame.setEnabled(true);
+                int maxValue = Integer.max(intScore1, intScore2);
+                maxValue = Integer.max(maxValue, intScore3);
+                fullGameScore += maxValue;
+                fullGameScoreText.setText(Integer.toString(fullGameScore));
             }
         });
 
@@ -329,38 +362,46 @@ public class EventJavelin extends AppCompatActivity implements View.OnClickListe
         });
 
         resetGame.setOnClickListener(v -> {
-            resetGame.setEnabled(false);
-            oddsAvailable = false;
-            diceAvailable = 6;
-            attempt = 1;
-            attemptText.setText(Integer.toString(attempt));
+            if (isFullGame){
+                Intent newIntent = new Intent(EventJavelin.this, Event1500Metres.class);
+                newIntent.putExtra("isFullGame", isFullGame);
+                newIntent.putExtra("fullGameScore", fullGameScore);
+                startActivity(newIntent);
+                finish();
+            } else {
+                resetGame.setEnabled(false);
+                oddsAvailable = false;
+                diceAvailable = 6;
+                attempt = 1;
+                attemptText.setText(Integer.toString(attempt));
 
-            reserveScore = 0;
-            reserveScoreText.setText(Integer.toString(reserveScore));
+                reserveScore = 0;
+                reserveScoreText.setText(Integer.toString(reserveScore));
 
-            rolledKeys.removeAll(rolledKeys);
-            for (String key :
-                    bankKeys) {
-                rolledKeys.add(key);
+                rolledKeys.removeAll(rolledKeys);
+                for (String key :
+                        bankKeys) {
+                    rolledKeys.add(key);
+                }
+
+                bankedKeys.removeAll(bankedKeys);
+
+                rolledDice.MakeVisible();
+                rolledDice.ChangeBackgroundColor(Color.WHITE);
+                rolledDice.SetDiceViewPadding(0);
+                rolledDice.MakeOnes();
+                reservedDice.MakeHidden();
+
+                rollDice.setEnabled(true);
+                nextAttempt.setEnabled(false);
+                reserveScoreText.setTextColor(Color.BLACK);
+                score1.setText(R.string.score_text_empty);
+                score2.setText(R.string.score_text_empty);
+                score3.setText(R.string.score_text_empty);
+                score1.setTextColor(Color.BLACK);
+                score2.setTextColor(Color.BLACK);
+                score3.setTextColor(Color.BLACK);
             }
-
-            bankedKeys.removeAll(bankedKeys);
-
-            rolledDice.MakeVisible();
-            rolledDice.ChangeBackgroundColor(Color.WHITE);
-            rolledDice.SetDiceViewPadding(0);
-            rolledDice.MakeOnes();
-            reservedDice.MakeHidden();
-
-            rollDice.setEnabled(true);
-            nextAttempt.setEnabled(false);
-            reserveScoreText.setTextColor(Color.BLACK);
-            score1.setText(R.string.score_text_empty);
-            score2.setText(R.string.score_text_empty);
-            score3.setText(R.string.score_text_empty);
-            score1.setTextColor(Color.BLACK);
-            score2.setTextColor(Color.BLACK);
-            score3.setTextColor(Color.BLACK);
         });
 
         leaveGame.setOnClickListener(v -> finish());

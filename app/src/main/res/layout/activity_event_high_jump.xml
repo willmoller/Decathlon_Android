@@ -165,10 +165,8 @@
         android:id="@+id/ivHighJumpLogo"
         android:layout_width="148dp"
         android:layout_height="130dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/tvHighJumpTitle"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/highjump" />
 
@@ -176,13 +174,13 @@
         android:id="@+id/tvHighJumpTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="16dp"
         android:text="High Jump"
         android:textSize="48sp"
-        app:layout_constraintStart_toEndOf="@+id/ivHighJumpLogo"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHighJumpTotalScoreLabel" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
@@ -341,9 +339,34 @@
         android:layout_height="111dp"
         android:layout_marginStart="14dp"
         android:layout_marginLeft="14dp"
+        android:layout_marginTop="1dp"
         android:text="Start at a height of 10. Height increases by 2 each turn, but you may skip a height. You have 3 attempts for each height. Roll all 5 dice, sum must equal or exceed current height. Score is the maximum height you achieved."
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivHighJumpLogo" />
+
+    <TextView
+        android:id="@+id/tvHighJumpTotalScoreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Total Score:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvHighJumpTotalScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/tvHighJumpTotalScoreLabel"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

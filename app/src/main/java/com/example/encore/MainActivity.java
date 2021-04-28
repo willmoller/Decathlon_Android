@@ -16,14 +16,16 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    DatabaseHelper myDb;
-    Button singleEventButton;
+    private Button singleEventButton, fullGame;
     Spinner singleEventSpinner;
     String spinnerValue;
     Intent intent;
+    private boolean isFullGame;
     private String sharedPrefFile = "com.example.encore.sharedPrefs";
     private String name = "";
+    private int score = 0;
     private String NAME_KEY = "name";
+    private String SCORE_KEY = "score";
     private EditText tvName;
     SharedPreferences mPreferences;
 
@@ -32,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myDb = new DatabaseHelper(this);
         tvName = findViewById(R.id.tvName);
 
         mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         singleEventSpinner = findViewById(R.id.spinnerSingleEvent);
 
         singleEventButton = (Button) findViewById(R.id.button_single_event);
+        fullGame = (Button) findViewById(R.id.button_all_events);
 
         ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(MainActivity.this, R.array.event_names, android.R.layout.simple_list_item_1);
         singleEventSpinner.setAdapter(adapter);
@@ -58,48 +60,69 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
+        fullGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isFullGame = true;
+                intent = new Intent(MainActivity.this, Event100Metres.class);
+                intent.putExtra("isFullGame", isFullGame);
+                startActivity(intent);
+            }
+        });
+
         singleEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isFullGame = false;
                 switch (spinnerValue){
                     case "100 Metres":
                         intent = new Intent(MainActivity.this, Event100Metres.class);
+                        intent.putExtra("isFullGame", isFullGame);
                         startActivity(intent);
                         break;
                     case "110 Metre Hurdles":
                         intent = new Intent(MainActivity.this, Event110MetreHurdles.class);
+                        intent.putExtra("isFullGame", isFullGame);
                         startActivity(intent);
                         break;
                     case "1500 Metres":
                         intent = new Intent(MainActivity.this, Event1500Metres.class);
+                        intent.putExtra("isFullGame", isFullGame);
                         startActivity(intent);
                         break;
                     case "400 Metres":
                         intent = new Intent(MainActivity.this, Event400Metres.class);
+                        intent.putExtra("isFullGame", isFullGame);
                         startActivity(intent);
                         break;
                     case "Discus":
                         intent = new Intent(MainActivity.this, EventDiscus.class);
+                        intent.putExtra("isFullGame", isFullGame);
                         startActivity(intent);
                         break;
                     case "High Jump":
                         intent = new Intent(MainActivity.this, EventHighJump.class);
+                        intent.putExtra("isFullGame", isFullGame);
                         startActivity(intent);
                         break;
                     case "Javelin":
                         intent = new Intent(MainActivity.this, EventJavelin.class);
+                        intent.putExtra("isFullGame", isFullGame);
                         startActivity(intent);
                         break;
                     case "Long Jump":
                         intent = new Intent(MainActivity.this, EventLongJump.class);
+                        intent.putExtra("isFullGame", isFullGame);
                         startActivity(intent);
                         break;
                     case "Pole Vault":
                         intent = new Intent(MainActivity.this, EventPoleVault.class);
+                        intent.putExtra("isFullGame", isFullGame);
                         startActivity(intent);
                         break;
                     case "Shot Put":
                         intent = new Intent(MainActivity.this, EventShotPut.class);
+                        intent.putExtra("isFullGame", isFullGame);
                         startActivity(intent);
                         break;
                 }
@@ -134,6 +157,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
         );
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putInt(SCORE_KEY, score);
     }
 
 

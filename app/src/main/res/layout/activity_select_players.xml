@@ -6,28 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".SelectPlayers">
 
+
     <Spinner
-        android:id="@+id/spinnerPlayerCount"
-        android:layout_width="85dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="76dp"
-        android:layout_marginRight="76dp"
+        android:id="@+id/spinnerPlayers"
+        android:layout_width="189dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="272dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewPlayerCountLabel"
+        android:id="@+id/tvPlayerLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginLeft="92dp"
-        android:layout_marginTop="76dp"
-        android:text="Player Count:"
-        android:textSize="24sp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="272dp"
+        android:text="Player:"
+        android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <Button
         android:id="@+id/buttonBegin"
@@ -38,37 +38,24 @@
         android:layout_marginEnd="164dp"
         android:layout_marginRight="164dp"
         android:layout_marginBottom="30dp"
-        android:text="@string/button_lets_play"
         android:onClick="launchPlayGameActivity"
+        android:text="@string/button_lets_play"
+        android:textSize="36sp"
         app:backgroundTint="@android:color/holo_orange_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="361dp"
-        android:layout_height="276dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPlayerCountLabel" />
-
     <TextView
-        android:id="@+id/player1Label"
+        android:id="@+id/playerLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="71dp"
-        android:text="Player 1's Name:"
-        android:textSize="20sp"
+        android:text="New Name:"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        tools:layout_editor_absoluteY="496dp" />
 
     <EditText
         android:id="@+id/textPerson1Name"
@@ -76,14 +63,23 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
         android:layout_marginLeft="11dp"
-        android:layout_marginTop="60dp"
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/player1Label"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toEndOf="@+id/playerLabel"
+        tools:layout_editor_absoluteY="487dp" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="342dp"
+        android:layout_height="97dp"
+        android:text="Select who is playing, or enter a new name below"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="68dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

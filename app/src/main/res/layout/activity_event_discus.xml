@@ -152,49 +152,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonDiscusRoll" />
 
-    <TextView
-        android:id="@+id/tvDiscusAttemptsLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="9dp"
-        android:text="1"
-        android:textSize="60sp"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/tvDiscusTitleAttempts" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="201dp"
-        android:layout_marginLeft="201dp"
-        android:layout_marginTop="43dp"
-        android:text="@string/attempt_label"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDiscusTitleAttempts" />
-
-    <TextView
-        android:id="@+id/tvDiscusTitleAttempts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginLeft="39dp"
-        android:text="(3 Attempts)"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/tvDiscusTitle" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="146dp"
         android:layout_height="140dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="38dp"
+        app:layout_constraintStart_toEndOf="@+id/tvDiscusTitle"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/discus" />
 
@@ -202,13 +167,48 @@
         android:id="@+id/tvDiscusTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginLeft="39dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
         android:text="Discus"
         android:textSize="48sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDiscusTotalScoreLabel" />
+
+    <TextView
+        android:id="@+id/tvDiscusTitleAttempts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:layout_marginLeft="46dp"
+        android:text="(3 Attempts)"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDiscusTitle" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginLeft="41dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/attempt_label"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDiscusTitleAttempts" />
+
+    <TextView
+        android:id="@+id/tvDiscusAttemptsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="2dp"
+        android:text="1"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/tvDiscusTitleAttempts" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clDiscusRollDice"
@@ -216,9 +216,11 @@
         android:layout_height="95dp"
         android:layout_marginStart="13dp"
         android:layout_marginLeft="13dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="13dp"
         android:layout_marginRight="13dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDiscusAttemptsLeft">
 
@@ -359,4 +361,28 @@
         android:textSize="48sp"
         app:layout_constraintStart_toEndOf="@+id/buttonDiscusRoll"
         app:layout_constraintTop_toBottomOf="@+id/clDiscusRollDice" />
+
+    <TextView
+        android:id="@+id/tvDiscusTotalScoreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Total Score:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvDiscusTotalScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/tvDiscusTotalScoreLabel"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

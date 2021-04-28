@@ -2,6 +2,7 @@ package com.example.encore;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -26,14 +27,15 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
     private ArrayList<TextView> jumpGoalViews;
     private HashMap<String, TextView> jumpGoals;
     private ArrayList<String> rolledKeys, jumpGoalKeys;
-    private int totalScore, rollsLeft, jumpGoal, colorID, diceSum, diceCount;
+    private int totalScore, rollsLeft, jumpGoal, colorID, diceSum, diceCount, fullGameScore;
     private Button rollDice, resetGame, leaveGame;
     private String jumpGoalKey, action;
     private ImageView rollDie1, rollDie2, rollDie3, rollDie4, rollDie5, rollDie6, rollDie7, rollDie8;
-    private TextView rollsLeftText, scoreText, actionPrompt, try10, try12, try14, try16, try18, try20, try22, try24, try26,
-            try28, try30, try32, try34, try36, try38, try40, try42, try44, try46, try48;
+    private TextView rollsLeftText, scoreText, actionPrompt, fullGameScoreLabel, fullGameScoreText,
+        try10, try12, try14, try16, try18, try20, try22, try24, try26, try28, try30, try32, try34,
+            try36, try38, try40, try42, try44, try46, try48;
     private MediaPlayer mp;
-    private boolean rolledOne;
+    private boolean rolledOne, isFullGame;
     public static int randomDiceValue(){
         return RANDOM.nextInt(6) + 1;
     }
@@ -177,6 +179,21 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
         }
 
         mp = new MediaPlayer();
+
+        Intent intent = getIntent();
+        isFullGame = intent.getBooleanExtra("isFullGame", false);
+        fullGameScoreLabel = (TextView) findViewById(R.id.tvPoleVaultTotalScoreLabel);
+        fullGameScoreText = (TextView) findViewById(R.id.tvPoleVaultTotalScore);
+
+        if (!isFullGame){
+            fullGameScoreLabel.setVisibility(View.INVISIBLE);
+            fullGameScoreText.setVisibility(View.INVISIBLE);
+            resetGame.setText("Replay");
+        } else {
+            fullGameScore = intent.getIntExtra("fullGameScore", 0);
+            fullGameScoreText.setText(Integer.toString(fullGameScore));
+            resetGame.setText("Next");
+        }
 
         rollDice.setOnClickListener(v -> {
             try {
@@ -330,18 +347,26 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
         });
 
         resetGame.setOnClickListener(v -> {
-            resetGame.setEnabled(false);
-            rollDice.setEnabled(false);
-            rolledDice.MakeOnes();
-            for (String key :
-                    jumpGoalKeys) {
-                jumpGoals.get(key).setBackgroundColor(Color.WHITE);
+            if (isFullGame){
+                Intent newIntent = new Intent(EventPoleVault.this, EventJavelin.class);
+                newIntent.putExtra("isFullGame", isFullGame);
+                newIntent.putExtra("fullGameScore", fullGameScore);
+                startActivity(newIntent);
+                finish();
+            } else {
+                resetGame.setEnabled(false);
+                rollDice.setEnabled(false);
+                rolledDice.MakeOnes();
+                for (String key :
+                        jumpGoalKeys) {
+                    jumpGoals.get(key).setBackgroundColor(Color.WHITE);
+                }
+                jumpGoalKey = "";
+                totalScore = 0;
+                scoreText.setText("-");
+                rollsLeft = 3;
+                rollsLeftText.setText(Integer.toString(rollsLeft));
             }
-            jumpGoalKey = "";
-            totalScore = 0;
-            scoreText.setText("-");
-            rollsLeft = 3;
-            rollsLeftText.setText(Integer.toString(rollsLeft));
         });
 
         leaveGame.setOnClickListener(v -> finish());
@@ -375,6 +400,8 @@ public class EventPoleVault extends AppCompatActivity implements View.OnClickLis
         } else if (rollsLeft == 0){
             rollDice.setEnabled(true);
             resetGame.setEnabled(true);
+            fullGameScore += totalScore;
+            fullGameScoreText.setText(Integer.toString(fullGameScore));
             jumpGoals.get(jumpGoalKey).setBackgroundColor(Color.RED);
             scoreText.setText(Integer.toString(totalScore));
         }

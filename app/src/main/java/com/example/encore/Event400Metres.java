@@ -2,6 +2,7 @@ package com.example.encore;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -21,11 +22,10 @@ public class Event400Metres extends AppCompatActivity {
     private Dice rolledDice;
     private ArrayList<ImageView> ivRolledDice;
     private ArrayList<String> rolledKeys;
-    private int totalScore, rollsLeft, dieCount;
+    private int totalScore, rollsLeft, dieCount, fullGameScore;
     private Button rollDie, keepDie, resetGame, leaveGame;
-    private Die currentDie;
-
-    private TextView rollsLeftText, scoreText;
+    private boolean isFullGame;
+    private TextView rollsLeftText, scoreText, fullGameScoreLabel, fullGameScoreText;
     private MediaPlayer mp;
 
     public static int randomDiceValue(){
@@ -77,6 +77,21 @@ public class Event400Metres extends AppCompatActivity {
         rolledDice.getDiceList().get("rollDie2").makeVisible();
 
         mp = new MediaPlayer();
+
+        Intent intent = getIntent();
+        isFullGame = intent.getBooleanExtra("isFullGame", false);
+        fullGameScoreLabel = (TextView) findViewById(R.id.tv400MTotalScoreLabel);
+        fullGameScoreText = (TextView) findViewById(R.id.tv400MTotalScore);
+
+        if (!isFullGame){
+            fullGameScoreLabel.setVisibility(View.INVISIBLE);
+            fullGameScoreText.setVisibility(View.INVISIBLE);
+            resetGame.setText("Replay");
+        } else {
+            fullGameScore = intent.getIntExtra("fullGameScore", 0);
+            fullGameScoreText.setText(Integer.toString(fullGameScore));
+            resetGame.setText("Next");
+        }
 
         rollDie.setOnClickListener(v -> {
             try {
@@ -161,44 +176,47 @@ public class Event400Metres extends AppCompatActivity {
             rolledDice.getDiceList().get(rolledKeys.get(dieCount)).getDieFaceView().startAnimation(anim2);
         });
 
-        keepDie.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                keepDie.setEnabled(false);
-                int dieValue1 = rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getValue();
-                if (dieValue1 == 6){
-                    totalScore -= dieValue1;
-                } else {
-                    totalScore += dieValue1;
-                }
-
-                int dieValue2 = rolledDice.getDiceList().get(rolledKeys.get(dieCount)).getValue();
-                if (dieValue2 == 6){
-                    totalScore -= dieValue2;
-                } else {
-                    totalScore += dieValue2;
-                }
-
-                scoreText.setText(Integer.toString(totalScore));
-                if (dieCount < 7){
-                    rolledDice.getDiceList().get(rolledKeys.get(dieCount + 1)).makeVisible();
-                    rolledDice.getDiceList().get(rolledKeys.get(dieCount + 2)).makeVisible();
-                }
-
-                if (dieCount < 7){
-                    rollDie.setEnabled(true);
-                } else {
-                    rollDie.setEnabled(false);
-                    resetGame.setEnabled(true);
-                }
-
-                dieCount += 2;
+        keepDie.setOnClickListener(v -> {
+            keepDie.setEnabled(false);
+            int dieValue1 = rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getValue();
+            if (dieValue1 == 6){
+                totalScore -= dieValue1;
+            } else {
+                totalScore += dieValue1;
             }
+
+            int dieValue2 = rolledDice.getDiceList().get(rolledKeys.get(dieCount)).getValue();
+            if (dieValue2 == 6){
+                totalScore -= dieValue2;
+            } else {
+                totalScore += dieValue2;
+            }
+
+            scoreText.setText(Integer.toString(totalScore));
+            if (dieCount < 7){
+                rolledDice.getDiceList().get(rolledKeys.get(dieCount + 1)).makeVisible();
+                rolledDice.getDiceList().get(rolledKeys.get(dieCount + 2)).makeVisible();
+            }
+
+            if (dieCount < 7){
+                rollDie.setEnabled(true);
+            } else {
+                rollDie.setEnabled(false);
+                resetGame.setEnabled(true);
+                fullGameScore += totalScore;
+                fullGameScoreText.setText(Integer.toString(fullGameScore));
+            }
+            dieCount += 2;
         });
 
-        resetGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        resetGame.setOnClickListener(v -> {
+            if (isFullGame){
+                Intent newIntent = new Intent(Event400Metres.this, Event110MetreHurdles.class);
+                newIntent.putExtra("isFullGame", isFullGame);
+                newIntent.putExtra("fullGameScore", fullGameScore);
+                startActivity(newIntent);
+                finish();
+            } else {
                 totalScore = 0;
                 rollsLeft = 9;
                 dieCount = 1;
@@ -219,12 +237,7 @@ public class Event400Metres extends AppCompatActivity {
             }
         });
 
-        leaveGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        leaveGame.setOnClickListener(v -> finish());
     }
 
     @Override

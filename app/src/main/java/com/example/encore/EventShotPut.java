@@ -1,9 +1,12 @@
 package com.example.encore;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -23,11 +26,11 @@ public class EventShotPut extends AppCompatActivity {
     private Dice rolledDice;
     private ArrayList<ImageView> ivRolledDice;
     private ArrayList<String> rolledKeys;
-    private int totalScore, attempt, dieCount;
+    private int totalScore, attempt, dieCount, fullGameScore, intScore1, intScore2, intScore3;
     private Button rollDice, scoreDice, resetGame, leaveGame, nextAttempt;
-    private Die currentDie;
 
-    private TextView attemptsLeftText, score1Text, score2Text, score3Text;
+    private TextView attemptsLeftText, score1Text, score2Text, score3Text, fullGameScoreLabel, fullGameScoreText;
+    private boolean isFullGame;
     private MediaPlayer mp;
 
     public static int randomDiceValue(){
@@ -81,95 +84,122 @@ public class EventShotPut extends AppCompatActivity {
         rolledDice = new Dice(ivRolledDice, rolledKeys);
         rolledDice.getDiceList().get("rollDie1").makeVisible();
 
-        rollDice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Animation anim1 = AnimationUtils.loadAnimation(EventShotPut.this, R.anim.shake);
+        mp = new MediaPlayer();
 
-                scoreDice.setEnabled(true);
-                dieCount++;
+        Intent intent = getIntent();
+        isFullGame = intent.getBooleanExtra("isFullGame", false);
+        fullGameScoreLabel = (TextView) findViewById(R.id.tvShotPutTotalScoreLabel);
+        fullGameScoreText = (TextView) findViewById(R.id.tvShotPutTotalScore);
 
-                if (dieCount == 8){
-                    rollDice.setEnabled(false);
+        if (!isFullGame){
+            fullGameScoreLabel.setVisibility(View.INVISIBLE);
+            fullGameScoreText.setVisibility(View.INVISIBLE);
+            resetGame.setText("Replay");
+        } else {
+            fullGameScore = intent.getIntExtra("fullGameScore", 0);
+            fullGameScoreText.setText(Integer.toString(fullGameScore));
+            resetGame.setText("Next");
+        }
+
+        rollDice.setOnClickListener(v -> {
+            try {
+                mp.stop();
+                mp.release();
+                mp = MediaPlayer.create(this, R.raw.dice);
+                mp.start();
+            } catch(Exception e) { e.printStackTrace(); }
+
+            final Animation anim1 = AnimationUtils.loadAnimation(EventShotPut.this, R.anim.shake);
+
+            scoreDice.setEnabled(true);
+            dieCount++;
+
+            if (dieCount == 8){
+                rollDice.setEnabled(false);
+            }
+
+            final Animation.AnimationListener animationListener = new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
                 }
 
-                final Animation.AnimationListener animationListener = new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    int value = randomDiceValue();
+                    int res = 0;
+                    switch (value) {
+                        case 1:
+                            res = R.drawable.die1;
+                            break;
+                        case 2:
+                            res = R.drawable.die2;
+                            break;
+                        case 3:
+                            res = R.drawable.die3;
+                            break;
+                        case 4:
+                            res = R.drawable.die4;
+                            break;
+                        case 5:
+                            res = R.drawable.die5;
+                            break;
+                        case 6:
+                            res = R.drawable.die6;
+                            break;
                     }
 
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        int value = randomDiceValue();
-                        int res = 0;
-                        switch (value) {
+                    rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getDieFaceView().setImageResource(res);
+                    rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).setValue(value);
+
+                    if (rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getValue() == 1){
+                        rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getDieFaceView().setBackgroundColor(Color.BLACK);
+                        rollDice.setEnabled(false);
+                        scoreDice.setEnabled(false);
+                        switch (attempt){
                             case 1:
-                                res = R.drawable.die1;
+                                score1Text.setText(Integer.toString(0));
+                                score1Text.setTextColor(Color.RED);
                                 break;
                             case 2:
-                                res = R.drawable.die2;
+                                score2Text.setText(Integer.toString(0));
+                                score2Text.setTextColor(Color.RED);
                                 break;
                             case 3:
-                                res = R.drawable.die3;
-                                break;
-                            case 4:
-                                res = R.drawable.die4;
-                                break;
-                            case 5:
-                                res = R.drawable.die5;
-                                break;
-                            case 6:
-                                res = R.drawable.die6;
+                                score3Text.setText(Integer.toString(0));
+                                score3Text.setTextColor(Color.RED);
                                 break;
                         }
-
-                        rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getDieFaceView().setImageResource(res);
-                        rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).setValue(value);
-
-                        if (rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getValue() == 1){
-                            rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getDieFaceView().setBackgroundColor(Color.BLACK);
-                            rollDice.setEnabled(false);
-                            scoreDice.setEnabled(false);
-                            switch (attempt){
-                                case 1:
-                                    score1Text.setText(Integer.toString(0));
-                                    score1Text.setTextColor(Color.RED);
-                                    break;
-                                case 2:
-                                    score2Text.setText(Integer.toString(0));
-                                    score2Text.setTextColor(Color.RED);
-                                    break;
-                                case 3:
-                                    score3Text.setText(Integer.toString(0));
-                                    score3Text.setTextColor(Color.RED);
-                                    break;
-                            }
-                            if (attempt < 3){
-                                nextAttempt.setEnabled(true);
-                            } else {
-                                resetGame.setEnabled(true);
-                            }
+                        if (attempt < 3){
+                            nextAttempt.setEnabled(true);
                         } else {
-                            rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getDieFaceView().setBackgroundColor(Color.GREEN);
-                            if (dieCount < 8){
-                                rolledDice.getDiceList().get(rolledKeys.get(dieCount)).makeVisible();
-                            }
+                            resetGame.setEnabled(true);
+                            int maxValue = Integer.max(intScore1, intScore2);
+                            maxValue = Integer.max(maxValue, intScore3);
+                            fullGameScore += maxValue;
+                            fullGameScoreText.setText(Integer.toString(fullGameScore));
+                        }
+                    } else {
+                        rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getDieFaceView().setBackgroundColor(Color.GREEN);
+                        if (dieCount < 8){
+                            rolledDice.getDiceList().get(rolledKeys.get(dieCount)).makeVisible();
                         }
                     }
+                }
 
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
+                @Override
+                public void onAnimationRepeat(Animation animation) {
 
-                    }
-                };
-                anim1.setAnimationListener(animationListener);
+                }
+            };
+            anim1.setAnimationListener(animationListener);
 
-                rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getDieFaceView().startAnimation(anim1);
-            }
+            rolledDice.getDiceList().get(rolledKeys.get(dieCount-1)).getDieFaceView().startAnimation(anim1);
         });
 
         scoreDice.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
 
@@ -182,16 +212,23 @@ public class EventShotPut extends AppCompatActivity {
                         score1Text.setText(Integer.toString(totalScore));
                         score1Text.setTextColor(Color.GREEN);
                         nextAttempt.setEnabled(true);
+                        intScore1 = totalScore;
                         break;
                     case 2:
                         score2Text.setText(Integer.toString(totalScore));
                         score2Text.setTextColor(Color.GREEN);
                         nextAttempt.setEnabled(true);
+                        intScore2 = totalScore;
                         break;
                     case 3:
                         score3Text.setText(Integer.toString(totalScore));
                         score3Text.setTextColor(Color.GREEN);
                         resetGame.setEnabled(true);
+                        intScore3 = totalScore;
+                        int maxValue = Integer.max(intScore1, intScore2);
+                        maxValue = Integer.max(maxValue, intScore3);
+                        fullGameScore += maxValue;
+                        fullGameScoreText.setText(Integer.toString(fullGameScore));
                         break;
                 }
             }
@@ -216,9 +253,14 @@ public class EventShotPut extends AppCompatActivity {
             }
         });
 
-        resetGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        resetGame.setOnClickListener(v -> {
+            if (isFullGame){
+                Intent newIntent = new Intent(EventShotPut.this, EventHighJump.class);
+                newIntent.putExtra("isFullGame", isFullGame);
+                newIntent.putExtra("fullGameScore", fullGameScore);
+                startActivity(newIntent);
+                finish();
+            } else {
                 resetGame.setEnabled(false);
                 nextAttempt.setEnabled(false);
                 rollDice.setEnabled(true);

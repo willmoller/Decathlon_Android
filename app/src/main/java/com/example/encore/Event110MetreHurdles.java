@@ -2,6 +2,7 @@ package com.example.encore;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -21,10 +22,10 @@ public class Event110MetreHurdles extends AppCompatActivity {
     private Dice rolledDice;
     private ArrayList<ImageView> ivRolledDice;
     private ArrayList<String> rolledKeys;
-    private int totalScore;
+    private int totalScore, fullGameScore;
     private Button rollDice, keepDice, resetGame, leaveGame;
-
-    private TextView rollsLeftText, totalScoreText;
+    private boolean isFullGame;
+    private TextView rollsLeftText, totalScoreText, fullGameScoreLabel, fullGameScoreText;
     private int rollsLeft = 6;
     private MediaPlayer mp;
 
@@ -67,6 +68,21 @@ public class Event110MetreHurdles extends AppCompatActivity {
         rolledDice.MakeVisible();
 
         mp = new MediaPlayer();
+
+        Intent intent = getIntent();
+        isFullGame = intent.getBooleanExtra("isFullGame", false);
+        fullGameScoreLabel = (TextView) findViewById(R.id.tv110MHurdlesTotalScoreLabel);
+        fullGameScoreText = (TextView) findViewById(R.id.tv110MHurdlesTotalScore);
+
+        if (!isFullGame){
+            fullGameScoreLabel.setVisibility(View.INVISIBLE);
+            fullGameScoreText.setVisibility(View.INVISIBLE);
+            resetGame.setText("Replay");
+        } else {
+            fullGameScore = intent.getIntExtra("fullGameScore", 0);
+            fullGameScoreText.setText(Integer.toString(fullGameScore));
+            resetGame.setText("Next");
+        }
 
         rollDice.setOnClickListener(v -> {
             try {
@@ -158,26 +174,30 @@ public class Event110MetreHurdles extends AppCompatActivity {
             rollsLeftText.setText(Integer.toString(rollsLeft));
         });
 
-        keepDice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        keepDice.setOnClickListener(v -> {
 
-                for (String key :
-                        rolledKeys) {
-                    totalScore += rolledDice.getDiceList().get(key).getValue();
-                }
-                totalScoreText.setText(Integer.toString(totalScore));
-                totalScoreText.setTextColor(Color.GREEN);
-                rollDice.setEnabled(false);
-                keepDice.setEnabled(false);
-                resetGame.setEnabled(true);
-                leaveGame.setEnabled(true);
+            for (String key :
+                    rolledKeys) {
+                totalScore += rolledDice.getDiceList().get(key).getValue();
             }
+            totalScoreText.setText(Integer.toString(totalScore));
+            totalScoreText.setTextColor(Color.GREEN);
+            rollDice.setEnabled(false);
+            keepDice.setEnabled(false);
+            resetGame.setEnabled(true);
+            leaveGame.setEnabled(true);
+            fullGameScore += totalScore;
+            fullGameScoreText.setText(Integer.toString(fullGameScore));
         });
 
-        resetGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        resetGame.setOnClickListener(v -> {
+            if (isFullGame){
+                Intent newIntent = new Intent(Event110MetreHurdles.this, EventDiscus.class);
+                newIntent.putExtra("isFullGame", isFullGame);
+                newIntent.putExtra("fullGameScore", fullGameScore);
+                startActivity(newIntent);
+                finish();
+            } else {
                 rollDice.setEnabled(true);
                 totalScore = 0;
                 totalScoreText.setText(Integer.toString(totalScore));

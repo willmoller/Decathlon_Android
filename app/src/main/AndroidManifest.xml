@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/decathlon_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Encore">
-        <activity android:name=".Event1500Metres"></activity>
+        <activity android:name=".FinalScore"></activity>
+        <activity android:name=".Event1500Metres" />
         <activity android:name=".EventJavelin" />
         <activity android:name=".EventPoleVault" />
         <activity android:name=".EventDiscus" />

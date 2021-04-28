@@ -10,10 +10,8 @@
         android:id="@+id/iv110MHurdlesLogo"
         android:layout_width="146dp"
         android:layout_height="158dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="18dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv110MHurdlesTitle"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/hurdles" />
 
@@ -21,11 +19,13 @@
         android:id="@+id/tv110MHurdlesTitle"
         android:layout_width="225dp"
         android:layout_height="114dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="18dp"
         android:text="@string/_110_metre_hurdles_title"
         android:textSize="48sp"
-        app:layout_constraintStart_toEndOf="@+id/iv110MHurdlesLogo"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv110MHurdlesTotalScoreLabel" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -200,5 +200,29 @@
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv110MHurdlesLogo" />
+
+    <TextView
+        android:id="@+id/tv110MHurdlesTotalScoreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Total Score:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv110MHurdlesTotalScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/tv110MHurdlesTotalScoreLabel"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

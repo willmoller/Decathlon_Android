@@ -10,10 +10,10 @@
         android:id="@+id/imageView2"
         android:layout_width="174dp"
         android:layout_height="164dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="14dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="38dp"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/javelin" />
 
@@ -21,35 +21,35 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="12dp"
         android:text="Javelin"
         android:textSize="48sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvJavelinTotalScoreLabel" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:text="(3 Attempts)"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="7dp"
         android:text="Attempt #"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
@@ -58,18 +58,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="1dp"
         android:text="1"
-        android:textSize="60sp"
+        android:textSize="36sp"
         app:layout_constraintStart_toEndOf="@+id/textView16"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout5"
         android:layout_width="382dp"
-        android:layout_height="75dp"
+        android:layout_height="74dp"
         android:layout_marginStart="14dp"
         android:layout_marginLeft="14dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +84,7 @@
             android:layout_height="52dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="11dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/die1" />
@@ -94,7 +95,7 @@
             android:layout_height="52dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="11dp"
             app:layout_constraintStart_toEndOf="@+id/ivJavelinRollDie5"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/die1" />
@@ -105,7 +106,7 @@
             android:layout_height="52dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="11dp"
             app:layout_constraintStart_toEndOf="@+id/ivJavelinRollDie4"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/die1" />
@@ -116,7 +117,7 @@
             android:layout_height="52dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="11dp"
             app:layout_constraintStart_toEndOf="@+id/ivJavelinRollDie3"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/die1" />
@@ -127,7 +128,7 @@
             android:layout_height="52dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="11dp"
             app:layout_constraintStart_toEndOf="@+id/ivJavelinRollDie2"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/die1" />
@@ -138,7 +139,7 @@
             android:layout_height="52dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="11dp"
             app:layout_constraintStart_toEndOf="@+id/ivJavelinRollDie1"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/die1" />
@@ -150,7 +151,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="21dp"
         android:text="Roll"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
@@ -171,7 +172,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="34dp"
         android:layout_marginLeft="34dp"
-        android:layout_marginTop="51dp"
+        android:layout_marginTop="38dp"
         android:text="0"
         android:textSize="48sp"
         app:layout_constraintStart_toEndOf="@+id/buttonJavelinRoll"
@@ -378,11 +379,35 @@
         android:id="@+id/tvJavelinRules"
         android:layout_width="209dp"
         android:layout_height="106dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="11dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="Roll Dice. Reserve at least 1 after every roll. You may only reserve ODD dice. You can score at any time. If no ODD dice available, attempt fails."
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
+
+    <TextView
+        android:id="@+id/tvJavelinTotalScoreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Total Score:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvJavelinTotalScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/tvJavelinTotalScoreLabel"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

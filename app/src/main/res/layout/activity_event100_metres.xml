@@ -8,20 +8,20 @@
 
     <ImageView
         android:id="@+id/iv100MLogo"
-        android:layout_width="146dp"
-        android:layout_height="158dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="115dp"
+        android:layout_height="123dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv100MTotalScoreLabel"
         app:srcCompat="@drawable/running" />
 
     <TextView
         android:id="@+id/tv100MTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="@string/_100_metres_title"
@@ -112,9 +112,9 @@
         android:id="@+id/tv100MRollsLabel"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginLeft="26dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="13dp"
         android:text="@string/rolls_left_label_100M"
         android:textSize="36sp"
         app:layout_constraintStart_toEndOf="@+id/iv100MLogo"
@@ -124,11 +124,11 @@
         android:id="@+id/tv100MRollsRemain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="1dp"
         android:text="@string/rolls_left_text"
-        android:textSize="60sp"
+        android:textSize="48sp"
         app:layout_constraintStart_toEndOf="@+id/tv100MRollsLabel"
         app:layout_constraintTop_toBottomOf="@+id/tv100MTitle" />
 
@@ -241,25 +241,25 @@
         android:id="@+id/tv100MScoreLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
         android:layout_marginEnd="48dp"
         android:layout_marginRight="48dp"
-        android:layout_marginBottom="44dp"
         android:text="@string/score_label"
         android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tv100MScore" />
+        app:layout_constraintEnd_toStartOf="@+id/tv100MScore"
+        app:layout_constraintTop_toBottomOf="@+id/cl100MBankedDice" />
 
     <TextView
         android:id="@+id/tv100MScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
         android:text="@string/score_text_100M"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl100MBankedDice" />
 
     <TextView
         android:id="@+id/tv100MBankLabel"
@@ -306,5 +306,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv100MRollsRemain" />
+
+    <TextView
+        android:id="@+id/tv100MTotalScoreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Total Score:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv100MTotalScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="12dp"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/tv100MTotalScoreLabel"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

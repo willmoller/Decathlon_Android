@@ -10,10 +10,10 @@
         android:id="@+id/iv1500MLogo"
         android:layout_width="148dp"
         android:layout_height="156dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="21dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="29dp"
+        app:layout_constraintStart_toEndOf="@+id/tv1500MTitle"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/running" />
 
@@ -21,13 +21,13 @@
         android:id="@+id/tv1500MTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="15dp"
         android:text="@string/_1500M_title"
         android:textSize="40sp"
-        app:layout_constraintStart_toEndOf="@+id/iv1500MLogo"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv1500MTotalScoreLabel" />
 
     <TextView
         android:id="@+id/tv1500MRules"
@@ -35,11 +35,10 @@
         android:layout_height="130dp"
         android:layout_marginStart="18dp"
         android:layout_marginLeft="18dp"
-        android:layout_marginTop="6dp"
         android:text="@string/rules_1500M"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv1500MRollsLeft" />
+        app:layout_constraintTop_toBottomOf="@+id/iv1500MLogo" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl1500MDice"
@@ -144,10 +143,12 @@
         android:id="@+id/tv1500MRollsLeftLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="7dp"
         android:text="@string/rolls_left_label"
         android:textSize="36sp"
-        app:layout_constraintStart_toEndOf="@+id/iv1500MLogo"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv1500MTitle" />
 
     <TextView
@@ -156,9 +157,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
-        android:layout_marginTop="14dp"
         android:text="@string/rolls_left_text_1500M"
-        android:textSize="60sp"
+        android:textSize="48sp"
         app:layout_constraintStart_toEndOf="@+id/tv1500MRollsLeftLabel"
         app:layout_constraintTop_toBottomOf="@+id/tv1500MTitle" />
 
@@ -242,4 +242,28 @@
         app:backgroundTint="@android:color/holo_orange_light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_1500M_Roll" />
+
+    <TextView
+        android:id="@+id/tv1500MTotalScoreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Total Score:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv1500MTotalScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/tv1500MTotalScoreLabel"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

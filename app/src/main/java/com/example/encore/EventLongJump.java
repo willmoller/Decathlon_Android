@@ -39,6 +39,7 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
         return RANDOM.nextInt(6) + 1;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -272,6 +273,10 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
                             score3.setTextColor(Color.RED);
                             nextAttempt.setEnabled(false);
                             resetGame.setEnabled(true);
+                            int maxValue = Integer.max(intScore1, intScore2);
+                            maxValue = Integer.max(maxValue, intScore3);
+                            fullGameScore += maxValue;
+                            fullGameScoreText.setText(Integer.toString(fullGameScore));
                             break;
                     }
                 } else if (diceClicked == 5){

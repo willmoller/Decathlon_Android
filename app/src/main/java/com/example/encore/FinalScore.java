@@ -22,7 +22,7 @@ public class FinalScore extends AppCompatActivity {
         done = (Button) findViewById(R.id.buttonReturnHome);
 
         Intent intent = getIntent();
-        finalScoreText = (TextView) findViewById(R.id.tv1500MTotalScore);
+        finalScoreText = (TextView) findViewById(R.id.tvFinalScore);
         finalScore = intent.getIntExtra("fullGameScore", 0);
         finalScoreText.setText(Integer.toString(finalScore));
 

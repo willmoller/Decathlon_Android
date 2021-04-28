@@ -307,12 +307,12 @@
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="69dp"
-        android:layout_marginLeft="69dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginLeft="42dp"
         android:layout_marginTop="43dp"
         android:text="Attempt #1"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/buttonJavelinScore"
+        app:layout_constraintStart_toEndOf="@+id/buttonJavelinNextAttempt"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
 
     <TextView
@@ -331,12 +331,12 @@
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="91dp"
-        android:layout_marginLeft="91dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginLeft="42dp"
         android:layout_marginTop="48dp"
         android:text="Attempt #3"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/buttonJavelinDone"
+        app:layout_constraintStart_toEndOf="@+id/buttonJavelinNextAttempt"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <TextView

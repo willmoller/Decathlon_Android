@@ -25,7 +25,7 @@ public class EventDiscus extends AppCompatActivity implements View.OnClickListen
     private Dice rolledDice, reservedDice;
     private ArrayList<ImageView> ivRolledDice, ivBankedDiceSet;
     private ArrayList<String> rolledKeys, bankKeys, bankedKeys;
-    private int reserveScore, totalScore, diceAvailable, diceClicked, fullGameScore, intScore1, intScore2, intScore3;
+    private int reserveScore, totalScore, diceAvailable, diceClicked, fullGameScore, intScore1, intScore2, intScore3, diceRolled;
     private Button rollDice, keepDice, scoreDice, nextAttempt, resetGame, leaveGame;
     private ImageView rollDie1, rollDie2, rollDie3, rollDie4, rollDie5, reserveDie1, reserveDie2, reserveDie3, reserveDie4, reserveDie5;
     private boolean evensAvailable, isFullGame;
@@ -112,11 +112,11 @@ public class EventDiscus extends AppCompatActivity implements View.OnClickListen
 
         bankedKeys = new ArrayList<String>();
 
-        evensAvailable = false;
         totalScore = 0;
         reserveScore = 0;
         diceClicked = 0;
         diceAvailable = 5;
+        diceRolled = 0;
         reserveScoreText = (TextView) findViewById(R.id.tvDiscusReserveSum);
 
         rolledDice.MakeVisible();
@@ -145,6 +145,8 @@ public class EventDiscus extends AppCompatActivity implements View.OnClickListen
                 mp = MediaPlayer.create(this, R.raw.dice);
                 mp.start();
             } catch(Exception e) { e.printStackTrace(); }
+
+            evensAvailable = false;
 
             final Animation anim1 = AnimationUtils.loadAnimation(EventDiscus.this, R.anim.shake);
             final Animation anim2 = AnimationUtils.loadAnimation(EventDiscus.this, R.anim.shake);
@@ -204,40 +206,44 @@ public class EventDiscus extends AppCompatActivity implements View.OnClickListen
                         rolledDice.getDiceList().get("rollDie5").setValue(value);
                     }
 
-                    for(int i = 0; i < diceAvailable; i++){
-                        if (rolledDice.getDiceList().get(rolledKeys.get(i)).getValue() % 2 == 0){
-                            rolledDice.getDiceList().get(rolledKeys.get(i)).getDieFaceView().setBackgroundColor(Color.GREEN);
-                            rolledDice.getDiceList().get(rolledKeys.get(i)).MakeClickable();
-                            evensAvailable = true;
-                        } else {
-                            rolledDice.getDiceList().get(rolledKeys.get(i)).getDieFaceView().setBackgroundColor(Color.BLACK);
-                            rolledDice.getDiceList().get(rolledKeys.get(i)).MakeUnclickable();
-                        }
-                    }
+                    diceRolled++;
 
-                    if(!evensAvailable){
-                        keepDice.setEnabled(false);
-                        scoreDice.setEnabled(false);
-                        nextAttempt.setEnabled(true);
-                        switch (attempt){
-                            case 1:
-                                score1.setText(Integer.toString(0));
-                                score1.setTextColor(Color.RED);
-                                break;
-                            case 2:
-                                score2.setText(Integer.toString(0));
-                                score2.setTextColor(Color.RED);
-                                break;
-                            case 3:
-                                score3.setText(Integer.toString(0));
-                                score3.setTextColor(Color.RED);
-                                nextAttempt.setEnabled(false);
-                                resetGame.setEnabled(true);
-                                int maxValue = Integer.max(intScore1, intScore2);
-                                maxValue = Integer.max(maxValue, intScore3);
-                                fullGameScore += maxValue;
-                                fullGameScoreText.setText(Integer.toString(fullGameScore));
-                                break;
+                    if (diceRolled == diceAvailable) {
+                        for (int i = 0; i < diceAvailable; i++) {
+                            if (rolledDice.getDiceList().get(rolledKeys.get(i)).getValue() % 2 == 0) {
+                                rolledDice.getDiceList().get(rolledKeys.get(i)).getDieFaceView().setBackgroundColor(Color.GREEN);
+                                rolledDice.getDiceList().get(rolledKeys.get(i)).MakeClickable();
+                                evensAvailable = true;
+                            } else {
+                                rolledDice.getDiceList().get(rolledKeys.get(i)).getDieFaceView().setBackgroundColor(Color.BLACK);
+                                rolledDice.getDiceList().get(rolledKeys.get(i)).MakeUnclickable();
+                            }
+                        }
+
+                        if (!evensAvailable) {
+                            keepDice.setEnabled(false);
+                            scoreDice.setEnabled(false);
+                            nextAttempt.setEnabled(true);
+                            switch (attempt) {
+                                case 1:
+                                    score1.setText(Integer.toString(0));
+                                    score1.setTextColor(Color.RED);
+                                    break;
+                                case 2:
+                                    score2.setText(Integer.toString(0));
+                                    score2.setTextColor(Color.RED);
+                                    break;
+                                case 3:
+                                    score3.setText(Integer.toString(0));
+                                    score3.setTextColor(Color.RED);
+                                    nextAttempt.setEnabled(false);
+                                    resetGame.setEnabled(true);
+                                    int maxValue = Integer.max(intScore1, intScore2);
+                                    maxValue = Integer.max(maxValue, intScore3);
+                                    fullGameScore += maxValue;
+                                    fullGameScoreText.setText(Integer.toString(fullGameScore));
+                                    break;
+                            }
                         }
                     }
                 }
@@ -271,6 +277,7 @@ public class EventDiscus extends AppCompatActivity implements View.OnClickListen
                 rolledDice.getDiceList().get(key).getDieFaceView().setClickable(false);
                 rolledDice.getDiceList().get(key).makeInvisible();
             }
+            diceRolled = 0;
             diceClicked = 0;
             evensAvailable = false;
             if(diceAvailable > 0){
@@ -286,6 +293,7 @@ public class EventDiscus extends AppCompatActivity implements View.OnClickListen
             rollDice.setEnabled(false);
             rolledDice.ChangeBackgroundColor(Color.WHITE);
             rolledDice.SetDiceViewPadding(0);
+            diceRolled = 0;
 
             switch (attempt){
                 case 1:
@@ -318,6 +326,7 @@ public class EventDiscus extends AppCompatActivity implements View.OnClickListen
         nextAttempt.setOnClickListener(v -> {
             diceAvailable = 5;
             diceClicked = 0;
+            diceRolled = 0;
             evensAvailable = false;
             attempt++;
             attemptText.setText(Integer.toString(attempt));

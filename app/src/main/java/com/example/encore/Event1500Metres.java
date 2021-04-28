@@ -24,7 +24,6 @@ public class Event1500Metres extends AppCompatActivity {
     private ArrayList<String> rolledKeys;
     private int totalScore, rollsLeft, dieCount, fullGameScore;
     private Button rollDie, keepDie, resetGame, leaveGame;
-    private Die currentDie;
     private boolean isFullGame;
     private TextView rollsLeftText, scoreText, fullGameScoreLabel, fullGameScoreText;
     private MediaPlayer mp;

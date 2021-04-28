@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class EventLongJump extends AppCompatActivity implements View.OnClickListener {
@@ -25,10 +27,10 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
     private Dice rolledDice, reservedDice;
     private ArrayList<ImageView> ivRolledDice, ivBankedDiceSet;
     private ArrayList<String> rolledKeys, bankKeys, bankedKeys;
-    private int reserveScore, totalScore, diceClicked, fullGameScore, intScore1, intScore2, intScore3;
+    private int reserveScore, totalScore, diceClicked, fullGameScore;
     private Button rollDice, keepDice, startJump, nextAttempt, resetGame, leaveGame;
     private ImageView rollDie1, rollDie2, rollDie3, rollDie4, rollDie5, reserveDie1, reserveDie2, reserveDie3, reserveDie4, reserveDie5;
-
+    private ArrayList<Integer> intValues;
     private TextView attemptText, reserveScoreText, runUp, runUpRules, jumpRules, score1, score2, score3, fullGameScoreLabel, fullGameScoreText;
     private boolean isFullGame;
     private int attempt = 1;
@@ -112,7 +114,7 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
 
         rolledDice = new Dice(ivRolledDice, rolledKeys);
         reservedDice = new Dice(ivBankedDiceSet, bankKeys);
-
+        intValues = new ArrayList<Integer>();
         bankedKeys = new ArrayList<String>();
 
         totalScore = 0;
@@ -263,18 +265,19 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
                         case 1:
                             score1.setText(Integer.toString(0));
                             score1.setTextColor(Color.RED);
+                            intValues.add(0);
                             break;
                         case 2:
                             score2.setText(Integer.toString(0));
                             score2.setTextColor(Color.RED);
+                            intValues.add(0);
                             break;
                         case 3:
                             score3.setText(Integer.toString(0));
                             score3.setTextColor(Color.RED);
                             nextAttempt.setEnabled(false);
                             resetGame.setEnabled(true);
-                            int maxValue = Integer.max(intScore1, intScore2);
-                            maxValue = Integer.max(maxValue, intScore3);
+                            int maxValue = Collections.max(intValues);
                             fullGameScore += maxValue;
                             fullGameScoreText.setText(Integer.toString(fullGameScore));
                             break;
@@ -304,13 +307,6 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
 
                 if (isJumpAttempt){
                     isJumpAttempt = false;
-                    if (attempt == 3){
-                        resetGame.setEnabled(true);
-                        int maxValue = Integer.max(intScore1, intScore2);
-                        maxValue = Integer.max(maxValue, intScore3);
-                        fullGameScore += maxValue;
-                        fullGameScoreText.setText(Integer.toString(fullGameScore));
-                    }
                     runUp.setText(R.string.long_jump_jump_text);
                     startJump.setText(R.string.long_jump_start_jump_text);
 
@@ -323,17 +319,21 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
                         case 1:
                             score1.setText(Integer.toString(reserveScore));
                             score1.setTextColor(Color.GREEN);
-                            intScore1 = reserveScore;
+                            intValues.add(reserveScore);
                             break;
                         case 2:
                             score2.setText(Integer.toString(reserveScore));
                             score2.setTextColor(Color.GREEN);
-                            intScore2 = reserveScore;
+                            intValues.add(reserveScore);
                             break;
                         case 3:
                             score3.setText(Integer.toString(reserveScore));
                             score3.setTextColor(Color.GREEN);
-                            intScore3 = reserveScore;
+                            intValues.add(reserveScore);
+                            resetGame.setEnabled(true);
+                            int maxValue = Collections.max(intValues);
+                            fullGameScore += maxValue;
+                            fullGameScoreText.setText(Integer.toString(fullGameScore));
                             break;
                     }
                     if (attempt < 3){
@@ -380,35 +380,32 @@ public class EventLongJump extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        nextAttempt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                diceClicked = 0;
-                attempt++;
-                attemptText.setText(Integer.toString(attempt));
+        nextAttempt.setOnClickListener(v -> {
+            diceClicked = 0;
+            attempt++;
+            attemptText.setText(Integer.toString(attempt));
 
-                reserveScore = 0;
-                reserveScoreText.setText(Integer.toString(reserveScore));
+            reserveScore = 0;
+            reserveScoreText.setText(Integer.toString(reserveScore));
 
-                rolledKeys.removeAll(rolledKeys);
-                for (String key :
-                        bankKeys) {
-                    rolledKeys.add(key);
-                }
-
-                //Collections.sort(rolledKeys);
-                bankedKeys.removeAll(bankedKeys);
-
-                rolledDice.MakeVisible();
-                rolledDice.ChangeBackgroundColor(Color.WHITE);
-                rolledDice.SetDiceViewPadding(0);
-                rolledDice.MakeOnes();
-                reservedDice.MakeHidden();
-
-                rollDice.setEnabled(true);
-                nextAttempt.setEnabled(false);
-                reserveScoreText.setTextColor(Color.BLACK);
+            rolledKeys.removeAll(rolledKeys);
+            for (String key :
+                    bankKeys) {
+                rolledKeys.add(key);
             }
+
+            //Collections.sort(rolledKeys);
+            bankedKeys.removeAll(bankedKeys);
+
+            rolledDice.MakeVisible();
+            rolledDice.ChangeBackgroundColor(Color.WHITE);
+            rolledDice.SetDiceViewPadding(0);
+            rolledDice.MakeOnes();
+            reservedDice.MakeHidden();
+
+            rollDice.setEnabled(true);
+            nextAttempt.setEnabled(false);
+            reserveScoreText.setTextColor(Color.BLACK);
         });
 
         resetGame.setOnClickListener(v -> {

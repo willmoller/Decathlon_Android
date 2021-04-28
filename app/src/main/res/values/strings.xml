@@ -37,6 +37,7 @@
     <string name="_1500M_title">1500 Metres</string>
     <string name="rolls_left_text_1500M">13</string>
     <string name="rules_1500M">Throw 1 die until you are satisfied with the result. Proceed in the same manner with all 8 dice. You have a maximum of 13 throws among all dice. 6\'s count negative.</string>
+    <string name="enter_name">Enter Name</string>
     <string-array name="event_names">
         <item>100 Metres</item>
         <item>Long Jump</item>

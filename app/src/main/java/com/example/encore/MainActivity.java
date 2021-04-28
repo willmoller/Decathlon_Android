@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +17,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private Button singleEventButton, fullGame;
+    private Button singleEventButton, fullGame, rules;
     Spinner singleEventSpinner;
     String spinnerValue;
     Intent intent;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         singleEventButton = (Button) findViewById(R.id.button_single_event);
         fullGame = (Button) findViewById(R.id.button_all_events);
+        rules = (Button) findViewById(R.id.button_rules);
 
         ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(MainActivity.this, R.array.event_names, android.R.layout.simple_list_item_1);
         singleEventSpinner.setAdapter(adapter);
@@ -60,73 +62,72 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        fullGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isFullGame = true;
-                intent = new Intent(MainActivity.this, Event100Metres.class);
-                intent.putExtra("isFullGame", isFullGame);
-                startActivity(intent);
+        fullGame.setOnClickListener(v -> {
+            isFullGame = true;
+            intent = new Intent(MainActivity.this, Event100Metres.class);
+            intent.putExtra("isFullGame", isFullGame);
+            startActivity(intent);
+        });
+
+        singleEventButton.setOnClickListener(v -> {
+            isFullGame = false;
+            switch (spinnerValue){
+                case "100 Metres":
+                    intent = new Intent(MainActivity.this, Event100Metres.class);
+                    intent.putExtra("isFullGame", isFullGame);
+                    startActivity(intent);
+                    break;
+                case "110 Metre Hurdles":
+                    intent = new Intent(MainActivity.this, Event110MetreHurdles.class);
+                    intent.putExtra("isFullGame", isFullGame);
+                    startActivity(intent);
+                    break;
+                case "1500 Metres":
+                    intent = new Intent(MainActivity.this, Event1500Metres.class);
+                    intent.putExtra("isFullGame", isFullGame);
+                    startActivity(intent);
+                    break;
+                case "400 Metres":
+                    intent = new Intent(MainActivity.this, Event400Metres.class);
+                    intent.putExtra("isFullGame", isFullGame);
+                    startActivity(intent);
+                    break;
+                case "Discus":
+                    intent = new Intent(MainActivity.this, EventDiscus.class);
+                    intent.putExtra("isFullGame", isFullGame);
+                    startActivity(intent);
+                    break;
+                case "High Jump":
+                    intent = new Intent(MainActivity.this, EventHighJump.class);
+                    intent.putExtra("isFullGame", isFullGame);
+                    startActivity(intent);
+                    break;
+                case "Javelin":
+                    intent = new Intent(MainActivity.this, EventJavelin.class);
+                    intent.putExtra("isFullGame", isFullGame);
+                    startActivity(intent);
+                    break;
+                case "Long Jump":
+                    intent = new Intent(MainActivity.this, EventLongJump.class);
+                    intent.putExtra("isFullGame", isFullGame);
+                    startActivity(intent);
+                    break;
+                case "Pole Vault":
+                    intent = new Intent(MainActivity.this, EventPoleVault.class);
+                    intent.putExtra("isFullGame", isFullGame);
+                    startActivity(intent);
+                    break;
+                case "Shot Put":
+                    intent = new Intent(MainActivity.this, EventShotPut.class);
+                    intent.putExtra("isFullGame", isFullGame);
+                    startActivity(intent);
+                    break;
             }
         });
 
-        singleEventButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isFullGame = false;
-                switch (spinnerValue){
-                    case "100 Metres":
-                        intent = new Intent(MainActivity.this, Event100Metres.class);
-                        intent.putExtra("isFullGame", isFullGame);
-                        startActivity(intent);
-                        break;
-                    case "110 Metre Hurdles":
-                        intent = new Intent(MainActivity.this, Event110MetreHurdles.class);
-                        intent.putExtra("isFullGame", isFullGame);
-                        startActivity(intent);
-                        break;
-                    case "1500 Metres":
-                        intent = new Intent(MainActivity.this, Event1500Metres.class);
-                        intent.putExtra("isFullGame", isFullGame);
-                        startActivity(intent);
-                        break;
-                    case "400 Metres":
-                        intent = new Intent(MainActivity.this, Event400Metres.class);
-                        intent.putExtra("isFullGame", isFullGame);
-                        startActivity(intent);
-                        break;
-                    case "Discus":
-                        intent = new Intent(MainActivity.this, EventDiscus.class);
-                        intent.putExtra("isFullGame", isFullGame);
-                        startActivity(intent);
-                        break;
-                    case "High Jump":
-                        intent = new Intent(MainActivity.this, EventHighJump.class);
-                        intent.putExtra("isFullGame", isFullGame);
-                        startActivity(intent);
-                        break;
-                    case "Javelin":
-                        intent = new Intent(MainActivity.this, EventJavelin.class);
-                        intent.putExtra("isFullGame", isFullGame);
-                        startActivity(intent);
-                        break;
-                    case "Long Jump":
-                        intent = new Intent(MainActivity.this, EventLongJump.class);
-                        intent.putExtra("isFullGame", isFullGame);
-                        startActivity(intent);
-                        break;
-                    case "Pole Vault":
-                        intent = new Intent(MainActivity.this, EventPoleVault.class);
-                        intent.putExtra("isFullGame", isFullGame);
-                        startActivity(intent);
-                        break;
-                    case "Shot Put":
-                        intent = new Intent(MainActivity.this, EventShotPut.class);
-                        intent.putExtra("isFullGame", isFullGame);
-                        startActivity(intent);
-                        break;
-                }
-            }
+        rules.setOnClickListener(v -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://knizia.de/wp-content/uploads/reiner/pdfs/Knizia-Website-Decathlon.pdf"));
+            startActivity(browserIntent);
         });
 
     }

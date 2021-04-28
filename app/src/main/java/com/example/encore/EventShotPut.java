@@ -18,6 +18,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class EventShotPut extends AppCompatActivity {
@@ -26,9 +27,9 @@ public class EventShotPut extends AppCompatActivity {
     private Dice rolledDice;
     private ArrayList<ImageView> ivRolledDice;
     private ArrayList<String> rolledKeys;
-    private int totalScore, attempt, dieCount, fullGameScore, intScore1, intScore2, intScore3;
+    private int totalScore, attempt, dieCount, fullGameScore;
     private Button rollDice, scoreDice, resetGame, leaveGame, nextAttempt;
-
+    private ArrayList<Integer> intValues;
     private TextView attemptsLeftText, score1Text, score2Text, score3Text, fullGameScoreLabel, fullGameScoreText;
     private boolean isFullGame;
     private MediaPlayer mp;
@@ -83,6 +84,7 @@ public class EventShotPut extends AppCompatActivity {
 
         rolledDice = new Dice(ivRolledDice, rolledKeys);
         rolledDice.getDiceList().get("rollDie1").makeVisible();
+        intValues = new ArrayList<>();
 
         mp = new MediaPlayer();
 
@@ -161,22 +163,24 @@ public class EventShotPut extends AppCompatActivity {
                             case 1:
                                 score1Text.setText(Integer.toString(0));
                                 score1Text.setTextColor(Color.RED);
+                                intValues.add(0);
                                 break;
                             case 2:
                                 score2Text.setText(Integer.toString(0));
                                 score2Text.setTextColor(Color.RED);
+                                intValues.add(0);
                                 break;
                             case 3:
                                 score3Text.setText(Integer.toString(0));
                                 score3Text.setTextColor(Color.RED);
+                                intValues.add(0);
                                 break;
                         }
                         if (attempt < 3){
                             nextAttempt.setEnabled(true);
                         } else {
                             resetGame.setEnabled(true);
-                            int maxValue = Integer.max(intScore1, intScore2);
-                            maxValue = Integer.max(maxValue, intScore3);
+                            int maxValue = Collections.max(intValues);
                             fullGameScore += maxValue;
                             fullGameScoreText.setText(Integer.toString(fullGameScore));
                         }
@@ -212,21 +216,20 @@ public class EventShotPut extends AppCompatActivity {
                         score1Text.setText(Integer.toString(totalScore));
                         score1Text.setTextColor(Color.GREEN);
                         nextAttempt.setEnabled(true);
-                        intScore1 = totalScore;
+                        intValues.add(totalScore);
                         break;
                     case 2:
                         score2Text.setText(Integer.toString(totalScore));
                         score2Text.setTextColor(Color.GREEN);
                         nextAttempt.setEnabled(true);
-                        intScore2 = totalScore;
+                        intValues.add(totalScore);
                         break;
                     case 3:
                         score3Text.setText(Integer.toString(totalScore));
                         score3Text.setTextColor(Color.GREEN);
                         resetGame.setEnabled(true);
-                        intScore3 = totalScore;
-                        int maxValue = Integer.max(intScore1, intScore2);
-                        maxValue = Integer.max(maxValue, intScore3);
+                        intValues.add(totalScore);
+                        int maxValue = Collections.max(intValues);
                         fullGameScore += maxValue;
                         fullGameScoreText.setText(Integer.toString(fullGameScore));
                         break;

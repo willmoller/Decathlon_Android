@@ -12,12 +12,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="174dp"
         android:layout_marginLeft="174dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="232dp"
         android:layout_marginEnd="179dp"
         android:layout_marginRight="179dp"
         android:text="Reiner Knizia's"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,13 +28,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="168dp"
         android:layout_marginLeft="168dp"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="180dp"
         android:layout_marginRight="180dp"
         android:text="@string/label_decathlon"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.445"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_Knizia" />
 
@@ -43,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="104dp"
         android:layout_marginLeft="104dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="38dp"
         android:layout_marginEnd="104dp"
         android:layout_marginRight="104dp"
         android:onClick="launchSelectPlayersActivity"
@@ -51,36 +53,21 @@
         android:textSize="24sp"
         app:backgroundTint="@android:color/holo_orange_light"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_Decathlon" />
-
-    <Button
-        android:id="@+id/button_high_scores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="138dp"
-        android:layout_marginLeft="138dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="139dp"
-        android:layout_marginRight="139dp"
-        android:text="@string/label_high_scores"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_single_event" />
+        app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
     <Button
         android:id="@+id/button_single_event"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="@string/label_single_event"
         android:onClick="launchSingleEventActivity"
+        android:text="@string/label_single_event"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.621"
+        app:layout_constraintHorizontal_bias="0.64"
         app:layout_constraintStart_toEndOf="@+id/spinnerSingleEvent"
         app:layout_constraintTop_toBottomOf="@+id/button_all_events" />
 
@@ -90,50 +77,51 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
         android:layout_marginLeft="161dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="54dp"
         android:layout_marginEnd="162dp"
         android:layout_marginRight="162dp"
         android:text="@string/label_rules"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_high_scores" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerSingleEvent" />
 
     <Spinner
         android:id="@+id/spinnerSingleEvent"
         android:layout_width="186dp"
         android:layout_height="27dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="48dp"
+        android:background="@color/teal_200"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_all_events" />
 
     <EditText
         android:id="@+id/tvName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="21dp"
+        android:layout_width="254dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="78dp"
+        android:layout_marginLeft="78dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/teal_200"
         android:ems="10"
-        android:hint="Enter Name"
+        android:hint="@string/enter_name"
         android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintStart_toEndOf="@+id/labelName"
-        app:layout_constraintTop_toBottomOf="@+id/text_Decathlon" />
-
-    <TextView
-        android:id="@+id/labelName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="193dp"
-        android:text="Name:"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/text_Decathlon" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="186dp"
+        android:layout_height="193dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/poster4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

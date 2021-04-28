@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class EventJavelin extends AppCompatActivity implements View.OnClickListener {
@@ -25,7 +26,8 @@ public class EventJavelin extends AppCompatActivity implements View.OnClickListe
     private Dice rolledDice, reservedDice;
     private ArrayList<ImageView> ivRolledDice, ivBankedDiceSet;
     private ArrayList<String> rolledKeys, bankKeys, bankedKeys;
-    private int reserveScore, totalScore, diceAvailable, diceClicked, fullGameScore, intScore1, intScore2, intScore3, diceRolled;
+    private ArrayList<Integer> intValues;
+    private int reserveScore, totalScore, diceAvailable, diceClicked, fullGameScore, diceRolled;
     private Button rollDice, keepDice, scoreDice, nextAttempt, resetGame, leaveGame;
     private ImageView rollDie1, rollDie2, rollDie3, rollDie4, rollDie5, rollDie6, reserveDie1,
             reserveDie2, reserveDie3, reserveDie4, reserveDie5, reserveDie6;
@@ -117,7 +119,7 @@ public class EventJavelin extends AppCompatActivity implements View.OnClickListe
 
         rolledDice = new Dice(ivRolledDice, rolledKeys);
         reservedDice = new Dice(ivBankedDiceSet, bankKeys);
-
+        intValues = new ArrayList<>();
         bankedKeys = new ArrayList<String>();
 
         totalScore = 0;
@@ -240,21 +242,20 @@ public class EventJavelin extends AppCompatActivity implements View.OnClickListe
                                 case 1:
                                     score1.setText(Integer.toString(0));
                                     score1.setTextColor(Color.RED);
-                                    intScore1 = 0;
+                                    intValues.add(0);
                                     break;
                                 case 2:
                                     score2.setText(Integer.toString(0));
                                     score2.setTextColor(Color.RED);
-                                    intScore2 = 0;
+                                    intValues.add(0);
                                     break;
                                 case 3:
                                     score3.setText(Integer.toString(0));
                                     score3.setTextColor(Color.RED);
-                                    intScore3 = 0;
+                                    intValues.add(0);
                                     nextAttempt.setEnabled(false);
                                     resetGame.setEnabled(true);
-                                    int maxValue = Integer.max(intScore1, intScore2);
-                                    maxValue = Integer.max(maxValue, intScore3);
+                                    int maxValue = Collections.max(intValues);
                                     fullGameScore += maxValue;
                                     fullGameScoreText.setText(Integer.toString(fullGameScore));
                                     break;
@@ -315,25 +316,24 @@ public class EventJavelin extends AppCompatActivity implements View.OnClickListe
                 case 1:
                     score1.setText(Integer.toString(reserveScore));
                     score1.setTextColor(Color.GREEN);
-                    intScore1 = reserveScore;
+                    intValues.add(reserveScore);
                     break;
                 case 2:
                     score2.setText(Integer.toString(reserveScore));
                     score2.setTextColor(Color.GREEN);
-                    intScore2 = reserveScore;
+                    intValues.add(reserveScore);
                     break;
                 case 3:
                     score3.setText(Integer.toString(reserveScore));
                     score3.setTextColor(Color.GREEN);
-                    intScore3 = reserveScore;
+                    intValues.add(reserveScore);
                     break;
             }
             if (attempt < 3){
                 nextAttempt.setEnabled(true);
             } else {
                 resetGame.setEnabled(true);
-                int maxValue = Integer.max(intScore1, intScore2);
-                maxValue = Integer.max(maxValue, intScore3);
+                int maxValue = Collections.max(intValues);
                 fullGameScore += maxValue;
                 fullGameScoreText.setText(Integer.toString(fullGameScore));
             }

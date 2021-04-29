@@ -63,6 +63,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
 
         fullGame.setOnClickListener(v -> {
+            name = tvName.getText().toString();
+            SharedPreferences.Editor prefEditor = mPreferences.edit();
+            prefEditor.putString(NAME_KEY, name);
+            prefEditor.apply();
             isFullGame = true;
             intent = new Intent(MainActivity.this, Event100Metres.class);
             intent.putExtra("isFullGame", isFullGame);
@@ -129,12 +133,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://knizia.de/wp-content/uploads/reiner/pdfs/Knizia-Website-Decathlon.pdf"));
             startActivity(browserIntent);
         });
-
     }
 
     @Override
     protected void onPause(){
         super.onPause();
+        name = tvName.getText().toString();
         SharedPreferences.Editor prefEditor = mPreferences.edit();
         prefEditor.putString(NAME_KEY, name);
         prefEditor.apply();
